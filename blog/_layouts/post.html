@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<article class="article">
+<header class="article-header"><div class="eyebrow">CS LEARNING / {{ site.data.categories[page.categories.first] | default: page.categories.first }}</div><h1>{{ page.title | escape }}</h1><div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time><span>{{ page.tags | join: ' · ' | escape }}</span><a href="{{ page.github_url }}">GitHub 원문 ↗</a></div></header>
+<details class="toc-box" open><summary>이 글의 목차</summary><nav id="toc" aria-label="게시글 목차"></nav></details>
+<div class="prose" id="post-content">{{ content }}</div>
+<section class="related"><div class="section-heading"><h2>함께 읽기</h2><a href="{{ '/learning/' | relative_url }}">전체 학습 기록 →</a></div>{% assign shown = 0 %}{% for post in site.posts %}{% if post.url != page.url and post.categories.first == page.categories.first %}<a class="related-link" href="{{ post.url | relative_url }}">{{ post.title | escape }} →</a>{% assign shown = shown | plus: 1 %}{% if shown == 3 %}{% break %}{% endif %}{% endif %}{% endfor %}{% if shown == 0 %}<p class="muted">같은 분야의 글이 게시되면 여기에 연결됩니다.</p>{% endif %}</section>
+</article>

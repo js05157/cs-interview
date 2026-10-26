@@ -1,0 +1,6 @@
+---
+title: CS Learning
+permalink: /learning/
+---
+<section class="page-heading"><div class="eyebrow">THE LEARNING ARCHIVE</div><h1>CS Learning<span class="accent">.</span></h1><p>현재 {{ site.posts | size }}개의 공개 학습 기록을 분야별로 살펴보세요.</p></section>
+{% for category in site.data.categories %}<section class="archive-category" id="{{ category[0] }}"><div class="section-heading"><h2>{{ category[1] }}</h2><span class="mono">{{ site.categories[category[0]] | size }} NOTES</span></div>{% for post in site.categories[category[0]] %}<a class="archive-row" href="{{ post.url | relative_url }}"><time>{{ post.date | date: '%Y.%m.%d' }}</time><span>{{ post.title | escape }}</span><span>→</span></a>{% else %}<p class="muted">이 분야의 글을 준비하고 있습니다.</p>{% endfor %}</section>{% endfor %}

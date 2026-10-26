@@ -1,0 +1,29 @@
+title: 'Backend Notes · js05157'
+description: 'Java와 Spring 백엔드 개발을 위한 CS 학습 기록'
+lang: ko-KR
+timezone: Asia/Seoul
+url: 'https://js05157.github.io'
+baseurl: '/cs-interview'
+github_url: 'https://github.com/js05157/cs-interview'
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+permalink: /topics/:title/
+strict_front_matter: true
+exclude: [Gemfile, Gemfile.lock, README.md, vendor]
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
+  - scope:
+      path: ''
+      type: posts
+    values:
+      layout: post
+      author: js05157

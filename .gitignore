@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+_site/
+.jekyll-cache/
+.bundle/
+vendor/
+.publisher/.lock
+.env
+private-content/
+pending/

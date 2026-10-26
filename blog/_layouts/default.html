@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  {% feed_meta %}
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <script defer src="{{ '/assets/app.js' | relative_url }}"></script>
+</head>
+<body data-search-url="{{ '/search.json' | relative_url }}">
+<a class="skip-link" href="#main">본문으로 이동</a>
+<aside class="sidebar">
+  <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-icon">{ }</span> BACKEND NOTES<span class="brand-sub">js05157 · Learning in public</span></a>
+  <nav aria-label="주요 메뉴">
+    <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>홈 <span>01</span></a>
+    <a href="{{ '/learning/' | relative_url }}" {% if page.url == '/learning/' %}aria-current="page"{% endif %}>CS Learning <span>02</span></a>
+    <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About <span>03</span></a>
+    <a href="{{ '/projects/' | relative_url }}" {% if page.url == '/projects/' %}aria-current="page"{% endif %}>Projects <span>04</span></a>
+  </nav>
+  <div class="sidebar-label">CATEGORIES</div>
+  <nav class="categories" aria-label="학습 분야">
+  {% for category in site.data.categories %}
+    {% assign count = site.categories[category[0]] | size %}
+    <a href="{{ '/learning/' | relative_url }}#{{ category[0] }}">{{ category[1] }}<span>{{ count | default: 0 }}</span></a>
+  {% endfor %}
+  </nav>
+  <div class="sidebar-bottom"><a href="{{ site.github_url }}">GitHub ↗</a>{% if site.data.publisher.notion_url != '' %}<a href="{{ site.data.publisher.notion_url }}">Notion ↗</a>{% endif %}<a href="{{ '/feed.xml' | relative_url }}">RSS ↗</a></div>
+</aside>
+<div class="shell">
+  <header class="topbar"><span class="breadcrumb">개념에서 설계까지 <span class="status-dot"></span></span><div class="tools"><label class="search-box"><span class="sr-only">게시글 검색</span><input id="search" type="search" placeholder="학습 기록 검색" autocomplete="off"></label><button id="theme-toggle" type="button" aria-label="다크 모드로 전환">◐</button></div></header>
+  <div id="search-panel" class="search-panel" hidden aria-live="polite"></div>
+  <main id="main">{{ content }}</main>
+  <footer><span>© {{ site.time | date: '%Y' }} js05157</span><span>직접 이해하고, 설명할 수 있는 지식으로.</span><a href="{{ '/learning/' | relative_url }}">학습 아카이브 ↑</a></footer>
+</div>
+</body>
+</html>
