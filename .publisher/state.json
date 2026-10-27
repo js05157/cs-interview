@@ -1,6 +1,29 @@
 {
   "schema_version": 1,
-  "topics": {},
-  "notion_hierarchy": {},
-  "notion_uncertain": {}
+  "topics": {
+    "os-process-thread": {
+      "topic_id": "os-process-thread",
+      "title_ko": "프로세스와 스레드",
+      "category": "Operating-System",
+      "subcategory": "Process",
+      "target_path": "Operating-System/Process/os-process-thread.md",
+      "post_path": "blog/_posts/2026-10-27-os-process-thread.md",
+      "permalink": "/topics/os-process-thread/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-process-thread/",
+      "published_date": "2026-10-27",
+      "content_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681"
+    }
+  },
+  "notion_hierarchy": {
+    "40547f4c-2c25-8012-9548-c463380659f7:운영체제": "40647f4c-2c25-8132-935d-fa622da0777a",
+    "40647f4c-2c25-8132-935d-fa622da0777a:Process": "40647f4c-2c25-81bb-a62f-dafeea335509"
+  },
+  "notion_uncertain": {},
+  "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
 }
