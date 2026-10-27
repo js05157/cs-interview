@@ -5,6 +5,7 @@ import json
 import os
 import random
 import time
+from uuid import UUID
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -211,7 +212,7 @@ def links_from_block(b):
             if r.get("text", {}).get("link")]
 
 
-def ensure_hierarchy(client, state, parent, title, save):
+def ensure_hierarchy(client, state, parent, title, save, created=None):
     key = parent + ":" + title
     # Always verify under the actual parent instead of trusting a stale cache.
     matches = [b for b in client.children(parent) if b.get("type") == "child_page" and b["child_page"]["title"] == title]
@@ -226,6 +227,8 @@ def ensure_hierarchy(client, state, parent, title, save):
         state["notion_uncertain"][key] = True; save()
         try:
             page_id = client.create_page(parent, title)["id"]
+            if created is not None:
+                created.append(page_id)
         except AmbiguousWrite:
             raise
         except PublisherError:
@@ -234,6 +237,52 @@ def ensure_hierarchy(client, state, parent, title, save):
     state["notion_hierarchy"][key] = page_id
     state["notion_uncertain"].pop(key, None); save()
     return page_id
+
+
+def preflight(root, state, config, topic, policy, client=None, parent=None):
+    """Authenticate and verify the intended hierarchy before any study document is pushed."""
+    parent = parent or os.environ.get("NOTION_PARENT_PAGE_ID")
+    if not parent:
+        raise PublisherError("missing-NOTION_PARENT_PAGE_ID")
+    try:
+        canonical_parent = str(UUID(parent.strip()))
+        expected_parent = str(UUID(policy["expected_notion_parent_page_id"]))
+    except (ValueError, AttributeError, KeyError):
+        raise PublisherError("notion-parent-identifier-invalid") from None
+    client = client or NotionClient(os.environ.get("NOTION_API_KEY"))
+    identity = client.request("GET", "users/me")
+    if identity.get("object") != "user" or not identity.get("id"):
+        raise PublisherError("notion-authentication-response-invalid")
+    if canonical_parent != expected_parent:
+        raise PublisherError("notion-parent-does-not-match-approved-page")
+    page = client.request("GET", "pages/" + canonical_parent)
+    try:
+        page_id = str(UUID(page.get("id", "")))
+    except ValueError:
+        raise PublisherError("notion-parent-response-invalid") from None
+    if page_id != expected_parent:
+        raise PublisherError("notion-parent-does-not-match-approved-page")
+    if page.get("archived") or page.get("in_trash"):
+        raise PublisherError("notion-parent-archived")
+    title = ""
+    for value in page.get("properties", {}).values():
+        if value.get("type") == "title" or "title" in value:
+            title = "".join(t.get("plain_text", t.get("text", {}).get("content", "")) for t in value.get("title", []))
+            break
+    if title.strip() != policy["expected_notion_parent_title"]:
+        raise PublisherError("notion-parent-title-does-not-match-approved-page")
+    # These are the real approved category pages, reused by the later sync step.
+    # A successful create proves insert capability without creating disposable test pages.
+    created = []
+    state["notion_parent_url"] = "https://www.notion.so/" + canonical_parent.replace("-", "")
+    def save():
+        update_indexes(root, state, config)
+        write_json(safe_path(root, ".publisher/state.json"), state)
+    category = ensure_hierarchy(client, state, canonical_parent, config["categories"][topic["category"]], save, created)
+    ensure_hierarchy(client, state, category, topic["subcategory"], save, created)
+    return {"authentication": "passed", "approved_parent_identity": "matched", "parent_title": "matched",
+            "parent_active": True, "hierarchy_readable": True, "hierarchy_pages_created": len(created),
+            "insert_permission": "verified-by-created-page" if created else "existing-hierarchy-reused"}
 
 
 def sync_topic(root, state, entry, config, parent, client, save):

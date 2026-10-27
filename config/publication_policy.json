@@ -1,0 +1,6 @@
+{
+  "allowed_topic_ids": ["os-process-thread"],
+  "expected_notion_parent_page_id": "40547f4c-2c25-8012-9548-c463380659f7",
+  "expected_notion_parent_title": "CS 기술 면접 공부",
+  "note": "Only the first manual publication is approved. Do not expand this policy or enable scheduled publishing without explicit user approval."
+}

@@ -20,6 +20,14 @@ def git(root, *args):
     return completed.stdout.strip()
 
 
+def enforce_approval(state, preview, policy):
+    allowed = set(policy.get("allowed_topic_ids", []))
+    if not allowed or set(state["topics"]) - allowed:
+        raise PublisherError("publication-state-outside-approved-scope")
+    if preview.get("topic_id") is not None and preview["topic_id"] not in allowed:
+        raise PublisherError("topic-not-approved-for-publication")
+
+
 def commit(root, message):
     config = read_json(root / "config/publisher.json")
     if git(root, "branch", "--show-current") != config["branch"]:
@@ -140,6 +148,27 @@ def main(argv=None):
                     for variable in ("NOTION_API_KEY", "NOTION_PARENT_PAGE_ID", "CONTENT_REPO_TOKEN"):
                         if not os.environ.get(variable):
                             raise PublisherError("missing-" + variable)
+                    policy = read_json(root / "config/publication_policy.json")
+                    preview = prepare(root, args.private, dry_run=True)
+                    state = load_state(root)
+                    enforce_approval(state, preview, policy)
+                    key = preview["topic_id"]
+                    if key and state["topics"].get(key, {}).get("notion_status") != "complete":
+                        from .notion import preflight
+                        catalog, _ = load_catalog(args.private)
+                        try:
+                            checked = preflight(root, state, read_json(root / "config/publisher.json"), catalog[key], policy)
+                        except PublisherError as preflight_error:
+                            print("notion-preflight-failed: " + str(preflight_error), file=sys.stderr, flush=True)
+                            # No study document has been created yet. Preserve only
+                            # hierarchy/ambiguous-write metadata when that has changed.
+                            if git(root, "status", "--porcelain"):
+                                try:
+                                    commit(root, "chore: checkpoint Notion preflight metadata")
+                                except PublisherError:
+                                    print("notion-preflight-checkpoint-push-failed", file=sys.stderr, flush=True)
+                            raise preflight_error
+                        print("notion-preflight: " + json.dumps(checked, ensure_ascii=True), flush=True)
                 result = prepare(root, args.private, dry_run=False)
                 if args.commit and result["topic_id"]:
                     state = load_state(root)
