@@ -27,6 +27,14 @@
 - 샘플 1개 공개와 Pages 실제 배포는 미실행.
 - 실제 게시와 예약 활성화 승인은 받지 않았으며 임의로 실행하지 않음.
 
+## 첫 1건 게시 전 점검
+
+- 실제 첫 원문을 격리된 로컬 샌드박스에 준비하고 Notion·배포는 mock으로 검사. 같은 날 신규 차단, 다음 날 다음 ID 선택, 미완료 우선 복구, Notion 성공 응답 유실의 기존 페이지 재사용을 확인.
+- 실제 공개·비공개 파일 무변경을 검사했으며 GITHUB_TOKEN의 운영 push, Actions Notion 키의 인증·쓰기와 실제 Pages 배포는 여전히 미검증.
+- github-pages environment의 master 허용과 Pages Source=workflow를 읽기 전용으로 재확인. CS_AUTO_PUBLISH는 미설정으로 유지.
+- 상세 첫 게시 계획과 미확인 사항은 비공개 docs/FIRST_PUBLISH_PREFLIGHT.md와 JSON에 저장. 실제 게시 승인은 아직 없음.
+- 비공개 manifests/remaining_generation_plan.json에 35~100번 66개의 5개 배치(16/14/14/10/12개)를 준비. 본문 수는 34개로 유지하며 게시 대기열을 35번으로 옮기지 않음.
+
 ## 다음 세션 재개
 
 이 문서, ARCHITECTURE.md, OPERATIONS.md와 private의 README, docs/RESUME_PROMPT.md, manifests/generation_checkpoint.json을 읽습니다. 양쪽 remote와 git status를 확인한 뒤 계속 진행합니다.
