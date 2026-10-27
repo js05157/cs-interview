@@ -14,6 +14,8 @@
 - `NOTION_PARENT_PAGE_ID`: 이름 존재 확인. 값·페이지 접근은 미확인.
 - `CONTENT_REPO_TOKEN`: 최초 조회 시 Repository/Environment 어디에도 없었음. 사용자가 기존에 발급한 **cs-content-private의 Contents:read 전용 토큰**을 이 이름으로 등록하기로 함. 재발급이나 권한 확대는 요구하지 않음.
 
+2026-10-27 후속 점검에서는 위 Secret 이름 3개가 모두 등록되어 있음을 확인했습니다. CONTENT_REPO_TOKEN 값은 읽을 수 없으며 실제 읽기 인증은 Actions dry-run에서 확인해야 합니다. 워크플로우 웹 등록은 `WORKFLOW_REGISTRATION.md`, 로컬 실제 빌드 결과는 `VALIDATION_2026-10-27.md`를 참고하세요.
+
 비밀 값은 코드, 채팅, 로그, Git에 넣지 않습니다. Secret 값을 가져오거나 출력하는 진단 스크립트는 제공하지 않습니다. 토큰 만료·권한 오류가 확인되면 해당 Secret만 갱신합니다.
 
 ## 로컬 설치·검증
