@@ -1,24 +1,21 @@
 # 운영 안내
 
-## 현재 안전 상태
+## 현재 상태와 승인 범위
 
-실제 학습 글 게시, Notion 쓰기, Pages 배포는 아직 승인·실행하지 않았습니다. `CS_AUTO_PUBLISH`는 2026-10-27 조회에서 미설정으로 확인했습니다. 값이 없거나 `false`이면 schedule은 게시 job을 실행하지 않습니다.
+첫 문서 os-process-thread 한 건의 실제 수동 게시·같은 글 카테고리 수정 재배포를 완료했습니다. 세 플랫폼 상태는 complete이며 실제 URL과 증거는 [FIRST_PUBLICATION_RESULT.md](FIRST_PUBLICATION_RESULT.md)를 참고하세요. 이후 다른 문서 게시와 예약 활성화는 승인되지 않았습니다.
 
-공개 저장소 Pages의 `build_type=workflow`를 확인했습니다. 설정에 URL이 나온다는 이유만으로 배포 성공이나 사이트 접속 성공으로 처리하지 않습니다.
+CS_AUTO_PUBLISH는 2026-10-28 조회에서도 미설정·비활성입니다. config/publication_policy.json은 첫 ID만 허용하므로 날짜가 바뀌어도 두 번째 주제를 게시하지 않습니다. 새 운영 범위는 별도 사용자 승인 후 이 정책을 검토·수정해야 합니다.
 
-## 기존 설정 확인
+## 기존 설정과 검증
 
-공개 저장소 Settings → Secrets and variables → Actions → Repository secrets:
+공개 저장소 Settings → Secrets and variables → Actions → Repository secrets에 NOTION_API_KEY, NOTION_PARENT_PAGE_ID, CONTENT_REPO_TOKEN 이름이 등록되어 있습니다. 값은 읽거나 표시하지 않습니다.
 
-- `NOTION_API_KEY`: 이름 존재 확인. 값은 읽을 수 없으며 유효성과 부모 접근 권한은 실제 승인 테스트 전까지 미확인.
-- `NOTION_PARENT_PAGE_ID`: 이름 존재 확인. 값·페이지 접근은 미확인.
-- `CONTENT_REPO_TOKEN`: 최초 조회 시 Repository/Environment 어디에도 없었음. 사용자가 기존에 발급한 **cs-content-private의 Contents:read 전용 토큰**을 이 이름으로 등록하기로 함. 재발급이나 권한 확대는 요구하지 않음.
+- CONTENT_REPO_TOKEN: 비공개 저장소 읽기 인증을 실제 Actions checkout으로 확인. Contents:read 전용을 유지하고 다른 용도로 사용하지 않습니다.
+- NOTION_API_KEY: 첫 승인 게시의 Actions users/me 인증과 실제 페이지 생성·본문 쓰기 성공으로 검증했습니다.
+- NOTION_PARENT_PAGE_ID: 승인된 CS 기술 면접 공부의 ID·제목과 일치하고 활성 상태임을 Actions에서 확인했습니다.
+- Pages: Source=GitHub Actions, master 배포 허용. 실제 deploy-pages 성공과 게시글·정적 리소스 HTTP 200, 브라우저 검색·카테고리 동작 확인.
 
-2026-10-27 후속 점검에서는 위 Secret 이름 3개가 모두 등록되어 있음을 확인했습니다. CONTENT_REPO_TOKEN 값은 읽을 수 없으며 실제 읽기 인증은 Actions dry-run에서 확인해야 합니다. 워크플로우 웹 등록은 `WORKFLOW_REGISTRATION.md`, 로컬 실제 빌드 결과는 `VALIDATION_2026-10-27.md`를 참고하세요.
-
-워크플로우 등록 후 Actions dry-run에서 CONTENT_REPO_TOKEN으로 비공개 checkout이 성공했습니다. 읽기 인증은 검증 완료이며 Notion API 인증·쓰기와 Pages 배포는 아직 검증하지 않았습니다. 예약 변수는 미설정 상태를 유지합니다.
-
-비밀 값은 코드, 채팅, 로그, Git에 넣지 않습니다. Secret 값을 가져오거나 출력하는 진단 스크립트는 제공하지 않습니다. 토큰 만료·권한 오류가 확인되면 해당 Secret만 갱신합니다.
+Secret 값을 코드·채팅·로그·Git에 넣지 않습니다. 확인된 만료·권한 오류가 있을 때 해당 Secret을 수정하며 읽기 토큰의 권한을 확대하지 않습니다. workflow 등록 절차는 WORKFLOW_REGISTRATION.md를 참고하세요.
 
 ## 로컬 설치·검증
 
@@ -41,6 +38,8 @@ python -m venv .venv
 
 ## 첫 수동 검증
 
+아래 첫 1건 검증은 완료했습니다. 중복 점검을 위해 실제 publish를 다시 실행하지 않습니다.
+
 1. GitHub → Actions → Daily CS publisher → Run workflow를 엽니다.
 2. branch는 master, mode는 기본 dry-run을 선택합니다. 읽기 토큰으로 비공개 checkout, 후보 검증, 공개 파일 무변경을 확인합니다. Notion에는 접속하지 않습니다.
 3. 사용자가 실제 샘플 1개 공개를 명시적으로 승인한 후에만 mode=publish를 선택합니다.
@@ -49,7 +48,7 @@ python -m venv .venv
 
 ## 매일 예약 활성화
 
-Settings → Secrets and variables → Actions → Variables에 CS_AUTO_PUBLISH=true를 등록합니다. 기본은 미설정/false이며 중지하려면 false로 바꿉니다.
+현재는 활성화하지 않습니다. 이후 추가 문서 게시와 예약 활성화를 별도로 승인받고 첫 ID 제한 정책을 함께 검토한 경우에만 Settings → Secrets and variables → Actions → Variables에 CS_AUTO_PUBLISH=true를 등록합니다. 기본은 미설정/false이며 중지하려면 false로 바꿉니다.
 
 ```yaml
 schedule:

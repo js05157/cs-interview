@@ -7,7 +7,9 @@
 ```text
 Codex 초기 작성 → private/pending + manifests + generation_checkpoint
                      ↓ CONTENT_REPO_TOKEN (Contents: read)
-Daily CS publisher → 검증·대상 선택 → 공개 Markdown + README + Jekyll post + state
+Daily CS publisher → 대상·승인 정책 검사 → 필요한 Notion 사전 인증·목적지·계층 생성 확인
+                     ↓ 사전 점검 성공
+                 공개 Markdown + README + Jekyll post + state
                      ↓ GITHUB_TOKEN으로 먼저 commit/push
                  Notion 조회·조정 → 상태 checkpoint commit
                      ↓ 독립적으로 진행
@@ -32,12 +34,12 @@ Actions에서 비공개 checkout은 지원되는 workspace 하위 임시 경로�
 
 1. 미완료 게시가 있으면 가장 오래된 문서부터 복구합니다. 완료 전에는 다른 신규 주제를 선택하지 않습니다.
 2. 신규 예약은 실제 실행 시점의 한국 날짜로 고정합니다. UTC 자정과 구분하며, 이전 날짜로 억지로 소급하지 않습니다.
-3. 공개 원문, 블로그 원문, 상태, 목차를 같은 Git 커밋으로 먼저 push합니다. push 실패 시 Notion에 접근하지 않습니다.
+3. 현재 승인 정책은 첫 ID만 허용합니다. 첫 게시 prepare는 Actions에서 Notion 인증·부모 ID/제목·활성 상태를 확인하고 실제 분야/세부분야 계층을 생성하거나 재사용합니다. 이 사전 점검이 실패하면 학습 원문은 공개하지 않습니다. 공개 원문·블로그 원문·상태·목차를 함께 push한 뒤에만 Notion 주제 본문을 생성합니다. push 실패 시 주제 본문 쓰기는 시작하지 않습니다.
 4. 같은 날짜의 기록이 있으면 신규 문서를 선택하지 않습니다. 복구는 기존 ID와 날짜를 유지합니다.
 5. 기존 파일이나 다른 글의 permalink를 발견하면 덮어쓰지 않고 중단합니다. 공개 후 사람이 본문을 수정한 경우에도 hash 불일치를 감지해 검토를 요구합니다.
 6. Actions 전체 concurrency group과 로컬 배타적 잠금을 사용합니다. 별도 실행자가 경쟁하면 원격 Git의 fast-forward 검사로 두 번째 신규 push를 거부합니다. 강제 push와 자동 재배치는 없습니다.
 
-Git 파일 준비 중 로컬 작업이 중단돼도 원격에 push하기 전이면 외부 게시를 시작하지 않습니다. 새 checkout으로 재시도합니다. 원격 커밋 자체는 생성됐으나 클라이언트가 응답을 잃으면 다음 실행이 원격 상태에서 복구합니다.
+Git 파일 준비 중 로컬 작업이 중단돼도 원격에 push하기 전이면 주제 본문의 외부 게시를 시작하지 않습니다. 사전 점검에서 만든 계층은 재사용합니다. 새 checkout으로 재시도하며, 원격 커밋 자체는 생성됐으나 클라이언트가 응답을 잃으면 다음 실행이 원격 상태에서 복구합니다.
 
 ## Notion의 불확실한 쓰기
 
@@ -70,3 +72,7 @@ Jekyll 빌드는 `blog/`만 읽습니다. 별도 build job은 예약된 공개 �
 - source 경로와 symlink 탈출, 중복 ID/제목/경로/순서, 잘못된 선행 관계를 검사합니다.
 - raw HTML은 검토 대상으로 거부합니다. Jekyll의 Liquid는 원문을 raw 구간으로 감싸 문자 그대로 보존합니다.
 - 게시 작업은 생성기를 호출하지 않으며 AI API 관련 의존성도 없습니다.
+
+## 첫 실제 연동 검증
+
+2026-10-28 기준 공개 주제는 첫 문서 1개, 세 플랫폼 상태는 complete입니다. 카테고리 키를 별도 변수로 조회하도록 수정했고 실제 분야별 글 목록과 검색 목록을 빌드 검사에서 대조합니다. 상세 실행·복구 근거는 FIRST_PUBLICATION_RESULT.md를 참고하세요.

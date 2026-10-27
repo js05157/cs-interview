@@ -1,0 +1,161 @@
+{
+  "verified_at_kst": "2026-10-28T08:52:10.801114+09:00",
+  "approved_topic_id": "os-process-thread",
+  "published_topics": 1,
+  "source_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681",
+  "private_source_matches_github": true,
+  "readme_index": "passed",
+  "notion": {
+    "hierarchy": "CS 기술 면접 공부 / 운영체제 / Process / 프로세스와 스레드",
+    "sections": 10,
+    "full_markdown_tokens": "matched",
+    "code_blocks": 1,
+    "tables": 1,
+    "fingerprints": "matched"
+  },
+  "platform_states": {
+    "github_status": "complete",
+    "notion_status": "complete",
+    "blog_status": "complete"
+  },
+  "urls": {
+    "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
+    "notion_url": "https://www.notion.so/40647f4c2c2581b4b2a3dd1cdeb62644",
+    "blog_url": "https://js05157.github.io/cs-interview/topics/os-process-thread/"
+  },
+  "live_http": {
+    "https://js05157.github.io/cs-interview/": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/",
+      "content_type": "text/html; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/learning/": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/learning/",
+      "content_type": "text/html; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/about/": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/about/",
+      "content_type": "text/html; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/projects/": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/projects/",
+      "content_type": "text/html; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/topics/os-process-thread/": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/topics/os-process-thread/",
+      "content_type": "text/html; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/assets/style.css": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/assets/style.css",
+      "content_type": "text/css; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/assets/app.js": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/assets/app.js",
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/search.json": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/search.json",
+      "content_type": "application/json; charset=utf-8"
+    },
+    "https://js05157.github.io/cs-interview/feed.xml": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/feed.xml",
+      "content_type": "application/xml"
+    },
+    "https://js05157.github.io/cs-interview/sitemap.xml": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/sitemap.xml",
+      "content_type": "application/xml"
+    },
+    "https://js05157.github.io/cs-interview/robots.txt": {
+      "status": 200,
+      "url": "https://js05157.github.io/cs-interview/robots.txt",
+      "content_type": "text/plain; charset=utf-8"
+    },
+    "https://raw.githubusercontent.com/js05157/cs-interview/master/Operating-System/Process/os-process-thread.md": {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/js05157/cs-interview/master/Operating-System/Process/os-process-thread.md",
+      "content_type": "text/plain; charset=utf-8"
+    },
+    "https://raw.githubusercontent.com/js05157/cs-interview/master/README.md": {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/js05157/cs-interview/master/README.md",
+      "content_type": "text/plain; charset=utf-8"
+    },
+    "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md": {
+      "status": 200,
+      "url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "baseurl_and_category_anchors": "passed",
+  "css_and_javascript_source": "matched",
+  "search_index": "one correct document",
+  "same_day_readonly_selection": {
+    "action": "daily-limit",
+    "topic_id": null,
+    "date": "2026-10-27",
+    "dry_run": true
+  },
+  "following_day_approval_guard": "second topic rejected",
+  "verification_wrote_public_files": false,
+  "private_generated_documents": 34,
+  "browser_interactions": {
+    "category_count": "Operating-System 1",
+    "category_to_post": "passed",
+    "search_query": "프로세스",
+    "search_result": "프로세스와 스레드 · 2026.10.27",
+    "css_rendering": "passed",
+    "javascript_toc": "passed",
+    "console_errors_and_warnings": []
+  },
+  "auto_publish_enabled": false,
+  "auto_publish_variable_exists": false,
+  "actions": {
+    "first_publish": {
+      "run_id": 40520128773,
+      "conclusion": "success"
+    },
+    "category_fix_ci": {
+      "run_id": 40521085551,
+      "conclusion": "success",
+      "python_tests": 46,
+      "html_pages": 6,
+      "posts": 1
+    },
+    "same_topic_recovery": {
+      "run_id": 40604831780,
+      "conclusion": "success",
+      "action": "recover",
+      "topic_id": "os-process-thread",
+      "needs_notion": false,
+      "needs_blog": true
+    }
+  },
+  "actions_notion_preflight": {
+    "authentication": "passed",
+    "approved_parent_identity": "matched",
+    "parent_title": "matched",
+    "parent_active": true,
+    "hierarchy_pages_created": 2,
+    "insert_permission": "verified-by-created-page"
+  },
+  "recovery": {
+    "reason": "Jekyll nested category key lookup rendered an empty archive",
+    "fix_commit": "8787875021c89883c08628f727ef0a2e9dc8d559",
+    "new_topics_created": 0,
+    "original_date_and_urls_preserved": true
+  },
+  "verification_limits": [
+    "Notion content was verified by connector re-fetch and Markdown token comparison, not by opening every toggle in the native Notion app.",
+    "Interactive checks used the desktop in-app browser."
+  ],
+  "additional_new_topic_published": false
+}

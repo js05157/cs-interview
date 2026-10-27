@@ -1,47 +1,38 @@
-# 진행 상태 · 2026-10-27
+# 진행 상태 · 2026-10-28
+
+## 현재 상태
+
+- 첫 문서 **프로세스와 스레드(os-process-thread) 1건만** 수동 게시 완료. 최초 게시 날짜 2026-10-27 유지.
+- GitHub Markdown·README, Notion의 `CS 기술 면접 공부 → 운영체제 → Process → 프로세스와 스레드`, 실제 Pages 게시글 확인.
+- `.publisher/state.json`의 GitHub·Notion·블로그 상태 모두 complete, 공개 topic 1개, 불확실한 Notion 쓰기 없음.
+- CS_AUTO_PUBLISH는 미설정·비활성. config/publication_policy.json은 첫 ID만 허용. 다른 주제 게시와 예약 활성화는 승인되지 않음.
+- 상세 URL·검증·복구 기록은 [FIRST_PUBLICATION_RESULT.md](FIRST_PUBLICATION_RESULT.md), 기계 검증 결과는 FIRST_PUBLICATION_RESULT.json 참고.
 
 ## 완료·검증
 
-- 기존 공개/비공개 저장소 접근과 양쪽 master 확인.
-- VS Code에 열린 별도 manufacturing-alarm-rag 프로젝트는 변경하지 않음.
-- 100개 주제의 지정 분야별 개수, 중복, 선행 순서 검증.
-- 한국어 학습 문서 34개 작성(OS 10개 + Network 12개 + Database 12개). 사용자 학습·검토가 남아 있는 AI 초안.
-- Java 14개/Python 6개 실행 예제와 PostgreSQL 17.11의 SQL 22개 블록 검증. 참고 URL 총 59개 도달 확인.
-- GitHub 게시, Notion 변환·계층·재조회, 상태 관리, Jekyll 화면과 Actions 구현.
-- 로컬 자동 테스트 34개 통과. 실제 콘텐츠 dry-run에서 공개 파일 무변경.
-- 공식 GitHub Pages Action과 같은 Docker 이미지로 실제 Jekyll 빌드 성공. 기본 HTML 5개, 합성 글 포함 HTML 6개를 별도로 검증.
-- 정적 리소스·baseurl·검색 JSON·canonical/Open Graph·표·코드 강조·Liquid 문자 보존 검사 통과.
-- actionlint 1.7.12로 로컬 워크플로우 2개 정적 검사 통과.
-- 실제 콘텐츠 dry-run 반복에서 같은 후보, 공개 파일 해시 동일, 게시 state 0개 확인. 34개 문서의 Notion 오프라인 변환 통과.
-- CS_AUTO_PUBLISH 미설정으로 예약 비활성. Secret 3개는 모두 이름 존재 확인(값은 읽지 않음).
-- 두 워크플로우가 master에 등록되었고 검토한 로컬 파일과 일치함을 확인. 로컬 master도 파일 손실 없이 fast-forward로 통합 완료.
-- 실제 GitHub CI 성공: [run 40510804709](https://github.com/js05157/cs-interview/actions/runs/40510804709). 테스트 34개, Jekyll 빌드와 출력 검사 성공.
-- 실제 Actions dry-run 성공: [run 40510890295](https://github.com/js05157/cs-interview/actions/runs/40510890295). 비공개 Secret checkout, 34개 테스트, 당시 22개 문서 검사, 후보 선택과 공개 파일 무변경 확인. publish/build/deploy/record는 모두 skipped.
+- 공개/비공개 저장소 master 확인, 비공개 저장소 private=true 확인. 별도 제조업 RAG 프로젝트는 변경하지 않음.
+- 100개 주제의 분야별 개수·중복·선행 관계·순서 검증.
+- 비공개 학습 문서 34개 작성(OS 10 + Network 12 + Database 12). 사용자 학습·검토가 남은 AI 초안.
+- 이전 배치에서 Java 14개/Python 6개 예제와 PostgreSQL 17.11의 SQL 22개 블록 실행, 참고 URL 59개 확인. 구체적인 범위·한계는 비공개 체크포인트 참고.
+- 워크플로우 2개 등록, 원격 파일과 로컬 일치. 실제 Actions dry-run 40513929584에서 비공개 읽기 인증·34개 문서 검증·공개 파일 무변경 확인.
+- 첫 게시 전 Actions의 NOTION_API_KEY 인증, 올바른 부모 ID·제목·활성 상태, 실제 계층 생성 권한 확인 후 Markdown 공개.
+- 첫 실제 게시 run 40520128773 성공. GITHUB_TOKEN으로 공개 commit/push, Notion 생성, Jekyll 빌드·Pages 배포와 상태 기록 확인.
+- 실제 브라우저에서 발견한 카테고리 누락 수정. 수정 CI 40521085551: 테스트 46개, 실제 글 포함 Jekyll 빌드·목록 검사 통과.
+- 같은 첫 문서 복구 run 40604831780 성공. 새 주제 없음, Notion 재생성 없음, 원래 날짜·URL 유지. HTML 6개·게시글 1개.
+- 실제 블로그·정적 리소스 HTTP 200, CSS/JS·검색·카테고리 동작 확인. Notion의 10개 절·코드·표를 원문 파싱 결과와 대조.
+- 실제 완료 상태의 같은 날짜 선택은 daily-limit. 날짜가 바뀐 다음 후보도 첫 ID 승인 정책으로 차단. 읽기 전용 검증 중 파일 무변경.
 
 ## 남은 작업
 
-- **학습 문서 66개 추가 작성**. private 체크포인트의 order 35부터 진행.
-- 새 데이터베이스 배치까지 포함한 [Actions dry-run 40513929584](https://github.com/js05157/cs-interview/actions/runs/40513929584)도 성공. 34개 문서 검증과 공개 파일 무변경 확인. mode는 dry-run이며 실제 게시를 승인한 것이 아님.
-- 개발용 Git 인증에는 workflow scope가 없으므로 앞으로 워크플로우를 변경할 때도 GitHub 웹 등록 방식을 사용. CONTENT_REPO_TOKEN 권한은 변경하지 않음.
-- 실제 Notion API 인증·부모 공유와 운영 쓰기는 미검증.
-- 샘플 1개 공개와 Pages 실제 배포는 미실행.
-- 실제 게시와 예약 활성화 승인은 받지 않았으며 임의로 실행하지 않음.
-
-## 첫 1건 게시 전 점검
-
-- 실제 첫 원문을 격리된 로컬 샌드박스에 준비하고 Notion·배포는 mock으로 검사. 같은 날 신규 차단, 다음 날 다음 ID 선택, 미완료 우선 복구, Notion 성공 응답 유실의 기존 페이지 재사용을 확인.
-- 실제 공개·비공개 파일 무변경을 검사했으며 GITHUB_TOKEN의 운영 push, Actions Notion 키의 인증·쓰기와 실제 Pages 배포는 여전히 미검증.
-- github-pages environment의 master 허용과 Pages Source=workflow를 읽기 전용으로 재확인. CS_AUTO_PUBLISH는 미설정으로 유지.
-- 상세 첫 게시 계획과 미확인 사항은 비공개 docs/FIRST_PUBLISH_PREFLIGHT.md와 JSON에 저장. 실제 게시 승인은 아직 없음.
-- 비공개 manifests/remaining_generation_plan.json에 35~100번 66개의 5개 배치(16/14/14/10/12개)를 준비. 본문 수는 34개로 유지하며 게시 대기열을 35번으로 옮기지 않음.
+- 비공개 체크포인트의 **35번 ds-array-list부터 66개** 작성·검증. manifests/remaining_generation_plan.json의 5개 배치(16/14/14/10/12개)를 사용.
+- 새로운 문서 게시 또는 예약 활성화는 별도 사용자 승인이 필요함. 현재 승인 제한을 임의로 확대하지 않음.
+- 개발 Git 인증은 workflow scope가 없어 향후 워크플로우 수정은 웹 등록 절차 사용. CONTENT_REPO_TOKEN의 읽기 권한은 변경하지 않음.
 
 ## 다음 세션 재개
 
-이 문서, ARCHITECTURE.md, OPERATIONS.md와 private의 README, docs/RESUME_PROMPT.md, manifests/generation_checkpoint.json을 읽습니다. 양쪽 remote와 git status를 확인한 뒤 계속 진행합니다.
+이 문서, ARCHITECTURE.md, OPERATIONS.md, FIRST_PUBLICATION_RESULT.md와 비공개 README, docs/RESUME_PROMPT.md, manifests/generation_checkpoint.json을 읽습니다. 양쪽 원격 master와 git status를 확인합니다.
 
-워크플로우 등록과 기본 CI·dry-run은 검증 완료입니다. 최신 run 결과를 확인하고 private의 체크포인트부터 콘텐츠를 이어서 작성합니다. 원래 로컬 커밋은 `codex/pre-resume-workflows-20261027`에 보존했으며, 현재 master의 워크플로우는 원격과 일치하는 추적 파일입니다. `WORKFLOW_REGISTRATION.md`는 이후 변경 시 참고 절차입니다.
-
-구체적인 검증 범위와 미확인 항목은 `VALIDATION_2026-10-27.md`에 기록했습니다. 합성 글 빌드 재현용 `python -m scripts.build_fixture --destination <새 임시 폴더>`는 비공개 콘텐츠 없이 테스트 소스만 작성합니다. 이 폴더를 공개 게시글로 복사하지 마세요.
+작성 완료 34개와 실제 게시 1개를 혼동하지 마세요. 작성 체크포인트를 이유로 게시 대기열을 35번으로 옮기거나 공개 state를 34개로 채우지 않습니다. 실제 게시 재실행 없이 읽기 전용 검증을 기본으로 합니다.
 
 ```powershell
 python -m unittest discover -s tests -v
@@ -49,4 +40,4 @@ python -m scripts.cli validate --private ../cs-content-private --initial
 python -m scripts.cli prepare --private ../cs-content-private
 ```
 
-본문 진행 상태의 기준은 비공개 체크포인트입니다. 100개 본문이 완성되었다고 보고하지 않습니다. 외부 연동을 검증하기 전에는 성공으로 기록하지 않습니다.
+이전 로컬 빌드·workflow 등록 근거는 VALIDATION_2026-10-27.md와 WORKFLOW_REGISTRATION.md에 있습니다. 실제 실행 결과와 검증 한계를 구분해 기록하세요.
