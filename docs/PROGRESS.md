@@ -5,22 +5,24 @@
 - 기존 공개/비공개 저장소 접근과 양쪽 master 확인.
 - VS Code에 열린 별도 manufacturing-alarm-rag 프로젝트는 변경하지 않음.
 - 100개 주제의 지정 분야별 개수, 중복, 선행 순서 검증.
-- 한국어 학습 문서 22개 작성(기존 OS 10개 + Network 12개). 사용자 학습·검토가 남아 있는 AI 초안.
-- 실행 예제 총 20개(Java 14/Python 6), 참고 URL 총 41개 도달 확인.
+- 한국어 학습 문서 34개 작성(OS 10개 + Network 12개 + Database 12개). 사용자 학습·검토가 남아 있는 AI 초안.
+- Java 14개/Python 6개 실행 예제와 PostgreSQL 17.11의 SQL 22개 블록 검증. 참고 URL 총 59개 도달 확인.
 - GitHub 게시, Notion 변환·계층·재조회, 상태 관리, Jekyll 화면과 Actions 구현.
 - 로컬 자동 테스트 34개 통과. 실제 콘텐츠 dry-run에서 공개 파일 무변경.
 - 공식 GitHub Pages Action과 같은 Docker 이미지로 실제 Jekyll 빌드 성공. 기본 HTML 5개, 합성 글 포함 HTML 6개를 별도로 검증.
 - 정적 리소스·baseurl·검색 JSON·canonical/Open Graph·표·코드 강조·Liquid 문자 보존 검사 통과.
 - actionlint 1.7.12로 로컬 워크플로우 2개 정적 검사 통과.
-- 실제 콘텐츠 dry-run 2회에서 같은 후보, 공개 파일 해시 동일, 게시 state 0개 확인. 22개 문서의 Notion 오프라인 변환 통과.
+- 실제 콘텐츠 dry-run 반복에서 같은 후보, 공개 파일 해시 동일, 게시 state 0개 확인. 34개 문서의 Notion 오프라인 변환 통과.
 - CS_AUTO_PUBLISH 미설정으로 예약 비활성. Secret 3개는 모두 이름 존재 확인(값은 읽지 않음).
+- 두 워크플로우가 master에 등록되었고 검토한 로컬 파일과 일치함을 확인. 로컬 master도 파일 손실 없이 fast-forward로 통합 완료.
+- 실제 GitHub CI 성공: [run 40510804709](https://github.com/js05157/cs-interview/actions/runs/40510804709). 테스트 34개, Jekyll 빌드와 출력 검사 성공.
+- 실제 Actions dry-run 성공: [run 40510890295](https://github.com/js05157/cs-interview/actions/runs/40510890295). 비공개 Secret checkout, 34개 테스트, 당시 22개 문서 검사, 후보 선택과 공개 파일 무변경 확인. publish/build/deploy/record는 모두 skipped.
 
 ## 남은 작업
 
-- **학습 문서 78개 추가 작성**. private 체크포인트의 order 23부터 진행.
-- 개발용 Git 인증은 repo scope만 있고 workflow scope가 없어 워크플로우를 업로드할 수 없음. 기존 403 연결 도구와 같은 실패를 반복하지 않음.
-- 원격 master에 ci.yml/publish.yml이 아직 없어 실제 GitHub CI와 Actions dry-run은 미실행. 로컬 빌드 결과로 대신 성공 처리하지 않음.
-- CONTENT_REPO_TOKEN 등록은 확인됐지만 실제 Secret을 사용한 비공개 checkout은 Actions dry-run 후 확인 필요.
+- **학습 문서 66개 추가 작성**. private 체크포인트의 order 35부터 진행.
+- 새 데이터베이스 배치까지 포함한 [Actions dry-run 40513929584](https://github.com/js05157/cs-interview/actions/runs/40513929584)도 성공. 34개 문서 검증과 공개 파일 무변경 확인. mode는 dry-run이며 실제 게시를 승인한 것이 아님.
+- 개발용 Git 인증에는 workflow scope가 없으므로 앞으로 워크플로우를 변경할 때도 GitHub 웹 등록 방식을 사용. CONTENT_REPO_TOKEN 권한은 변경하지 않음.
 - 실제 Notion API 인증·부모 공유와 운영 쓰기는 미검증.
 - 샘플 1개 공개와 Pages 실제 배포는 미실행.
 - 실제 게시와 예약 활성화 승인은 받지 않았으며 임의로 실행하지 않음.
@@ -29,7 +31,7 @@
 
 이 문서, ARCHITECTURE.md, OPERATIONS.md와 private의 README, docs/RESUME_PROMPT.md, manifests/generation_checkpoint.json을 읽습니다. 양쪽 remote와 git status를 확인한 뒤 계속 진행합니다.
 
-우선 `WORKFLOW_REGISTRATION.md`에 따라 두 파일을 GitHub 웹에서 master에 등록하고 CI·dry-run을 확인합니다. 로컬 `.github/workflows`는 미추적 상태이며, 원래 로컬 커밋은 `codex/pre-resume-workflows-20261027`에 보존했습니다. 이력 정렬 과정에서 파일은 삭제하지 않았습니다. 웹 등록 후에는 원격 변경을 먼저 비교·통합하세요.
+워크플로우 등록과 기본 CI·dry-run은 검증 완료입니다. 최신 run 결과를 확인하고 private의 체크포인트부터 콘텐츠를 이어서 작성합니다. 원래 로컬 커밋은 `codex/pre-resume-workflows-20261027`에 보존했으며, 현재 master의 워크플로우는 원격과 일치하는 추적 파일입니다. `WORKFLOW_REGISTRATION.md`는 이후 변경 시 참고 절차입니다.
 
 구체적인 검증 범위와 미확인 항목은 `VALIDATION_2026-10-27.md`에 기록했습니다. 합성 글 빌드 재현용 `python -m scripts.build_fixture --destination <새 임시 폴더>`는 비공개 콘텐츠 없이 테스트 소스만 작성합니다. 이 폴더를 공개 게시글로 복사하지 마세요.
 

@@ -1,0 +1,32 @@
+{
+  "verified_date_kst": "2026-10-27",
+  "public_repository": "js05157/cs-interview",
+  "workflow_files_registered_on": "master",
+  "workflow_files_match_reviewed_source": true,
+  "ci": {
+    "run_id": 40510804709,
+    "head_sha": "3a418e559b515a0c9b899f80fd735f6043e915b1",
+    "url": "https://github.com/js05157/cs-interview/actions/runs/40510804709",
+    "conclusion": "success",
+    "python_tests_passed": 34,
+    "jekyll_build": "success",
+    "html_verification": {"html_pages": 5, "posts": 0, "baseurl": "/cs-interview"}
+  },
+  "dry_run": {
+    "run_id": 40513929584,
+    "url": "https://github.com/js05157/cs-interview/actions/runs/40513929584",
+    "mode": "dry-run",
+    "conclusion": "success",
+    "private_checkout_using_existing_secret": "success",
+    "topics_validated": 100,
+    "documents_validated": 34,
+    "python_tests_passed": 34,
+    "candidate_selection": "success",
+    "assert_no_public_file_mutation": "success",
+    "skipped_jobs": ["publish", "build", "deploy", "record"]
+  },
+  "notion_real_write": "not-run",
+  "pages_real_deploy": "not-run",
+  "scheduled_auto_publish": "disabled",
+  "secret_values_read_or_printed": false
+}

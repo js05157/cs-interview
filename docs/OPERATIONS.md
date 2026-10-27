@@ -16,6 +16,8 @@
 
 2026-10-27 후속 점검에서는 위 Secret 이름 3개가 모두 등록되어 있음을 확인했습니다. CONTENT_REPO_TOKEN 값은 읽을 수 없으며 실제 읽기 인증은 Actions dry-run에서 확인해야 합니다. 워크플로우 웹 등록은 `WORKFLOW_REGISTRATION.md`, 로컬 실제 빌드 결과는 `VALIDATION_2026-10-27.md`를 참고하세요.
 
+워크플로우 등록 후 Actions dry-run에서 CONTENT_REPO_TOKEN으로 비공개 checkout이 성공했습니다. 읽기 인증은 검증 완료이며 Notion API 인증·쓰기와 Pages 배포는 아직 검증하지 않았습니다. 예약 변수는 미설정 상태를 유지합니다.
+
 비밀 값은 코드, 채팅, 로그, Git에 넣지 않습니다. Secret 값을 가져오거나 출력하는 진단 스크립트는 제공하지 않습니다. 토큰 만료·권한 오류가 확인되면 해당 Secret만 갱신합니다.
 
 ## 로컬 설치·검증

@@ -12,10 +12,11 @@
 | 게시글 표현 | 통과 | 표, Rouge 코드 강조, Liquid 문자 보존, 관련 글 영역 |
 | SEO 메타데이터 | 통과 | HTML별 canonical과 Open Graph URL 일치 |
 | 실제 콘텐츠 로컬 dry-run | 통과 | 두 번 같은 후보 선택, 추적/미추적 공개 파일 해시 동일, state 게시 수 0 |
-| 비공개 문서 Notion 오프라인 변환 | 22개 통과 | Markdown→블록과 요청 크기, Notion API 호출 없음 |
-| GitHub Actions CI | 미실행 | 원격에 ci.yml 미등록 |
-| GitHub Actions dry-run | 미실행 | 원격에 publish.yml 미등록 |
-| CONTENT_REPO_TOKEN의 실제 읽기 인증 | 미검증 | Secret 이름은 등록 확인, 값 접근 없음 |
+| 비공개 문서 Notion 오프라인 변환 | 34개 통과 | Markdown→블록과 요청 크기, Notion API 호출 없음 |
+| GitHub Actions CI | 성공 | run 40510804709의 테스트 34개, 실제 Jekyll 빌드, HTML/baseurl 검사 |
+| GitHub Actions dry-run | 성공 | run 40510890295의 비공개 checkout·문서 검증·후보 선정·공개 파일 무변경 |
+| CONTENT_REPO_TOKEN의 실제 읽기 인증 | 검증 완료 | Actions에서 비공개 저장소 checkout 성공, 값 접근 없음 |
+| Database 배치 SQL | 12개 문서·22개 블록 통과 | PostgreSQL 17.11 임시 DB, 격리/MVCC/행 락은 별도 연결로 검증 |
 | Notion 실제 쓰기·Pages 실제 배포 | 미실행 | 사용자 승인 전 수행 금지 유지 |
 
 ## 빌드 환경
@@ -32,7 +33,7 @@ sha256:6791ebfd912185ed59bfb5fb102664fa872496b79f87ff8b9cfba292a7345041
 
 ## 인증·설정
 
-- 개발용 Git 인증의 현재 scope는 `repo`이며 `workflow`는 없습니다. 같은 업로드를 반복하거나 토큰 권한을 변경하지 않았습니다.
+- 개발용 Git 인증의 현재 scope는 `repo`이며 `workflow`는 없습니다. 사용자가 웹에서 두 파일을 등록했으며 현재 원격과 로컬의 일치를 확인했습니다. 토큰 권한은 변경하지 않았습니다.
 - 연결 GitHub 도구도 이전 작업에서 워크플로우 쓰기 403이 확인되었으므로 같은 실패를 반복하지 않았습니다.
 - 공개·비공개 저장소는 모두 master이며 비공개 저장소의 `private=true`를 재확인했습니다.
 - Repository Secret 이름 3개(`CONTENT_REPO_TOKEN`, `NOTION_API_KEY`, `NOTION_PARENT_PAGE_ID`)를 확인했습니다. 값은 읽거나 출력하지 않았습니다.
@@ -41,6 +42,8 @@ sha256:6791ebfd912185ed59bfb5fb102664fa872496b79f87ff8b9cfba292a7345041
 
 ## 다음 확인
 
-GitHub 웹에서 검토된 두 워크플로우를 master에 등록한 뒤, CI 로그와 dry-run을 확인해야 합니다. 단계는 `WORKFLOW_REGISTRATION.md`를 참고하세요. dry-run의 mode를 publish로 변경하지 않습니다.
+등록 후 [CI](https://github.com/js05157/cs-interview/actions/runs/40510804709)와 [dry-run](https://github.com/js05157/cs-interview/actions/runs/40510890295) job 및 로그를 직접 확인했습니다. dry-run의 gate·dry-run만 성공했고 publish/build/deploy/record는 skipped였습니다. Secret 값은 출력하지 않았습니다.
 
-로컬 테스트는 실제 Actions 실행의 대체 증거가 아닙니다. 특히 read-only Secret의 비공개 checkout 권한은 Actions dry-run 성공 이후에만 검증 완료로 기록합니다.
+새 Database 배치까지 읽는 [후속 dry-run](https://github.com/js05157/cs-interview/actions/runs/40513929584)을 실행했습니다. 결과는 PROGRESS.md에 기록합니다. 실제 Notion 생성과 Pages 배포, 예약 활성화는 미실행입니다.
+
+SQL의 복제 관련 예제는 단일 노드의 관측 쿼리 실행이며 실제 복제·승격을 검증하지 않았습니다. WAL 예제도 전원 장애나 백업 복구의 실험은 아닙니다. 실행 계획과 시간은 로컬 합성 데이터의 관측이며 운영 성능 보장이 아닙니다.

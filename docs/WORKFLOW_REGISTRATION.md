@@ -1,5 +1,7 @@
 # 워크플로우 웹 등록
 
+2026-10-27 등록 완료: 두 파일이 master에 존재하고 검토본과 일치합니다. CI와 dry-run도 성공했습니다. 아래는 이후 워크플로우를 변경할 때의 참고 절차이며 지금 다시 등록할 필요는 없습니다.
+
 현재 개발용 Git 인증에 workflow scope가 없어 자동 업로드가 불가능합니다. CONTENT_REPO_TOKEN은 비공개 저장소 읽기 전용으로 유지합니다. 권한을 확대하거나 업로드 토큰으로 재사용하지 않습니다.
 
 기존 로컬 파일:
@@ -20,4 +22,4 @@ C:\Users\js051\Documents\Codex\2026-10-27\files-pasted-by-the-user-cs\work\cs-in
 
 CS_AUTO_PUBLISH는 미설정/false로 유지합니다. 워크플로우 등록과 dry-run은 실제 학습 문서 공개나 예약 활성화 승인이 아닙니다.
 
-로컬 파일은 추적되지 않은 상태로 남아 있습니다. 원래 로컬 커밋은 `codex/pre-resume-workflows-20261027` 브랜치에 보존했습니다. master는 원격과 이력을 정렬했고 기존 파일은 유지했습니다. 웹 등록 뒤에는 fetch와 diff로 파일 일치 여부를 확인한 후 통합하세요.
+원래 로컬 커밋은 `codex/pre-resume-workflows-20261027` 브랜치에 보존했습니다. 등록된 원격 파일과 로컬 검토본의 일치를 확인한 뒤 master를 fast-forward로 통합했으며 현재 두 워크플로우는 정상 추적 중입니다. 이후 변경에도 fetch와 diff로 원격을 먼저 확인하세요.
