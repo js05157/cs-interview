@@ -17,6 +17,25 @@ class Links(HTMLParser):
                 self.links.append(value)
 
 
+class Archive(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.category = None
+        self.links = {}
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "section" and "archive-category" in attrs.get("class", "").split():
+            self.category = attrs["id"]
+            self.links[self.category] = []
+        if tag == "a" and self.category and "archive-row" in attrs.get("class", "").split():
+            self.links[self.category].append(attrs["href"])
+
+    def handle_endtag(self, tag):
+        if tag == "section":
+            self.category = None
+
+
 def verify(site, baseurl="/cs-interview"):
     site = Path(site)
     for name in ("index.html", "about/index.html", "projects/index.html", "learning/index.html",
@@ -40,12 +59,20 @@ def verify(site, baseurl="/cs-interview"):
             if not path.is_file() and not (path / "index.html").is_file():
                 raise ValueError("broken-built-link:" + uri.path)
     posts = json.loads((site / "search.json").read_text(encoding="utf-8"))
+    archive = Archive()
+    archive.feed((site / "learning/index.html").read_text(encoding="utf-8"))
+    expected = {category: [] for category in archive.links}
     for post in posts:
         if not post["url"].startswith(baseurl + "/topics/"):
             raise ValueError("invalid-search-url")
         dest = site / post["url"][len(baseurl)+1:] / "index.html"
         if not dest.is_file():
             raise ValueError("search-post-not-built")
+        if post["category"] not in expected:
+            raise ValueError("post-category-not-in-archive")
+        expected[post["category"]].append(post["url"])
+    if {k: sorted(v) for k, v in archive.links.items()} != {k: sorted(v) for k, v in expected.items()}:
+        raise ValueError("category-archive-posts-mismatch")
     return {"html_pages": len(list(site.rglob("*.html"))), "posts": len(posts), "baseurl": baseurl}
 
 

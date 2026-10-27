@@ -21,8 +21,8 @@
   </nav>
   <div class="sidebar-label">CATEGORIES</div>
   <nav class="categories" aria-label="학습 분야">
-  {% for category in site.data.categories %}
-    {% assign count = site.categories[category[0]] | size %}
+  {% for category in site.data.categories %}{% assign category_key = category[0] %}
+    {% assign count = site.categories[category_key] | size %}
     <a href="{{ '/learning/' | relative_url }}#{{ category[0] }}">{{ category[1] }}<span>{{ count | default: 0 }}</span></a>
   {% endfor %}
   </nav>
