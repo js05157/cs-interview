@@ -1,0 +1,193 @@
+name: Daily CS publisher
+on:
+  schedule:
+    - cron: '30 10 * * *'
+      timezone: Asia/Seoul
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'dry-run: 조회 및 검증 / publish: 실제 게시 (명시적 승인 후 선택)'
+        type: choice
+        options: [dry-run, publish]
+        default: dry-run
+permissions: {}
+concurrency:
+  group: cs-publisher-master
+  cancel-in-progress: false
+jobs:
+  gate:
+    if: github.repository == 'js05157/cs-interview' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions: {}
+    outputs:
+      mode: ${{ steps.gate.outputs.mode }}
+    steps:
+      - id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          AUTO: ${{ vars.CS_AUTO_PUBLISH }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          if [[ "$EVENT" == 'schedule' ]]; then
+            if [[ "$AUTO" == 'true' ]]; then echo 'mode=publish' >> "$GITHUB_OUTPUT"; fi
+          elif [[ "$MODE" == 'publish' ]]; then
+            echo 'mode=publish' >> "$GITHUB_OUTPUT"
+          else
+            echo 'mode=dry-run' >> "$GITHUB_OUTPUT"
+          fi
+  dry-run:
+    needs: gate
+    if: needs.gate.outputs.mode == 'dry-run'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: master
+          persist-credentials: false
+      - name: Require existing read token
+        env:
+          TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+        run: test -n "$TOKEN" || { echo 'CONTENT_REPO_TOKEN is missing'; exit 1; }
+      - uses: actions/checkout@v6
+        with:
+          repository: js05157/cs-content-private
+          ref: master
+          token: ${{ secrets.CONTENT_REPO_TOKEN }}
+          path: .private-staging
+          persist-credentials: false
+      - name: Move private checkout outside the public tree
+        run: mv .private-staging "$RUNNER_TEMP/cs-private"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - name: Verify duplicate prevention and state recovery with mocks
+        run: python -m unittest discover -s tests -v
+      - run: python -m scripts.cli validate --private "$RUNNER_TEMP/cs-private"
+      - run: python -m scripts.cli prepare --private "$RUNNER_TEMP/cs-private"
+      - name: Assert no tracked mutation
+        run: test -z "$(git status --porcelain)"
+  publish:
+    needs: gate
+    if: needs.gate.outputs.mode == 'publish'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      head: ${{ steps.snapshot.outputs.head }}
+      receipt: ${{ steps.snapshot.outputs.receipt }}
+      notion: ${{ steps.notion.outcome }}
+      needs_blog: ${{ steps.prepare.outputs.needs_blog }}
+      needs_notion: ${{ steps.prepare.outputs.needs_notion }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: master
+          fetch-depth: 0
+      - name: Preflight existing secrets
+        env:
+          CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
+        run: |
+          test -n "$CONTENT_REPO_TOKEN" && test -n "$NOTION_API_KEY" && test -n "$NOTION_PARENT_PAGE_ID" || { echo 'A required existing secret is missing'; exit 1; }
+      - uses: actions/checkout@v6
+        with:
+          repository: js05157/cs-content-private
+          ref: master
+          token: ${{ secrets.CONTENT_REPO_TOKEN }}
+          path: .private-staging
+          persist-credentials: false
+      - run: mv .private-staging "$RUNNER_TEMP/cs-private"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - name: Reserve and commit exactly one topic before external writes
+        id: prepare
+        env:
+          CONTENT_REPO_TOKEN: ${{ secrets.CONTENT_REPO_TOKEN }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
+        run: python -m scripts.cli prepare --private "$RUNNER_TEMP/cs-private" --mode publish --commit
+      - name: Reconcile Notion independently
+        id: notion
+        if: steps.prepare.outputs.needs_notion == 'true'
+        continue-on-error: true
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
+        run: python -m scripts.cli sync-notion --mode publish --commit
+      - id: snapshot
+        run: |
+          echo "head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "receipt=$(python -m scripts.cli receipt)" >> "$GITHUB_OUTPUT"
+  build:
+    needs: publish
+    if: needs.publish.outputs.needs_blog == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.publish.outputs.head }}
+          persist-credentials: false
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./blog
+          destination: ./_site
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m scripts.verify_site --site _site
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
+  record:
+    needs: [publish, build, deploy]
+    if: always() && needs.publish.result == 'success' && (needs.publish.outputs.needs_blog == 'true' || needs.publish.outputs.needs_notion == 'true')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: master
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - name: Record only topics included in this deployment
+        if: needs.publish.outputs.needs_blog == 'true'
+        env:
+          CS_DEPLOYMENT_RECEIPT: ${{ needs.publish.outputs.receipt }}
+          RESULT: ${{ needs.deploy.result }}
+        run: |
+          result=failure
+          if [[ "$RESULT" == 'success' ]]; then result=success; fi
+          python -m scripts.cli mark-blog --mode publish --commit --result "$result"
+      - name: Surface any incomplete platform
+        env:
+          NOTION_RESULT: ${{ needs.publish.outputs.notion }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+          NEED_NOTION: ${{ needs.publish.outputs.needs_notion }}
+          NEED_BLOG: ${{ needs.publish.outputs.needs_blog }}
+        run: |
+          if [[ "$NEED_NOTION" == 'true' ]]; then test "$NOTION_RESULT" = success || exit 1; fi
+          if [[ "$NEED_BLOG" == 'true' ]]; then test "$DEPLOY_RESULT" = success || exit 1; fi
