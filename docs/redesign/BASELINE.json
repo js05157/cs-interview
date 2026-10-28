@@ -1,0 +1,28 @@
+{
+  "public_head": "0f53ad9740993eff3bb4d6cc305da4d0050177c1",
+  "private_head": "8835280bc30f0abf226ca999da640c009a360865",
+  "protected_public_files": {
+    "config/publication_policy.json": "c56bafb76ae3a806fadab3b7b305a429432ad2459ac051fa8ce833f05262855a",
+    ".publisher/state.json": "ea416d38658e08157e5d779c1cef9e810984b37c7551227af2f896d0d21806dc",
+    ".github/workflows/ci.yml": "77d0191f56bbdc37ca2d6bf2f8613297db6c948563e6d5fcd3a69e5e15a54b0c",
+    ".github/workflows/publish.yml": "b62efcbd260ad4dd2c58be831e193b46c5599c4d81edd51f852ec4a8ed4394b0"
+  },
+  "published_identity": {
+    "topic_id": "os-process-thread",
+    "title_ko": "프로세스와 스레드",
+    "category": "Operating-System",
+    "subcategory": "Process",
+    "target_path": "Operating-System/Process/os-process-thread.md",
+    "post_path": "blog/_posts/2026-10-27-os-process-thread.md",
+    "permalink": "/topics/os-process-thread/",
+    "github_status": "complete",
+    "notion_status": "complete",
+    "blog_status": "complete",
+    "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
+    "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
+    "notion_url": "https://www.notion.so/40647f4c2c2581b4b2a3dd1cdeb62644",
+    "blog_url": "https://js05157.github.io/cs-interview/topics/os-process-thread/",
+    "published_date": "2026-10-27",
+    "content_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681"
+  }
+}
