@@ -40,7 +40,9 @@ def commit(root, message):
     if (root / ".publisher/site.json").exists():
         files.append(".publisher/site.json")
     for t in state["topics"].values():
-        files += [t["target_path"], t["post_path"]]
+        from .assets import verify_assets
+        verify_assets(root,t)
+        files += [t["target_path"], t["post_path"]] + [a["target"] for a in t.get("assets",[])]
     git(root, "add", "--", *files)
     staged = git(root, "diff", "--cached", "--name-only")
     if set(staged.splitlines()) - set(files):
@@ -62,6 +64,8 @@ def receipt(root):
         from .core import make_post
         if digest(source) != t["content_hash"] or safe_path(root, t["post_path"]).read_text(encoding="utf-8") != make_post(t, source):
             raise PublisherError("deployment-source-mismatch")
+        from .assets import verify_assets
+        verify_assets(root,t)
         result[key] = t["content_hash"]
     if (root / ".publisher/site.json").exists():
         from .maintenance import site_digest

@@ -48,3 +48,7 @@ Notion의 이전 관리 토글은 원문 fingerprint뿐 아니라 본문·서식
 `python -m scripts.activity --help`의 옵션으로 GitHub 공개 프로필 calendar snapshot을 갱신하고 CI 후 사이트를 수동 배포합니다. 홈은 출처와 기준 날짜를 표시합니다. 방문 시 외부 위젯에 접속하지 않으며, 가져오기에 실패하면 마지막 실제 snapshot을 유지합니다. 실시간 활동 또는 블로그 작성 횟수가 아닙니다.
 
 API 근거: [Notion 이미지 블록](https://developers.notion.com/reference/block#image), [블록 갱신](https://developers.notion.com/reference/update-a-block). 도식은 직접 작성한 SVG이며 지원되는 직접 호스팅 HTTPS 이미지로 동기화합니다.
+
+### 미게시 CS 도식
+
+비공개 원고에는 `![대체 설명](cs-asset:assets/diagrams/<topic_id>.svg)` 형식을 사용할 수 있습니다. 도식 파일도 비공개 assets/diagrams에 보관합니다. 게시 준비 시 선택된 topic ID의 SVG만 읽고 검증하며 공개 blog/assets/diagrams 경로로 복사합니다. 활성 코드·외부 리소스·symlink·다른 주제의 파일은 차단합니다. 공개 본문의 참조는 해당 공개 이미지의 HTTPS URL과 내용 버전으로 변환합니다. state는 원본 hash와 실제 공개 본문/자산 hash를 구분해 보존합니다. 미게시 99개의 이미지 폴더를 통째로 공개 저장소에 복사하지 않습니다.

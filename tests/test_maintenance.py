@@ -92,6 +92,36 @@ class MaintenanceTests(unittest.TestCase):
         actual['paragraph']['icon']={'type':'emoji','emoji':'x'}
         with self.assertRaisesRegex(core.PublisherError,'manual-edit-protected'):
             maintenance.block_matches(RevisionNotion(),actual,expected)
+    def asset_body(self):
+        return EDITORIAL.replace('https://example.com/diagram.svg','cs-asset:assets/diagrams/test-001.svg')
+    def create_asset(self,key='test-001',content=None):
+        p=self.private/('assets/diagrams/'+key+'.svg');p.parent.mkdir(parents=True,exist_ok=True)
+        p.write_text(content or '<svg xmlns="http://www.w3.org/2000/svg"><title>diagram</title><rect width="20" height="20"/></svg>',encoding='utf-8')
+        return p
+    def test_only_selected_private_diagram_is_published(self):
+        self.create_asset();self.create_asset('test-002')
+        (self.private/self.topics[0]['source_path']).write_text(self.asset_body(),encoding='utf-8')
+        result=core.prepare(self.root,self.private,dry_run=True,now=self.now)
+        self.assertFalse((self.root/'blog/assets/diagrams/test-001.svg').exists())
+        self.publish();entry=self.state()['topics']['test-001']
+        self.assertEqual(len(entry['assets']),1);self.assertTrue((self.root/'blog/assets/diagrams/test-001.svg').exists())
+        self.assertFalse((self.root/'blog/assets/diagrams/test-002.svg').exists())
+        body=(self.root/entry['target_path']).read_text(encoding='utf-8')
+        self.assertNotIn('cs-asset:',body);self.assertIn('test-001.svg?v=',body)
+        self.assertEqual(entry['content_hash'],core.digest(body));cli.receipt(self.root)
+    def test_other_topic_asset_and_unsafe_svg_fail_before_writing(self):
+        self.create_asset('test-002')
+        path=self.private/self.topics[0]['source_path']
+        path.write_text(self.asset_body().replace('test-001.svg','test-002.svg'),encoding='utf-8')
+        with self.assertRaisesRegex(core.PublisherError,'outside-selected'):self.publish()
+        path.write_text(self.asset_body(),encoding='utf-8')
+        self.create_asset(content='<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>')
+        with self.assertRaisesRegex(core.PublisherError,'unsafe-diagram'):self.publish()
+        self.assertEqual(self.state()['topics'],{})
+    def test_changed_published_asset_blocks_recovery(self):
+        self.create_asset();(self.private/self.topics[0]['source_path']).write_text(self.asset_body(),encoding='utf-8');self.publish()
+        (self.root/'blog/assets/diagrams/test-001.svg').write_text('manual change',encoding='utf-8')
+        with self.assertRaisesRegex(core.PublisherError,'asset-changed'):self.publish()
     def test_revision_dry_run_unchanged(self):
         self.setup_revision();before={p:p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
         result=core.prepare(self.root,self.private,now=self.now)
@@ -139,6 +169,10 @@ class MaintenanceTests(unittest.TestCase):
         result=core.prepare(self.root,self.private,now=self.now+timedelta(days=1),dry_run=False)
         self.assertEqual(result['action'],'site-update');self.assertIsNone(result['topic_id']);self.assertEqual(len(self.state()['topics']),1)
         receipt=cli.receipt(self.root);cli.mark_blog(self.root,'success',receipt);self.assertFalse(maintenance.site_pending(self.root))
+    def test_site_digest_normalizes_text_line_endings(self):
+        path=self.root/'blog/index.html';path.write_bytes(b'hello\nworld\n')
+        lf=maintenance.site_digest(self.root);path.write_bytes(b'hello\r\nworld\r\n')
+        self.assertEqual(maintenance.site_digest(self.root),lf)
     def test_stale_site_receipt_rejected(self):
         self.publish();core.write_json(self.root/maintenance.SITE_FILE,{'schema_version':1,'deployed_digest':None})
         receipt=cli.receipt(self.root);(self.root/'blog/new.txt').write_text('concurrent edit')

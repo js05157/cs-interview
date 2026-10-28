@@ -135,7 +135,7 @@ def validate_markdown(text):
                     raise PublisherError("invalid-reference-link")
             if child.type == "image":
                 src = urlsplit(child.attrGet("src") or "")
-                if not child.content.strip() or src.scheme != "https" or not src.netloc or src.username or src.password:
+                if not child.content.strip() or (src.scheme != "cs-asset" and (src.scheme != "https" or not src.netloc or src.username or src.password)):
                     raise PublisherError("image-alt-and-safe-https-required")
     references = text.split("## 10. 참고 자료" if legacy else "## 참고 자료", 1)[-1]
     if not re.search(r"\[[^\]]+\]\(https://[^\s)]+\)", references):
@@ -152,7 +152,7 @@ def load_state(root):
     allowed = {"topic_id", "title_ko", "category", "subcategory", "target_path", "post_path",
                "permalink", "github_status", "notion_status", "blog_status", "github_url",
                "notion_page_id", "notion_url", "blog_url", "published_date", "content_hash",
-               "notion_error", "blog_error", "notion_pending_chunk", "render_version", "revision", "publication_status"}
+               "notion_error", "blog_error", "notion_pending_chunk", "render_version", "revision", "publication_status", "assets", "source_content_hash"}
     for key, item in state["topics"].items():
         if item.get("render_version",1) not in (1,2) or item.get("publication_status","active") not in ("active","withdrawn"):
             raise PublisherError("invalid-publication-lifecycle")
@@ -263,6 +263,8 @@ def prepare(root, private, *, dry_run=True, now=None):
         return result
     if mode == "recover":
         t = state["topics"][key]
+        from .assets import verify_assets
+        verify_assets(root,t)
         source = safe_path(root, t["target_path"])
         if not source.exists() or digest(source.read_text(encoding="utf-8")) != t["content_hash"]:
             raise PublisherError("published-source-changed-review-required")
@@ -277,6 +279,9 @@ def prepare(root, private, *, dry_run=True, now=None):
         raise PublisherError("next-content-not-ready:" + key)
     body = path.read_text(encoding="utf-8")
     validate_markdown(body)
+    source_content_hash = digest(body)
+    from .assets import resolve_assets, copy_assets
+    body, assets = resolve_assets(root, private, t, body)
     # Private links must not become broken relative links or reveal future topics.
     if re.search(r'\]\((?!https://|#)[^)]+\)', body):
         raise PublisherError("relative-links-must-be-resolved-before-publish")
@@ -286,6 +291,8 @@ def prepare(root, private, *, dry_run=True, now=None):
              "blog_status": "pending", "github_url": f'https://github.com/{config["public_repository"]}/blob/{config["branch"]}/{quote(t["target_path"])}',
              "notion_page_id": None, "notion_url": None, "blog_url": f'{config["blog_url"]}/topics/{key}/',
              "published_date": today, "content_hash": digest(body)}
+    if assets:
+        entry.update(assets=assets, source_content_hash=source_content_hash)
     if "## 6. 기술 면접 답변" not in body:
         entry["render_version"] = 2
     for rel in (entry["target_path"], entry["post_path"]):
@@ -299,6 +306,7 @@ def prepare(root, private, *, dry_run=True, now=None):
                 raise PublisherError("existing-permalink-protected")
     if dry_run:
         return result
+    copy_assets(root, private, assets)
     for rel, text in ((entry["target_path"], body), (entry["post_path"], make_post(entry, body))):
         dest = safe_path(root, rel)
         dest.parent.mkdir(parents=True, exist_ok=True)

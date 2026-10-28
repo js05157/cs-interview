@@ -1,6 +1,7 @@
 """Explicit existing-topic revisions and site deployments; never chooses a new topic."""
 from pathlib import Path
 import re
+import hashlib
 from .core import (PublisherError, digest, load_state, make_post, read_json, safe_path,
                    update_indexes, validate_markdown, write_json)
 
@@ -15,7 +16,10 @@ def site_digest(root):
         if p.is_symlink():
             raise PublisherError('site-symlink-forbidden')
         if p.is_file() and not any(x in {'.jekyll-cache', '.sass-cache', 'vendor', '_site'} for x in p.relative_to(root/'blog').parts):
-            pairs.append(p.relative_to(root).as_posix() + ':' + digest(p.read_bytes().hex()))
+            data=p.read_bytes()
+            if p.suffix.lower() in {'.md','.html','.css','.js','.json','.yml','.yaml','.svg','.xml','.txt'} or p.name in {'Gemfile','Gemfile.lock','markdown-it.LICENSE'}:
+                data=data.replace(b'\r\n',b'\n')
+            pairs.append(p.relative_to(root).as_posix() + ':' + hashlib.sha256(data).hexdigest())
     return digest('\n'.join(pairs))
 
 
@@ -25,6 +29,8 @@ def site_pending(root):
 
 
 def assert_published_files(root, entry):
+    from .assets import verify_assets
+    verify_assets(root,entry)
     body = safe_path(root, entry['target_path']).read_text(encoding='utf-8')
     if digest(body) != entry['content_hash']:
         raise PublisherError('published-source-changed-review-required')
@@ -67,9 +73,14 @@ def maintenance_prepare(root, private, state, catalog, *, dry_run, today):
             result = {'action':plan['kind'], 'topic_id':key,'date':today,'dry_run':dry_run}
             if dry_run:
                 return result
+            from .assets import resolve_assets, copy_assets
+            source_content_hash=digest(body)
+            body, assets=resolve_assets(root,private,catalog[key],body)
+            copy_assets(root,private,assets,entry.get("assets",[]))
             revision = {'plan_hash':digest((root/PLAN_FILE).read_text(encoding='utf-8')),
                         'from_hash':entry['content_hash'],'previous_body_path':plan['previous_body_path'],
                         'notion_page_id':entry['notion_page_id'], 'old_blocks':{},'archived_blocks':{},'status':'pending'}
+            if assets:entry.update(assets=assets, source_content_hash=source_content_hash)
             entry.update(render_version=2,revision=revision,content_hash=digest(body),blog_status='pending')
             if plan['kind'] == 'revision':
                 entry['notion_status'] = 'pending'
