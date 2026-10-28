@@ -10,14 +10,24 @@
       "post_path": "blog/_posts/2026-10-27-os-process-thread.md",
       "permalink": "/topics/os-process-thread/",
       "github_status": "complete",
-      "notion_status": "complete",
-      "blog_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
       "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
       "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
       "notion_url": "https://www.notion.so/40647f4c2c2581b4b2a3dd1cdeb62644",
       "blog_url": "https://js05157.github.io/cs-interview/topics/os-process-thread/",
       "published_date": "2026-10-27",
-      "content_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681"
+      "content_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
+      "render_version": 2,
+      "revision": {
+        "plan_hash": "cfcc1b60088151c4b64568ab49e0012182becde9d6a487ff867711a2fd50571d",
+        "from_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681",
+        "previous_body_path": "docs/redesign/originals/os-process-thread.md",
+        "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
+        "old_blocks": {},
+        "archived_blocks": {},
+        "status": "pending"
+      }
     }
   },
   "notion_hierarchy": {
