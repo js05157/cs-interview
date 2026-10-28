@@ -1,3 +1,14 @@
+# 현재 개편 구조 · 2026-10-29
+
+개인 블로그 UI와 GitHub 글 관리 동선, 기존 CS 글 개정·공개 중단 및 사이트 전용 배포를 추가했습니다. 상세 계약은 [글 관리](CONTENT_MANAGEMENT.md), 실제 검증은 [개편 진행](redesign/PROGRESS.md)을 확인합니다.
+
+- 직접 작성한 글은 blog/_posts의 content_type/published로 관리하며 topic_id가 없습니다. CS 큐·Notion 동기화에 넣지 않습니다. 글 종류는 cs/development/project/ssafy/essay입니다.
+- 기존 글 개정은 config/maintenance.json의 이전·새 hash, 이전 공개 본문, 같은 Notion 페이지 ID를 고정해 수행합니다. ID/게시일/URL은 유지합니다. 수동 변경 블록은 보호하고 새 chunk 검증 후 이전 관리 chunk만 archive합니다. 상태 삭제로 복구하지 않습니다.
+- 공개 중단된 CS ID는 state에 withdrawn tombstone을 남깁니다. 일반 글 삭제/비노출과 CS tombstone 모두 자동 재생성을 하지 않으며 Notion을 자동 삭제하지 않습니다.
+- .publisher/site.json은 blog 입력 digest와 배포 기록을 보관합니다. 신규 CS 선택 전에 변경된 사이트를 topic_id 없는 site-update로 처리합니다. receipt의 __site__와 현재 입력을 대조한 후 성공을 기록합니다. 같은 텍스트의 Windows/Linux 줄바꿈과 정렬을 정규화합니다.
+- 미게시 SVG는 private assets에 유지하며 선택된 ID의 cs-asset: 한 개만 검증·공개 URL로 변환합니다. source_content_hash와 실제 공개 content_hash·자산 hash를 구분합니다. 일반 원고 이미지는 공개 assets/uploads를 사용합니다.
+- 아래 초기 게시 파이프라인의 권한 분리·중복 방지·동일 ID 복구·비공개 읽기 원칙을 유지합니다. 예약 게이트와 첫 ID 승인 정책은 확대하지 않았습니다.
+
 # 구조와 복구 모델
 
 공개 저장소는 `js05157/cs-interview`, 기본 브랜치는 `master`입니다. 비공개 저장소 `js05157/cs-content-private`도 실제 조회에서 `private=true`, `master`를 확인했습니다.
@@ -45,7 +56,7 @@ Git 파일 준비 중 로컬 작업이 중단돼도 원격에 push하기 전이�
 
 분야/세부분야 페이지를 부모의 child_page 목록에서 확인하고, 제목이 중복이면 중단합니다. 주제 페이지는 같은 제목과 원문 GitHub 링크를 함께 확인합니다. 같은 이름의 수동 페이지는 보호합니다.
 
-페이지 생성에는 원문과 블로그 링크를 함께 넣어 상태 기록이 유실돼도 기존 페이지를 찾습니다. 본문은 10개 주요 섹션을 토글로 나누고 제목, 문단, 목록, 코드, 인라인 서식과 표를 보존합니다. 각 토글의 제목 링크에는 결정적인 chunk fingerprint가 있어 추가 응답이 유실돼도 이미 반영된 섹션을 재사용합니다. API의 rich_text 2,000자 제한 등을 고려해 텍스트를 나눕니다.
+페이지 생성에는 원문과 블로그 링크를 함께 넣어 상태 기록이 유실돼도 기존 페이지를 찾습니다. 본문은 설명형 문서의 도입과 H2 섹션을 결정적인 토글 chunk로 나누고 제목, 문단, 목록, 코드, 인라인 서식과 표를 보존합니다. 각 토글의 제목 링크에는 결정적인 chunk fingerprint가 있어 추가 응답이 유실돼도 이미 반영된 섹션을 재사용합니다. API의 rich_text 2,000자 제한 등을 고려해 텍스트를 나눕니다.
 
 429/529는 Retry-After에 따라 제한적으로 재시도합니다. GET의 일시적인 서버 오류도 재시도합니다. POST/PATCH의 5xx·네트워크 단절은 **무작정 재전송하지 않습니다**. 의도와 pending chunk를 저장하고 다음 실행에서 기존 결과를 조회합니다. 이미 확인되면 계속 진행하고 여전히 결과를 확인할 수 없으면 검토가 필요하다는 상태로 멈춥니다. 안전한 4xx 거절은 의도를 제거해 설정 수정 후 다시 처리할 수 있습니다.
 
@@ -59,9 +70,9 @@ Jekyll 빌드는 `blog/`만 읽습니다. 별도 build job은 예약된 공개 �
 
 ## 블로그 테마 선택
 
-[Chirpy 공식 설치 안내](https://chirpy.cotes.page/posts/getting-started/)를 검토했습니다. 기존 공개 저장소와 공식 Jekyll 빌드 Action을 유지하고 프런트엔드 번들러·테마 초기화 의존성을 줄이기 위해 작은 커스텀 Liquid 레이아웃과 CSS/JS를 선택했습니다. 무료이며 외부 유료 서비스가 없습니다. Noto Sans KR/IBM Plex Mono 웹 폰트가 불러와지지 않으면 시스템 글꼴로 표시합니다.
+[Chirpy 공식 설치 안내](https://chirpy.cotes.page/posts/getting-started/)를 검토했습니다. 기존 공개 저장소와 공식 Jekyll 빌드 Action을 유지하고 프런트엔드 번들러·테마 초기화 의존성을 줄이기 위해 작은 커스텀 Liquid 레이아웃과 CSS/JS를 선택했습니다. 무료이며 외부 유료 서비스가 없습니다. 외부 웹 폰트 요청 없이 시스템 글꼴로 표시합니다.
 
-라이트/다크, 반응형 내비게이션, 검색 JSON, 본문 목차, 카테고리/태그, 관련 글, About/Projects/학습 아카이브, Rouge 강조, RSS/sitemap/robots/canonical/Open Graph를 구성합니다. 실제 글이 없을 때는 준비 상태를 표시하며 경력과 프로젝트를 만들어 넣지 않습니다.
+라이트/다크, 네 메뉴, 검색 JSON, 접힌 목차, 글 종류 필터, 프로젝트·SSAFY 목록, Rouge 강조·코드 복사, SVG 확대, RSS/sitemap/robots/canonical/Open Graph를 구성합니다. CS 세부 카테고리는 내부 메타데이터로 유지합니다. 실제 글이 없을 때는 준비 상태를 표시하며 경력과 프로젝트를 만들어 넣지 않습니다.
 
 ## 보안 경계
 

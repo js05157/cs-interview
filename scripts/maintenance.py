@@ -12,12 +12,12 @@ PLAN_FILE = 'config/maintenance.json'
 def site_digest(root):
     root = Path(root)
     pairs = []
-    for p in sorted((root/'blog').rglob('*')):
+    for p in sorted((root/'blog').rglob('*'),key=lambda p:p.relative_to(root).as_posix()):
         if p.is_symlink():
             raise PublisherError('site-symlink-forbidden')
         if p.is_file() and not any(x in {'.jekyll-cache', '.sass-cache', 'vendor', '_site'} for x in p.relative_to(root/'blog').parts):
             data=p.read_bytes()
-            if p.suffix.lower() in {'.md','.html','.css','.js','.json','.yml','.yaml','.svg','.xml','.txt'} or p.name in {'Gemfile','Gemfile.lock','markdown-it.LICENSE'}:
+            if p.suffix.lower() in {'.md','.html','.css','.js','.json','.yml','.yaml','.svg','.xml','.txt'} or p.name in {'Gemfile','Gemfile.lock','markdown-it.LICENSE','.gitkeep'}:
                 data=data.replace(b'\r\n',b'\n')
             pairs.append(p.relative_to(root).as_posix() + ':' + hashlib.sha256(data).hexdigest())
     return digest('\n'.join(pairs))

@@ -171,7 +171,8 @@ class MaintenanceTests(unittest.TestCase):
         receipt=cli.receipt(self.root);cli.mark_blog(self.root,'success',receipt);self.assertFalse(maintenance.site_pending(self.root))
     def test_site_digest_normalizes_text_line_endings(self):
         path=self.root/'blog/index.html';path.write_bytes(b'hello\nworld\n')
-        lf=maintenance.site_digest(self.root);path.write_bytes(b'hello\r\nworld\r\n')
+        keep=self.root/'blog/.gitkeep';keep.write_bytes(b'\n')
+        lf=maintenance.site_digest(self.root);path.write_bytes(b'hello\r\nworld\r\n');keep.write_bytes(b'\r\n')
         self.assertEqual(maintenance.site_digest(self.root),lf)
     def test_stale_site_receipt_rejected(self):
         self.publish();core.write_json(self.root/maintenance.SITE_FILE,{'schema_version':1,'deployed_digest':None})
