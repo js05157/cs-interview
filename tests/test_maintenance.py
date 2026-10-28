@@ -85,6 +85,13 @@ class MaintenanceTests(unittest.TestCase):
         self.assertIn('image',{b['type'] for b in notion.markdown_blocks(EDITORIAL)})
         for unsafe in (EDITORIAL.replace('![공유 범위를 나타내는 직접 작성 도식]','![]'),EDITORIAL+'\n<script>x</script>',EDITORIAL.replace('## 공유와 분리','## 핵심 요약')):
             with self.assertRaises(core.PublisherError):core.validate_markdown(unsafe)
+    def test_notion_nullable_paragraph_icon_is_metadata_but_custom_icon_is_protected(self):
+        expected=notion.block('paragraph',notion.rich('existing text'))
+        actual=copy.deepcopy(expected);actual['paragraph']['icon']=None
+        self.assertTrue(maintenance.block_matches(RevisionNotion(),actual,expected))
+        actual['paragraph']['icon']={'type':'emoji','emoji':'x'}
+        with self.assertRaisesRegex(core.PublisherError,'manual-edit-protected'):
+            maintenance.block_matches(RevisionNotion(),actual,expected)
     def test_revision_dry_run_unchanged(self):
         self.setup_revision();before={p:p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
         result=core.prepare(self.root,self.private,now=self.now)

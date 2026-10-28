@@ -108,6 +108,7 @@ def normalized(value):
         if k == 'annotations':
             v = {a:b for a,b in v.items() if b is True or (a == 'color' and b != 'default')}
             if not v:continue
+        if k == 'icon' and v is None:continue
         if k == 'color' and v == 'default':continue
         if k == 'is_toggleable' and v is False:continue
         if k in {'caption','link'} and not v:continue
