@@ -115,13 +115,30 @@ def normalized(value):
     return result
 
 
+def first_difference(actual, expected, path="block"):
+    if isinstance(actual,dict) and isinstance(expected,dict):
+        if set(actual) != set(expected):
+            return path + ".keys(actual=" + ",".join(sorted(set(actual)-set(expected))) + ";expected=" + ",".join(sorted(set(expected)-set(actual))) + ")"
+        for key in expected:
+            if actual[key] != expected[key]:return first_difference(actual[key],expected[key],path+"."+key)
+    if isinstance(actual,list) and isinstance(expected,list):
+        if len(actual) != len(expected):return path+".length"
+        for i,(a,b) in enumerate(zip(actual,expected)):
+            if a != b:return first_difference(a,b,path+"["+str(i)+"]")
+    return path + ".value"
+
+
 def block_matches(client, actual, expected):
-    if normalized(actual) != normalized(expected):
-        return False
+    observed, planned = normalized(actual), normalized(expected)
+    if observed != planned:
+        # Field names/indices only: never log payloads, tokens or user text.
+        raise PublisherError("notion-manual-edit-protected:" + first_difference(observed,planned))
     children = expected[expected['type']].get('children',[])
     if children or actual.get('has_children'):
         observed = client.children(actual['id'])
-        return len(observed) == len(children) and all(block_matches(client,a,b) for a,b in zip(observed,children))
+        if len(observed) != len(children):
+            raise PublisherError("notion-manual-edit-protected:children.length")
+        return all(block_matches(client,a,b) for a,b in zip(observed,children))
     return True
 
 
