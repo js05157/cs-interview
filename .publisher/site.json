@@ -1,5 +1,5 @@
 {
   "schema_version": 1,
-  "deployed_digest": null,
-  "pending_digest": "646445c1ec5fe2e5f5b4543c478e1271b0706d8d374926010a945e3e5575d059"
+  "deployed_digest": "646445c1ec5fe2e5f5b4543c478e1271b0706d8d374926010a945e3e5575d059",
+  "pending_digest": null
 }
