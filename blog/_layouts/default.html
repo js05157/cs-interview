@@ -2,9 +2,9 @@
 <html lang="ko" data-theme="light">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 {% seo %}{% feed_meta %}<meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-<script defer src="{{ '/assets/app.js' | relative_url }}"></script>
-{% if page.editor %}<script defer src="{{ '/assets/lib/markdown-it.min.js' | relative_url }}"></script><script defer src="{{ '/assets/editor.js' | relative_url }}"></script>{% endif %}
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+<script defer src="{{ '/assets/app.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+{% if page.editor %}<script defer src="{{ '/assets/lib/markdown-it.min.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script><script defer src="{{ '/assets/editor.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>{% endif %}
 </head><body data-search-url="{{ '/search.json' | relative_url }}" data-baseurl="{{ site.baseurl }}">
 <a class="skip-link" href="#main">본문으로 이동</a>
 <header class="site-header"><div class="header-inner"><a class="wordmark" href="{{ '/' | relative_url }}" aria-label="js05157 홈">js05157<span>.</span></a>
