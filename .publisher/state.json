@@ -28,7 +28,7 @@
         "archived_blocks": {},
         "status": "pending"
       },
-      "notion_error": "notion-manual-edit-protected"
+      "notion_error": "notion-manual-edit-protected:block.paragraph.keys(actual=icon;expected=)"
     }
   },
   "notion_hierarchy": {
