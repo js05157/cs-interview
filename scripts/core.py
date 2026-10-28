@@ -112,13 +112,19 @@ def validate_markdown(text):
         raise PublisherError("unclosed-code-fence")
     tokens = MD.parse(text)
     headings = [tokens[i+1].content for i, t in enumerate(tokens) if t.type == "heading_open" and t.tag == "h2"]
-    if headings != [f"{i}. {s}" for i, s in enumerate(SECTIONS, 1)]:
+    legacy = any(h.startswith("6. 기술 면접") for h in headings)
+    if legacy and headings != [f"{i}. {s}" for i, s in enumerate(SECTIONS, 1)]:
         raise PublisherError("required-sections-missing-or-reordered")
-    if "30초 답변" not in text or "1분 답변" not in text:
+    if legacy and ("30초 답변" not in text or "1분 답변" not in text):
         raise PublisherError("interview-answers-missing")
-    followups = text.split("## 7. 예상 꼬리 질문", 1)[1].split("## 8. 자주 하는 오해", 1)[0]
-    if not 3 <= len(re.findall(r"^### ", followups, re.M)) <= 5:
+    followups = text.split("## 7. 예상 꼬리 질문", 1)[-1].split("## 8. 자주 하는 오해", 1)[0]
+    if legacy and not 3 <= len(re.findall(r"^### ", followups, re.M)) <= 5:
         raise PublisherError("three-to-five-followup-answers-required")
+    if not legacy:
+        if "참고 자료" not in headings or len(headings) < 2 or len(set(headings)) != len(headings):
+            raise PublisherError("editorial-sections-required")
+        if re.search(r"^#{1,6} .*?(30초|1분 답변|핵심 요약|기술 면접 답변)", text, re.M):
+            raise PublisherError("interview-script-heading-forbidden")
     if re.search(r"{%-?\s*endraw\b", text):
         raise PublisherError("liquid-raw-boundary-needs-editorial-review")
     for tok in tokens:
@@ -128,11 +134,13 @@ def validate_markdown(text):
                 if href.startswith(("http:", "https:")) and (urlsplit(href).scheme != "https" or not urlsplit(href).netloc):
                     raise PublisherError("invalid-reference-link")
             if child.type == "image":
-                raise PublisherError("image-needs-editorial-review")
-    references = text.split("## 10. 참고 자료", 1)[1]
+                src = urlsplit(child.attrGet("src") or "")
+                if not child.content.strip() or src.scheme != "https" or not src.netloc or src.username or src.password:
+                    raise PublisherError("image-alt-and-safe-https-required")
+    references = text.split("## 10. 참고 자료" if legacy else "## 참고 자료", 1)[-1]
     if not re.search(r"\[[^\]]+\]\(https://[^\s)]+\)", references):
         raise PublisherError("references-missing")
-    if any(t.type == "html_block" for t in tokens):
+    if any(t.type == "html_block" or any(c.type == "html_inline" for c in t.children or []) for t in tokens):
         raise PublisherError("raw-html-needs-editorial-review")
 
 
@@ -144,8 +152,14 @@ def load_state(root):
     allowed = {"topic_id", "title_ko", "category", "subcategory", "target_path", "post_path",
                "permalink", "github_status", "notion_status", "blog_status", "github_url",
                "notion_page_id", "notion_url", "blog_url", "published_date", "content_hash",
-               "notion_error", "blog_error", "notion_pending_chunk"}
+               "notion_error", "blog_error", "notion_pending_chunk", "render_version", "revision", "publication_status"}
     for key, item in state["topics"].items():
+        if item.get("render_version",1) not in (1,2) or item.get("publication_status","active") not in ("active","withdrawn"):
+            raise PublisherError("invalid-publication-lifecycle")
+        if item.get("revision"):
+            allowed_revision = {"plan_hash","from_hash","previous_body_path","notion_page_id","old_blocks","archived_blocks","status","archive_pending"}
+            if set(item["revision"]) - allowed_revision or item["revision"].get("notion_page_id") != item.get("notion_page_id"):
+                raise PublisherError("unsafe-revision-state")
         if set(item) - allowed or key != item.get("topic_id"):
             raise PublisherError("unsafe-state-fields")
         if not re.fullmatch(r"[a-f0-9]{64}", item["content_hash"]):
@@ -159,7 +173,7 @@ def load_state(root):
 
 def select_topic(by_id, queue, state, today):
     incomplete = [t for t in state["topics"].values()
-                  if any(t[x] != "complete" for x in ("github_status", "notion_status", "blog_status"))]
+                  if t.get("publication_status") != "withdrawn" and any(t[x] != "complete" for x in ("github_status", "notion_status", "blog_status"))]
     if incomplete:
         return "recover", sorted(incomplete, key=lambda t: (t["published_date"], t["topic_id"]))[0]["topic_id"]
     if any(t["published_date"] == today for t in state["topics"].values()):
@@ -175,13 +189,18 @@ def make_post(t, body):
             "topic_id": t["topic_id"], "categories": [t["category"]], "tags": [t["subcategory"]],
             "description": f'{t["title_ko"]}: 동작 원리와 설계 판단, Java 백엔드 면접 답변.',
             "permalink": t["permalink"], "github_url": t["github_url"]}
+    if t.get("render_version") == 2:
+        meta.update(content_type="cs", description=re.sub(r"[*`]", "", next((line.strip() for line in body.splitlines()[1:] if line.strip() and not line.startswith("#")), t["title_ko"]))[:160], excerpt="")
+        if t.get("publication_status") == "withdrawn":
+            meta["published"] = False
+        body = body.split("\n", 1)[1].lstrip()
     # GitHub Pages currently builds with Jekyll 3. Preserve literal template examples.
     return "---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False) + "---\n\n{% raw %}\n" + body + "\n{% endraw %}\n"
 
 
 def update_indexes(root, state, config):
     root = Path(root)
-    entries = sorted((t for t in state["topics"].values() if t["github_status"] == "complete"),
+    entries = sorted((t for t in state["topics"].values() if t["github_status"] == "complete" and t.get("publication_status") != "withdrawn"),
                      key=lambda t: (t["published_date"], t["topic_id"]), reverse=True)
     lines = [f'## CS 학습 기록 · {len(entries)}개', "", f'[기술 블로그]({config["blog_url"]}/)', ""]
     if state.get("notion_parent_url"):
@@ -234,6 +253,10 @@ def prepare(root, private, *, dry_run=True, now=None):
     if now.tzinfo is None:
         raise PublisherError("timezone-aware-time-required")
     today = now.astimezone(KST).date().isoformat()
+    from .maintenance import maintenance_prepare
+    maintenance = maintenance_prepare(root, private, state, by_id, dry_run=dry_run, today=today)
+    if maintenance is not None:
+        return maintenance
     mode, key = select_topic(by_id, queue, state, today)
     result = {"action": mode, "topic_id": key, "date": today, "dry_run": dry_run}
     if not key:
@@ -263,6 +286,8 @@ def prepare(root, private, *, dry_run=True, now=None):
              "blog_status": "pending", "github_url": f'https://github.com/{config["public_repository"]}/blob/{config["branch"]}/{quote(t["target_path"])}',
              "notion_page_id": None, "notion_url": None, "blog_url": f'{config["blog_url"]}/topics/{key}/',
              "published_date": today, "content_hash": digest(body)}
+    if "## 6. 기술 면접 답변" not in body:
+        entry["render_version"] = 2
     for rel in (entry["target_path"], entry["post_path"]):
         if safe_path(root, rel).exists():
             raise PublisherError("existing-file-protected:" + rel)

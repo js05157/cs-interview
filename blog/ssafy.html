@@ -1,0 +1,5 @@
+---
+title: SSAFY
+permalink: /ssafy/
+---
+<header class="page-heading"><p class="eyebrow">LEARNING JOURNAL</p><h1>SSAFY</h1><p>SSAFY 16기 구미 Java 전공반에서의 기록.<br>기술 학습과 알고리즘, 실습·협업과 회고를 남기는 공간입니다.</p></header><section aria-labelledby="ssafy-posts"><div class="section-heading"><h2 id="ssafy-posts">교육과 개발의 기록</h2></div><div class="post-list">{% assign records = site.posts | where: 'content_type', 'ssafy' %}{% for post in records %}{% include post-row.html post=post %}{% else %}<p class="empty-note">아직 등록한 SSAFY 글이 없습니다.</p>{% endfor %}</div></section>

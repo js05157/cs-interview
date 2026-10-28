@@ -69,7 +69,12 @@ def markdown_blocks(text):
                 return output
             if t.type in ("heading_open", "paragraph_open"):
                 kind = "paragraph" if t.type == "paragraph_open" else "heading_" + str(min(int(t.tag[1:]), 3))
-                output.append(block(kind, inline(tokens[i+1].children)))
+                children = tokens[i+1].children or []
+                if kind == "paragraph" and len(children) == 1 and children[0].type == "image":
+                    image = children[0]
+                    output.append(block("image", type="external", external={"url": image.attrGet("src")}, caption=rich(image.content)))
+                else:
+                    output.append(block(kind, inline(children)))
                 i += 3
             elif t.type in ("fence", "code_block"):
                 language = t.info.strip().split()[0] if t.info.strip() else "plain text"
@@ -212,7 +217,7 @@ def links_from_block(b):
             if r.get("text", {}).get("link")]
 
 
-def ensure_hierarchy(client, state, parent, title, save, created=None):
+def ensure_hierarchy(client, state, parent, title, save, created=None, existing_only=False):
     key = parent + ":" + title
     # Always verify under the actual parent instead of trusting a stale cache.
     matches = [b for b in client.children(parent) if b.get("type") == "child_page" and b["child_page"]["title"] == title]
@@ -221,6 +226,8 @@ def ensure_hierarchy(client, state, parent, title, save, created=None):
     if matches:
         page_id = matches[0]["id"]
     else:
+        if existing_only:
+            raise PublisherError("revision-hierarchy-missing")
         if key in state["notion_uncertain"]:
             raise PublisherError("notion-hierarchy-uncertain-review-required")
         # Persist the intent locally before a remote write. Commit checkpoints in finally.
@@ -239,7 +246,7 @@ def ensure_hierarchy(client, state, parent, title, save, created=None):
     return page_id
 
 
-def preflight(root, state, config, topic, policy, client=None, parent=None):
+def preflight(root, state, config, topic, policy, client=None, parent=None, existing_topic=None):
     """Authenticate and verify the intended hierarchy before any study document is pushed."""
     parent = parent or os.environ.get("NOTION_PARENT_PAGE_ID")
     if not parent:
@@ -278,16 +285,26 @@ def preflight(root, state, config, topic, policy, client=None, parent=None):
     def save():
         update_indexes(root, state, config)
         write_json(safe_path(root, ".publisher/state.json"), state)
-    category = ensure_hierarchy(client, state, canonical_parent, config["categories"][topic["category"]], save, created)
-    ensure_hierarchy(client, state, category, topic["subcategory"], save, created)
+    category = ensure_hierarchy(client, state, canonical_parent, config["categories"][topic["category"]], save, created, existing_only=existing_topic is not None)
+    subcategory = ensure_hierarchy(client, state, category, topic["subcategory"], save, created, existing_only=existing_topic is not None)
+    if existing_topic is not None:
+        matches = [b for b in client.children(subcategory) if b.get("type") == "child_page" and b["child_page"]["title"] == topic["title_ko"]]
+        if len(matches) != 1 or matches[0]["id"] != existing_topic.get("notion_page_id"):
+            raise PublisherError("revision-page-identity-mismatch")
+        actual = client.request("GET", "pages/" + existing_topic["notion_page_id"])
+        if actual.get("archived") or actual.get("in_trash"):
+            raise PublisherError("revision-page-archived")
     return {"authentication": "passed", "approved_parent_identity": "matched", "parent_title": "matched",
             "parent_active": True, "hierarchy_readable": True, "hierarchy_pages_created": len(created),
             "insert_permission": "verified-by-created-page" if created else "existing-hierarchy-reused"}
 
 
 def sync_topic(root, state, entry, config, parent, client, save):
-    if entry["notion_status"] == "complete":
+    if entry["notion_status"] == "complete" or entry.get("publication_status") == "withdrawn":
         return
+    if entry.get("revision"):
+        from .maintenance import sync_revision
+        return sync_revision(root, state, entry, config, parent, client, save)
     category_id = ensure_hierarchy(client, state, parent, config["categories"][entry["category"]], save)
     parent_id = ensure_hierarchy(client, state, category_id, entry["subcategory"], save)
     candidates = [b for b in client.children(parent_id)

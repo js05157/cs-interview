@@ -37,6 +37,8 @@ def commit(root, message):
         raise PublisherError("unexpected-origin")
     state = load_state(root)
     files = [".publisher/state.json", "README.md", "blog/_data/publisher.json"]
+    if (root / ".publisher/site.json").exists():
+        files.append(".publisher/site.json")
     for t in state["topics"].values():
         files += [t["target_path"], t["post_path"]]
     git(root, "add", "--", *files)
@@ -54,18 +56,27 @@ def receipt(root):
     state = load_state(root)
     result = {}
     for key, t in state["topics"].items():
-        if t["github_status"] != "complete":
+        if t["github_status"] != "complete" or t.get("publication_status") == "withdrawn":
             continue
         source = safe_path(root, t["target_path"]).read_text(encoding="utf-8")
         from .core import make_post
         if digest(source) != t["content_hash"] or safe_path(root, t["post_path"]).read_text(encoding="utf-8") != make_post(t, source):
             raise PublisherError("deployment-source-mismatch")
         result[key] = t["content_hash"]
+    if (root / ".publisher/site.json").exists():
+        from .maintenance import site_digest
+        result["__site__"] = site_digest(root)
     return result
 
 
 def mark_blog(root, result, included):
     state = load_state(root)
+    included = dict(included)
+    site_hash = included.pop("__site__", None)
+    if (root / ".publisher/site.json").exists():
+        from .maintenance import site_digest
+        if site_hash != site_digest(root):
+            raise PublisherError("deployment-site-receipt-mismatch")
     for key, content_hash in included.items():
         if key not in state["topics"] or state["topics"][key]["content_hash"] != content_hash:
             raise PublisherError("deployment-receipt-mismatch")
@@ -78,6 +89,8 @@ def mark_blog(root, result, included):
                 entry.pop("blog_error", None)
     update_indexes(root, state, read_json(root / "config/publisher.json"))
     write_json(root / ".publisher/state.json", state)
+    if site_hash and result == "success":
+        write_json(root / ".publisher/site.json", {"schema_version":1,"deployed_digest":site_hash,"pending_digest":None})
 
 
 def main(argv=None):
@@ -153,11 +166,11 @@ def main(argv=None):
                     state = load_state(root)
                     enforce_approval(state, preview, policy)
                     key = preview["topic_id"]
-                    if key and state["topics"].get(key, {}).get("notion_status") != "complete":
+                    if key and (preview["action"] == "revision" or state["topics"].get(key, {}).get("notion_status") != "complete"):
                         from .notion import preflight
                         catalog, _ = load_catalog(args.private)
                         try:
-                            checked = preflight(root, state, read_json(root / "config/publisher.json"), catalog[key], policy)
+                            checked = preflight(root, state, read_json(root / "config/publisher.json"), catalog[key], policy, existing_topic=state["topics"].get(key) if preview["action"] == "revision" else None)
                         except PublisherError as preflight_error:
                             print("notion-preflight-failed: " + str(preflight_error), file=sys.stderr, flush=True)
                             # No study document has been created yet. Preserve only
@@ -170,13 +183,14 @@ def main(argv=None):
                             raise preflight_error
                         print("notion-preflight: " + json.dumps(checked, ensure_ascii=True), flush=True)
                 result = prepare(root, args.private, dry_run=False)
-                if args.commit and result["topic_id"]:
+                if args.commit and (result["topic_id"] or result["action"] == "site-update"):
                     state = load_state(root)
                     commit(root, "docs: add daily CS topic - " + state["topics"][result["topic_id"]]["title_ko"]
                            if result["action"] == "new" else "chore: reconcile CS publication")
                 state = load_state(root)
-                result["needs_notion"] = any(t["notion_status"] != "complete" for t in state["topics"].values())
-                result["needs_blog"] = any(t["blog_status"] != "complete" for t in state["topics"].values())
+                result["needs_notion"] = any(t["notion_status"] != "complete" and t.get("publication_status") != "withdrawn" for t in state["topics"].values())
+                from .maintenance import site_pending
+                result["needs_blog"] = site_pending(root) or any(t["blog_status"] != "complete" and t.get("publication_status") != "withdrawn" for t in state["topics"].values())
                 if os.environ.get("GITHUB_OUTPUT"):
                     with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
                         for key in ("action", "needs_notion", "needs_blog"):
