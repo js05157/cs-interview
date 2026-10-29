@@ -10,7 +10,7 @@
       "post_path": "blog/_posts/2026-10-27-os-process-thread.md",
       "permalink": "/topics/os-process-thread/",
       "github_status": "complete",
-      "notion_status": "pending",
+      "notion_status": "complete",
       "blog_status": "pending",
       "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
       "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
@@ -24,9 +24,25 @@
         "from_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
         "previous_body_path": "docs/five-section/previous-os-process-thread.md",
         "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
-        "old_blocks": {},
-        "archived_blocks": {},
-        "status": "pending"
+        "old_blocks": {
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=000-07434db8954b08d4e9d7d7cb4666bc1a6af2e7ca89248814f925975fd128d07a": "40747f4c-2c25-81e1-9cdf-c8a08fa00487",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=001-0a07dfaf81571a95682421006ccf63fa4766abda8cf313651a0028ef899d8725": "40747f4c-2c25-8157-ad20-c12eef810317",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=002-708626ee9aa554b3d18dec7b2ea89464c7c918fa37b5429fa944d8ec633c37de": "40747f4c-2c25-8194-851e-dc12ee5e3450",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=003-cd8b1a7e97ee1933df6ec6b78be0aafbc17500c63a806395033850cb1dc3f7d5": "40747f4c-2c25-818e-8398-fb16efe0174a",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=004-f141f40815241358ec7de88f7171741c5b479618861abd632c81532b910712bf": "40747f4c-2c25-81ea-9440-d92fe9c35919",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=005-ba7f17fa9bb4ac0fdd23a66bc703c4cc48a102581cba0b90fc7223563d6a77dd": "40747f4c-2c25-8193-8ac9-d36d6fe3d65a",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=006-74671a47b0f04c71ae1e186c2e1c180943ef4919e7bdf6257444fd26327de0ac": "40747f4c-2c25-81f8-9dc9-c5f3469b8b06"
+        },
+        "archived_blocks": {
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=000-07434db8954b08d4e9d7d7cb4666bc1a6af2e7ca89248814f925975fd128d07a": "40747f4c-2c25-81e1-9cdf-c8a08fa00487",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=001-0a07dfaf81571a95682421006ccf63fa4766abda8cf313651a0028ef899d8725": "40747f4c-2c25-8157-ad20-c12eef810317",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=002-708626ee9aa554b3d18dec7b2ea89464c7c918fa37b5429fa944d8ec633c37de": "40747f4c-2c25-8194-851e-dc12ee5e3450",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=003-cd8b1a7e97ee1933df6ec6b78be0aafbc17500c63a806395033850cb1dc3f7d5": "40747f4c-2c25-818e-8398-fb16efe0174a",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=004-f141f40815241358ec7de88f7171741c5b479618861abd632c81532b910712bf": "40747f4c-2c25-81ea-9440-d92fe9c35919",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=005-ba7f17fa9bb4ac0fdd23a66bc703c4cc48a102581cba0b90fc7223563d6a77dd": "40747f4c-2c25-8193-8ac9-d36d6fe3d65a",
+          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=006-74671a47b0f04c71ae1e186c2e1c180943ef4919e7bdf6257444fd26327de0ac": "40747f4c-2c25-81f8-9dc9-c5f3469b8b06"
+        },
+        "status": "notion-complete"
       },
       "revision_history": [
         {
