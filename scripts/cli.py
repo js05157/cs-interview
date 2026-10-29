@@ -22,9 +22,12 @@ def git(root, *args):
 
 def enforce_approval(state, preview, policy):
     allowed = set(policy.get("allowed_topic_ids", []))
-    if not allowed or set(state["topics"]) - allowed:
+    approved_hashes = set(policy.get("allowed_topic_id_hashes", []))
+    def approved(key):
+        return key in allowed or digest(key) in approved_hashes
+    if not (allowed or approved_hashes) or any(not approved(key) for key in state["topics"]):
         raise PublisherError("publication-state-outside-approved-scope")
-    if preview.get("topic_id") is not None and preview["topic_id"] not in allowed:
+    if preview.get("topic_id") is not None and not approved(preview["topic_id"]):
         raise PublisherError("topic-not-approved-for-publication")
 
 

@@ -126,6 +126,22 @@ class PreflightTests(unittest.TestCase):
         with self.assertRaisesRegex(core.PublisherError, "outside-approved"):
             cli.enforce_approval(state, dict(topic_id=None), self.policy)
 
+    def test_fixed_queue_hash_approval_does_not_approve_future_topics(self):
+        self.policy["allowed_topic_id_hashes"] = [core.digest("os-context-switch")]
+        cli.enforce_approval(self.state, dict(topic_id="os-context-switch", action="new"), self.policy)
+        with self.assertRaisesRegex(core.PublisherError, "not-approved"):
+            cli.enforce_approval(self.state, dict(topic_id="future-topic", action="new"), self.policy)
+
+    def test_hash_approved_publication_can_recover_and_reach_daily_limit(self):
+        self.policy["allowed_topic_id_hashes"] = [core.digest("os-context-switch")]
+        state = copy.deepcopy(self.state)
+        state["topics"]["os-context-switch"] = {}
+        cli.enforce_approval(state, dict(topic_id="os-context-switch", action="recover"), self.policy)
+        cli.enforce_approval(state, dict(topic_id=None, action="daily-limit"), self.policy)
+        state["topics"]["future-topic"] = {}
+        with self.assertRaisesRegex(core.PublisherError, "outside-approved"):
+            cli.enforce_approval(state, dict(topic_id=None), self.policy)
+
     def test_cli_auth_error_stops_before_public_source_materialization(self):
         core.write_json(self.root / "config/publication_policy.json", self.policy)
         core.write_json(self.root / "config/publisher.json", self.config)

@@ -12,3 +12,7 @@
 - 콘텐츠 검증: python -m scripts.cli validate --private ../cs-content-private
 - 안전한 미리보기: python -m scripts.cli prepare --private ../cs-content-private
 - 실제 확인하지 않은 서비스 연동과 콘텐츠 품질 검토를 완료라고 기록하지 마세요.
+
+## 최신 승인 · 2026-10-30
+
+사용자가 자동화 실행을 승인했습니다. 기존 검증 완료 100편의 순서를 따라 하루 신규 1편을 GitHub·Notion·Pages에 게시하고 CS_AUTO_PUBLISH를 활성화할 수 있습니다. config/publication_policy.json의 고정 승인 범위를 유지하며 이후 추가 주제는 자동 승인하지 않습니다. 기존 첫 글의 ID·날짜·본문·URL은 보존합니다. 미완료 플랫폼 복구를 먼저 하고 실패 시 새 주제를 건너뛰지 않습니다. docs/AUTOMATION.md의 현재 운영 상태를 먼저 확인합니다.
