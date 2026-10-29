@@ -50,6 +50,14 @@ class Details(HTMLParser):
   if t=='details':self.details.append(dict(attrs))
 
 class LearningTests(unittest.TestCase):
+ def test_built_contract_ignores_search_dialog_but_rejects_an_open_answer(self):
+  from scripts.verify_site import LearningMarkup
+  html='<article data-learning-format="five-section-v1">'+render_followups(GUIDE)+'</article><dialog><h2>글 검색</h2></dialog>'
+  # The parser sees rendered H2 elements, as provided by Jekyll.
+  import markdown_it
+  html=html.replace('## 정의','<h2>정의</h2>').replace('## 설명','<h2>설명</h2>').replace('## 적용 예시','<h2>적용 예시</h2>').replace('## 정리','<h2>정리</h2>').replace('## 꼬리 질문','<h2>꼬리 질문</h2>')
+  p=LearningMarkup();p.feed(html);p.verify()
+  with self.assertRaises(ValueError):LearningMarkup().feed(html.replace('<details class="cs-followup">','<details class="cs-followup" open>',1))
  def test_html_is_generated_closed_and_independent_with_code_and_link(self):
   core.validate_markdown(GUIDE);rendered=render_followups(GUIDE);p=Details();p.feed(rendered)
   self.assertEqual(len(p.details),2);self.assertTrue(all('open' not in a and 'name' not in a for a in p.details))

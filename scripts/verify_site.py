@@ -29,12 +29,12 @@ class Archive(HTMLParser):
 
 class LearningMarkup(HTMLParser):
     def __init__(self):
-        super().__init__();self.enabled=False;self.questions=[];self.current=None;self.in_summary=False;self.h2=False;self.headings=[]
+        super().__init__();self.enabled=False;self.in_article=False;self.questions=[];self.current=None;self.in_summary=False;self.h2=False;self.headings=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
-        if tag=="article" and a.get("data-learning-format")=="five-section-v1":self.enabled=True
-        if tag=="h2":self.h2=True;self.headings.append("")
-        if tag=="details" and "cs-followup" in a.get("class","").split():
+        if tag=="article" and a.get("data-learning-format")=="five-section-v1":self.enabled=True;self.in_article=True
+        if tag=="h2" and self.in_article:self.h2=True;self.headings.append("")
+        if tag=="details" and self.in_article and "cs-followup" in a.get("class","").split():
             if "open" in a or "name" in a:raise ValueError("followups-must-start-closed-and-independent")
             self.current={"question":"","answer":""};self.questions.append(self.current)
         if tag=="summary" and self.current is not None:self.in_summary=True
@@ -42,6 +42,7 @@ class LearningMarkup(HTMLParser):
         if self.h2:self.headings[-1]+=data
         if self.current is not None:self.current["question" if self.in_summary else "answer"]+=data
     def handle_endtag(self,tag):
+        if tag=="article":self.in_article=False
         if tag=="summary":self.in_summary=False
         if tag=="details":self.current=None
         if tag=="h2":self.h2=False
