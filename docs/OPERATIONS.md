@@ -107,3 +107,9 @@ python -m scripts.cli validate --private ../cs-content-private
 Notion Free workspace는 멤버 구성에 따라 블록 한도가 다릅니다. 복수 멤버 무료 워크스페이스의 일부 내부 연결에는 생애 1,000블록 한도가 적용되며 삭제로 용량이 복구되지 않습니다. 단일 멤버 무료 워크스페이스는 이 한도 대상이 아닙니다. 100개 글을 수용할 구성을 확인하고 유료 전환을 자동 선택하지 않습니다. [Notion 공식 블록 한도](https://developers.notion.com/reference/workspace-block-limits)
 
 재시도 정책 근거: [Notion 공식 요청 제한](https://developers.notion.com/reference/request-limits)
+
+## 다섯 절 개편 이후의 검증
+
+비공개 원본 100개가 새 형식입니다. 비공개 저장소에서 tools/verify_five_sections.py --start 1 --end 100 --report docs/FIVE_ALL_STRUCTURE.json과 tools/audit_five_completion.py를 사용합니다. 과거 10절·자유 절 편집 검사기는 역사적 형식용입니다. 실행 예제 보고서와 콘텐츠 해시를 함께 확인합니다.
+
+공개 첫 글은 render_version=3으로 같은 Notion 페이지·날짜·URL에 동기화됐습니다. 현재 config/maintenance.json은 이미 적용된 계획이며 다음 신규 주제를 승인하지 않습니다. 반복 prepare/dry-run을 실제 publish 승인으로 해석하지 마세요. 현재 gate는 UNSET, 승인 목록은 첫 ID만입니다. 활성화 전에는 별도 승인·토큰 만료·부모 페이지 권한·이용 한도·복구 미완료 여부와 첫 실행 관측을 확인합니다. 상세 근거는 five-section/RESULT.md에 있습니다.

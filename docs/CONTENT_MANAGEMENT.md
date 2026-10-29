@@ -52,3 +52,9 @@ API 근거: [Notion 이미지 블록](https://developers.notion.com/reference/bl
 ### 미게시 CS 도식
 
 비공개 원고에는 `![대체 설명](cs-asset:assets/diagrams/<topic_id>.svg)` 형식을 사용할 수 있습니다. 도식 파일도 비공개 assets/diagrams에 보관합니다. 게시 준비 시 선택된 topic ID의 SVG만 읽고 검증하며 공개 blog/assets/diagrams 경로로 복사합니다. 활성 코드·외부 리소스·symlink·다른 주제의 파일은 차단합니다. 공개 본문의 참조는 해당 공개 이미지의 HTTPS URL과 내용 버전으로 변환합니다. state는 원본 hash와 실제 공개 본문/자산 hash를 구분해 보존합니다. 미게시 99개의 이미지 폴더를 통째로 공개 저장소에 복사하지 않습니다.
+
+## 현재 CS 학습 형식
+
+비공개 templates/cs_topic_template.md의 다섯 H2 정의/설명/적용 예시/정리/꼬리 질문을 사용합니다. 질문은 H3 Q1. …와 바로 뒤의 답변으로 작성하고 2~4개를 둡니다. 각 답변은 기본 2~4문장이며 코드·인라인 코드·HTTPS 링크를 사용할 수 있습니다. 출처는 마지막 divider 다음 굵은 참고 자료로 구분합니다. 임의 details HTML은 원본에 쓰지 않습니다.
+
+검증된 구조는 Pages에서 기본 닫힌 독립 details, Notion에서 질문별 Toggle로 변환됩니다. 제목만 바꿔 기존 내용을 이식하지 않고 정의·원리·적용·자연스러운 정리·응용 질문을 연결합니다. 기존 첫 글 개정은 완료됐으며 다음 주제 게시나 예약 활성화는 아직 승인되지 않았습니다. [완료 결과](five-section/RESULT.md)를 확인하세요.

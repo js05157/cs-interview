@@ -1,0 +1,149 @@
+{
+  "checked_at_utc": "2026-10-29T13:06:55.142195+00:00",
+  "public_head": "21f3af6e73c6a5363829b970479e66321f4a683c",
+  "published_topics": 1,
+  "private_documents": 100,
+  "public_diagrams": 1,
+  "identity": {
+    "topic_id": "os-process-thread",
+    "published_date": "2026-10-27",
+    "permalink": "/topics/os-process-thread/",
+    "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
+    "content_hash": "f0787b1fc712dbd586bad874784def093f6f2e9e8452babb88ed88b558066a7a",
+    "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
+    "notion_url": "https://www.notion.so/40647f4c2c2581b4b2a3dd1cdeb62644",
+    "blog_url": "https://js05157.github.io/cs-interview/topics/os-process-thread/"
+  },
+  "platform_status": {
+    "github_status": "complete",
+    "notion_status": "complete",
+    "blog_status": "complete"
+  },
+  "notion_body_unchanged_since_verified_revision": true,
+  "notion_managed_sections": 5,
+  "notion_question_toggles": 3,
+  "notion_missing_elements": 0,
+  "same_day_and_next_day_readonly_checks": [
+    {
+      "date": "2026-10-27",
+      "action": "daily-limit",
+      "next_new_topic_blocked": false
+    },
+    {
+      "date": "2026-10-28",
+      "action": "new",
+      "next_new_topic_blocked": true
+    },
+    {
+      "date": "2026-10-29",
+      "action": "new",
+      "next_new_topic_blocked": true
+    }
+  ],
+  "tracked_public_files_unchanged_by_audit": true,
+  "site_receipt_matches": true,
+  "deployed_site_digest": "c5a8acde1b0798961905327559c39e0b5091e73ac20df83e47de6cf5e0f70b65",
+  "repository_writers": [
+    "js05157"
+  ],
+  "CS_AUTO_PUBLISH": "UNSET",
+  "private_repository_private": true,
+  "live_http": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 64324
+    },
+    {
+      "path": "/posts/",
+      "status": 200,
+      "bytes": 5241
+    },
+    {
+      "path": "/projects/",
+      "status": 200,
+      "bytes": 4144
+    },
+    {
+      "path": "/ssafy/",
+      "status": 200,
+      "bytes": 4318
+    },
+    {
+      "path": "/manage/",
+      "status": 200,
+      "bytes": 7196
+    },
+    {
+      "path": "/topics/os-process-thread/",
+      "status": 200,
+      "bytes": 14614
+    },
+    {
+      "path": "/about/",
+      "status": 200,
+      "bytes": 383
+    },
+    {
+      "path": "/learning/",
+      "status": 200,
+      "bytes": 407
+    },
+    {
+      "path": "/search.json",
+      "status": 200,
+      "bytes": 5113
+    },
+    {
+      "path": "/feed.xml",
+      "status": 200,
+      "bytes": 10645
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "bytes": 985
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "bytes": 83
+    },
+    {
+      "path": "/assets/style.css",
+      "status": 200,
+      "bytes": 15217
+    },
+    {
+      "path": "/assets/app.js",
+      "status": 200,
+      "bytes": 6762
+    },
+    {
+      "path": "/assets/editor.js",
+      "status": 200,
+      "bytes": 4026
+    },
+    {
+      "path": "/assets/lib/markdown-it.min.js",
+      "status": 200,
+      "bytes": 100786
+    },
+    {
+      "path": "/assets/diagrams/process-thread.svg",
+      "status": 200,
+      "bytes": 2966
+    }
+  ],
+  "search_posts": 1,
+  "CI_run": 40868829633,
+  "dry_run": 40877986698,
+  "first_revision_deployment": 40866762296,
+  "limits": [
+    "No new public topic or Notion page created during final verification.",
+    "Clipboard success feedback verified; clipboard bytes not independently verified.",
+    "Non-owner login/write attempt not performed; repository ACL and anonymous login redirect verified.",
+    "Withdrawal/deletion of the real first article was not performed; tombstone/recovery/manual-note contracts tested with mocks."
+  ],
+  "passed": true
+}

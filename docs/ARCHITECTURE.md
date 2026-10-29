@@ -87,3 +87,9 @@ Jekyll 빌드는 `blog/`만 읽습니다. 별도 build job은 예약된 공개 �
 ## 첫 실제 연동 검증
 
 2026-10-28 기준 공개 주제는 첫 문서 1개, 세 플랫폼 상태는 complete입니다. 카테고리 키를 별도 변수로 조회하도록 수정했고 실제 분야별 글 목록과 검색 목록을 빌드 검사에서 대조합니다. 상세 실행·복구 근거는 FIRST_PUBLICATION_RESULT.md를 참고하세요.
+
+## 다섯 절 학습 문서와 질문 변환
+
+scripts/learning.py가 정의·설명·적용 예시·정리·꼬리 질문과 질문별 답변을 Markdown AST로 검증합니다. H3 Qn. 문법과 하단 참고 자료를 사용하며 임의 HTML 제한을 유지합니다. 렌더 버전 3은 안전하게 생성한 details/summary를 Jekyll에 넘기고 Notion은 같은 파서로 질문별 Toggle을 만듭니다. 코드 fence 안 가짜 heading은 문법으로 오인하지 않습니다. 이전 렌더 버전 1/2와 이전 Notion 블록 fingerprint는 호환됩니다.
+
+개정 시 기존 날짜·경로·페이지 ID를 유지하고 이전 revision은 revision_history에 저장합니다. 새 관리 블록 검증 후 알려진 이전 블록만 archive하며 불확실 쓰기에는 복구를 우선합니다. [최종 결과](five-section/RESULT.md)를 참고하세요.
