@@ -1,0 +1,7 @@
+---
+layout: default
+---
+{% assign category_name = site.data.categories[page.cs_category] %}{% assign category_posts = site.categories[page.cs_category] | where: 'content_type', 'cs' %}
+<header class="page-heading"><a class="cs-back" href="{{ '/cs/' | relative_url }}">← CS 학습 분야</a><h1>{{ category_name }}</h1><p>{{ site.data.cs_descriptions[page.cs_category] }}<br>공개된 학습 글 {{ category_posts.size | default: 0 }}편</p></header>
+<nav class="cs-category-nav" aria-label="다른 CS 분야">{% for category in site.data.categories %}{% assign category_url = '/cs/' | append: category[0] | downcase | append: '/' %}<a href="{{ category_url | relative_url }}"{% if category[0] == page.cs_category %} aria-current="page"{% endif %}>{{ category[1] }}</a>{% endfor %}</nav>
+<div class="post-list" data-cs-category-list="{{ page.cs_category }}">{% for post in category_posts %}{% include post-row.html post=post %}{% else %}<p class="empty-note">이 분야에는 아직 공개된 글이 없습니다.</p>{% endfor %}</div>

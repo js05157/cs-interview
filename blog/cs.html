@@ -1,0 +1,11 @@
+---
+title: CS 학습
+permalink: /cs/
+---
+{% assign cs_posts = site.posts | where: 'content_type', 'cs' %}
+<header class="page-heading"><p class="eyebrow">COMPUTER SCIENCE</p><h1>CS 학습</h1><p>공부할 분야를 골라 차근차근 읽어 보세요.</p></header>
+<nav class="cs-subjects" aria-label="CS 학습 분야">
+{% for category in site.data.categories %}{% assign category_key = category[0] %}{% assign category_posts = site.categories[category_key] | where: 'content_type', 'cs' %}{% assign category_url = '/cs/' | append: category_key | downcase | append: '/' %}{% assign category_count = category_posts.size | default: 0 %}
+<a class="cs-subject-card" href="{{ category_url | relative_url }}" data-cs-category="{{ category_key }}" data-count="{{ category_count }}"><div><h2>{{ category[1] }}</h2><span>{{ category_count }}편</span></div><p>{{ site.data.cs_descriptions[category_key] }}</p><span class="subject-action">글 모아 보기 <span aria-hidden="true">↗</span></span></a>
+{% endfor %}</nav>
+<p class="cs-all-link"><a href="{{ '/posts/' | relative_url }}?type=cs">CS 글 전체 {{ cs_posts.size }}편 보기 ↗</a></p>

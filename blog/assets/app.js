@@ -42,6 +42,7 @@
   function filter(kind) {
     if(!filters.some(b=>b.dataset.filter===kind))kind='all';
     filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===kind)));
+    const csBrowse=document.querySelector('#cs-browse');if(csBrowse)csBrowse.hidden=kind!=='cs';
     rows.forEach(row=>row.hidden=kind!=='all'&&row.dataset.kind!==kind);
     const empty=document.querySelector('#filter-empty');if(empty)empty.hidden=rows.some(row=>!row.hidden);
   }
