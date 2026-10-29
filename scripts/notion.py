@@ -55,7 +55,16 @@ def block(kind, text=None, **extra):
     return {"object": "block", "type": kind, kind: {**({"rich_text": text} if text is not None else {}), **extra}}
 
 
-def markdown_blocks(text):
+def markdown_blocks(text, *, parse_followups=True):
+    if parse_followups:
+        from .learning import parse_guide
+        guide = parse_guide(text)
+        if guide is not None:
+            result = markdown_blocks(guide.prefix, parse_followups=False)
+            for q in guide.questions:
+                title = inline(MD.parseInline(f"Q{q.number}. " + q.title)[0].children)
+                result.append(block("toggle", title, children=markdown_blocks(q.answer, parse_followups=False)))
+            return result + markdown_blocks(guide.references, parse_followups=False)
     tokens = MD.parse(text)
     i = 0
 

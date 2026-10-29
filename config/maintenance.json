@@ -2,9 +2,8 @@
   "schema_version": 1,
   "kind": "revision",
   "topic_id": "os-process-thread",
-  "from_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681",
-  "to_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
+  "from_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
+  "to_hash": "f0787b1fc712dbd586bad874784def093f6f2e9e8452babb88ed88b558066a7a",
   "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
-  "previous_body_path": "docs/redesign/originals/os-process-thread.md",
-  "note": "Approved existing first article only. Keep original publication identity. No new CS topics."
+  "previous_body_path": "docs/five-section/previous-os-process-thread.md"
 }

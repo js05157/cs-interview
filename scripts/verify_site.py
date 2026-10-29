@@ -27,6 +27,28 @@ class Archive(HTMLParser):
     def handle_endtag(self,tag):
         if tag=="section":self.category=None
 
+class LearningMarkup(HTMLParser):
+    def __init__(self):
+        super().__init__();self.enabled=False;self.questions=[];self.current=None;self.in_summary=False;self.h2=False;self.headings=[]
+    def handle_starttag(self,tag,attrs):
+        a=dict(attrs)
+        if tag=="article" and a.get("data-learning-format")=="five-section-v1":self.enabled=True
+        if tag=="h2":self.h2=True;self.headings.append("")
+        if tag=="details" and "cs-followup" in a.get("class","").split():
+            if "open" in a or "name" in a:raise ValueError("followups-must-start-closed-and-independent")
+            self.current={"question":"","answer":""};self.questions.append(self.current)
+        if tag=="summary" and self.current is not None:self.in_summary=True
+    def handle_data(self,data):
+        if self.h2:self.headings[-1]+=data
+        if self.current is not None:self.current["question" if self.in_summary else "answer"]+=data
+    def handle_endtag(self,tag):
+        if tag=="summary":self.in_summary=False
+        if tag=="details":self.current=None
+        if tag=="h2":self.h2=False
+    def verify(self):
+        if self.enabled and (self.headings!=["정의","설명","적용 예시","정리","꼬리 질문"] or not 2<=len(self.questions)<=4 or any(not q["question"].strip() or not q["answer"].strip() for q in self.questions)):
+            raise ValueError("built-learning-question-answer-contract-mismatch")
+
 def verify(site,baseurl="/cs-interview"):
     site=Path(site)
     required=("index.html","posts/index.html","projects/index.html","ssafy/index.html","manage/index.html",
@@ -42,6 +64,7 @@ def verify(site,baseurl="/cs-interview"):
         safe_text=re.sub(r"<(pre|code)\b[^>]*>.*?</\1>","",text,flags=re.S)
         if "{%" in safe_text or "{{" in safe_text:raise ValueError("unrendered-liquid:"+file.name)
         parser=Links();parser.feed(text);pages[file]=parser
+        learning=LearningMarkup();learning.feed(text);learning.verify()
         if '<aside class="sidebar"' in text or 'class="category-grid"' in text:raise ValueError("legacy-cs-navigation-present")
         for img in parser.images:
             if not img.get("alt","").strip():raise ValueError("image-alt-required:"+file.name)

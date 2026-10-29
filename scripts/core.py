@@ -121,7 +121,9 @@ def validate_markdown(text):
     if legacy and not 3 <= len(re.findall(r"^### ", followups, re.M)) <= 5:
         raise PublisherError("three-to-five-followup-answers-required")
     if not legacy:
-        if "참고 자료" not in headings or len(headings) < 2 or len(set(headings)) != len(headings):
+        from .learning import parse_guide
+        guide = parse_guide(text)
+        if guide is None and ("참고 자료" not in headings or len(headings) < 2 or len(set(headings)) != len(headings)):
             raise PublisherError("editorial-sections-required")
         if re.search(r"^#{1,6} .*?(30초|1분 답변|핵심 요약|기술 면접 답변)", text, re.M):
             raise PublisherError("interview-script-heading-forbidden")
@@ -137,7 +139,7 @@ def validate_markdown(text):
                 src = urlsplit(child.attrGet("src") or "")
                 if not child.content.strip() or (src.scheme != "cs-asset" and (src.scheme != "https" or not src.netloc or src.username or src.password)):
                     raise PublisherError("image-alt-and-safe-https-required")
-    references = text.split("## 10. 참고 자료" if legacy else "## 참고 자료", 1)[-1]
+    references = guide.references if not legacy and guide is not None else text.split("## 10. 참고 자료" if legacy else "## 참고 자료", 1)[-1]
     if not re.search(r"\[[^\]]+\]\(https://[^\s)]+\)", references):
         raise PublisherError("references-missing")
     if any(t.type == "html_block" or any(c.type == "html_inline" for c in t.children or []) for t in tokens):
@@ -152,9 +154,9 @@ def load_state(root):
     allowed = {"topic_id", "title_ko", "category", "subcategory", "target_path", "post_path",
                "permalink", "github_status", "notion_status", "blog_status", "github_url",
                "notion_page_id", "notion_url", "blog_url", "published_date", "content_hash",
-               "notion_error", "blog_error", "notion_pending_chunk", "render_version", "revision", "publication_status", "assets", "source_content_hash"}
+               "notion_error", "blog_error", "notion_pending_chunk", "render_version", "revision", "publication_status", "assets", "source_content_hash", "revision_history"}
     for key, item in state["topics"].items():
-        if item.get("render_version",1) not in (1,2) or item.get("publication_status","active") not in ("active","withdrawn"):
+        if item.get("render_version",1) not in (1,2,3) or item.get("publication_status","active") not in ("active","withdrawn"):
             raise PublisherError("invalid-publication-lifecycle")
         if item.get("revision"):
             allowed_revision = {"plan_hash","from_hash","previous_body_path","notion_page_id","old_blocks","archived_blocks","status","archive_pending"}
@@ -162,6 +164,9 @@ def load_state(root):
                 raise PublisherError("unsafe-revision-state")
         if set(item) - allowed or key != item.get("topic_id"):
             raise PublisherError("unsafe-state-fields")
+        for previous in item.get("revision_history",[]):
+            if set(previous)-{"content_hash","render_version","revision"} or not re.fullmatch(r"[a-f0-9]{64}",previous.get("content_hash","")) or previous.get("revision",{}).get("notion_page_id") != item.get("notion_page_id"):
+                raise PublisherError("unsafe-revision-history")
         if not re.fullmatch(r"[a-f0-9]{64}", item["content_hash"]):
             raise PublisherError("invalid-content-hash")
         datetime.strptime(item["published_date"], "%Y-%m-%d")
@@ -189,11 +194,16 @@ def make_post(t, body):
             "topic_id": t["topic_id"], "categories": [t["category"]], "tags": [t["subcategory"]],
             "description": f'{t["title_ko"]}: 동작 원리와 설계 판단, Java 백엔드 면접 답변.',
             "permalink": t["permalink"], "github_url": t["github_url"]}
-    if t.get("render_version") == 2:
+    if t.get("render_version") in (2,3):
         meta.update(content_type="cs", description=re.sub(r"[*`]", "", next((line.strip() for line in body.splitlines()[1:] if line.strip() and not line.startswith("#")), t["title_ko"]))[:160], excerpt="")
         if t.get("publication_status") == "withdrawn":
             meta["published"] = False
         body = body.split("\n", 1)[1].lstrip()
+        if t.get("render_version") == 3:
+            meta["learning_format"] = "five-section-v1"
+            from .learning import render_followups
+            # Render with the original H1 so the shared Markdown contract can be checked.
+            body = render_followups("# " + t["title_ko"] + "\n\n" + body).split("\n",1)[1].lstrip()
     # GitHub Pages currently builds with Jekyll 3. Preserve literal template examples.
     return "---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False) + "---\n\n{% raw %}\n" + body + "\n{% endraw %}\n"
 
@@ -295,6 +305,8 @@ def prepare(root, private, *, dry_run=True, now=None):
         entry.update(assets=assets, source_content_hash=source_content_hash)
     if "## 6. 기술 면접 답변" not in body:
         entry["render_version"] = 2
+        from .learning import parse_guide
+        if parse_guide(body) is not None:entry["render_version"] = 3
     for rel in (entry["target_path"], entry["post_path"]):
         if safe_path(root, rel).exists():
             raise PublisherError("existing-file-protected:" + rel)

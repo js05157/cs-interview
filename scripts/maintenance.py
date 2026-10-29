@@ -2,6 +2,7 @@
 from pathlib import Path
 import re
 import hashlib
+import copy
 from .core import (PublisherError, digest, load_state, make_post, read_json, safe_path,
                    update_indexes, validate_markdown, write_json)
 
@@ -81,7 +82,11 @@ def maintenance_prepare(root, private, state, catalog, *, dry_run, today):
                         'from_hash':entry['content_hash'],'previous_body_path':plan['previous_body_path'],
                         'notion_page_id':entry['notion_page_id'], 'old_blocks':{},'archived_blocks':{},'status':'pending'}
             if assets:entry.update(assets=assets, source_content_hash=source_content_hash)
-            entry.update(render_version=2,revision=revision,content_hash=digest(body),blog_status='pending')
+            if entry.get('revision'):
+                entry.setdefault('revision_history',[]).append({'content_hash':entry['content_hash'],'render_version':entry.get('render_version',1),'revision':copy.deepcopy(entry['revision'])})
+            from .learning import parse_guide
+            version = 3 if parse_guide(body) is not None else 2
+            entry.update(render_version=version,revision=revision,content_hash=digest(body),blog_status='pending')
             if plan['kind'] == 'revision':
                 entry['notion_status'] = 'pending'
             else:
