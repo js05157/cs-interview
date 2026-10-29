@@ -10,46 +10,61 @@
       "post_path": "blog/_posts/2026-10-27-os-process-thread.md",
       "permalink": "/topics/os-process-thread/",
       "github_status": "complete",
-      "notion_status": "complete",
-      "blog_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
       "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md",
       "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
       "notion_url": "https://www.notion.so/40647f4c2c2581b4b2a3dd1cdeb62644",
       "blog_url": "https://js05157.github.io/cs-interview/topics/os-process-thread/",
       "published_date": "2026-10-27",
-      "content_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
-      "render_version": 2,
+      "content_hash": "f0787b1fc712dbd586bad874784def093f6f2e9e8452babb88ed88b558066a7a",
+      "render_version": 3,
       "revision": {
-        "plan_hash": "cfcc1b60088151c4b64568ab49e0012182becde9d6a487ff867711a2fd50571d",
-        "from_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681",
-        "previous_body_path": "docs/redesign/originals/os-process-thread.md",
+        "plan_hash": "ab1b60913425a9704b8e13ba0b2ec309f5501ac68a9431c87bc12be870849c9a",
+        "from_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
+        "previous_body_path": "docs/five-section/previous-os-process-thread.md",
         "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
-        "old_blocks": {
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=000-7c06dd937cc57030062035ee906a9e85ae437bdce9c329a10989339a03749da2": "40647f4c-2c25-81b6-80df-d0379628560c",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=001-fdd94f30efa2d1cacf7e0b4c640bcf7c80033673ba7c458546ceb8ce835ee2dd": "40647f4c-2c25-8119-8bb6-d9afcc5d516e",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=002-fd108432e32f15c96ad6fbdbf14eb2dac2a873213ee5e15990bf36b63d9b8fca": "40647f4c-2c25-81ab-ac93-d2427e187aed",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=003-db01ae2db5cd5b3b92e182dd2d7d3e2db7db5b27825054c909d41fcc1d8d4332": "40647f4c-2c25-810e-bb2f-e3cf6f6a2c00",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=004-2f9f88d119dcd898595496eb5c4a9e936315c69f18dc00be5c11db55cc509e5f": "40647f4c-2c25-8147-8e87-de30da20097e",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=005-32454e0eec2512380bcd5dbb87e4363cd87f269f3e8397d1c02a787408de766c": "40647f4c-2c25-81a2-b6f9-cc63a28f06d6",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=006-fe5217cda69470b7e1196e4206a7da00bd3bd5e64a5f18c6a12112d7f3927933": "40647f4c-2c25-81ae-89b8-c638df3970b9",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=007-a580d9577752985cf39d1109a0b2726f6ee87e195341220e988d9cf4f43bd70e": "40647f4c-2c25-81c2-ac38-d28a32bf6286",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=008-983c5fcbb5eebe1bee24ae02406ba82b45ca819aa73cc5513cbff2454a1b3428": "40647f4c-2c25-810e-9ac9-cad400a82059",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=009-096d7d8bdc25448d24706f4e4f4e522ec7ad21618bab44fcc3dc61bba7304c1e": "40647f4c-2c25-819d-b28a-efd475718125"
-        },
-        "archived_blocks": {
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=000-7c06dd937cc57030062035ee906a9e85ae437bdce9c329a10989339a03749da2": "40647f4c-2c25-81b6-80df-d0379628560c",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=001-fdd94f30efa2d1cacf7e0b4c640bcf7c80033673ba7c458546ceb8ce835ee2dd": "40647f4c-2c25-8119-8bb6-d9afcc5d516e",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=002-fd108432e32f15c96ad6fbdbf14eb2dac2a873213ee5e15990bf36b63d9b8fca": "40647f4c-2c25-81ab-ac93-d2427e187aed",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=003-db01ae2db5cd5b3b92e182dd2d7d3e2db7db5b27825054c909d41fcc1d8d4332": "40647f4c-2c25-810e-bb2f-e3cf6f6a2c00",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=004-2f9f88d119dcd898595496eb5c4a9e936315c69f18dc00be5c11db55cc509e5f": "40647f4c-2c25-8147-8e87-de30da20097e",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=005-32454e0eec2512380bcd5dbb87e4363cd87f269f3e8397d1c02a787408de766c": "40647f4c-2c25-81a2-b6f9-cc63a28f06d6",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=006-fe5217cda69470b7e1196e4206a7da00bd3bd5e64a5f18c6a12112d7f3927933": "40647f4c-2c25-81ae-89b8-c638df3970b9",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=007-a580d9577752985cf39d1109a0b2726f6ee87e195341220e988d9cf4f43bd70e": "40647f4c-2c25-81c2-ac38-d28a32bf6286",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=008-983c5fcbb5eebe1bee24ae02406ba82b45ca819aa73cc5513cbff2454a1b3428": "40647f4c-2c25-810e-9ac9-cad400a82059",
-          "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=009-096d7d8bdc25448d24706f4e4f4e522ec7ad21618bab44fcc3dc61bba7304c1e": "40647f4c-2c25-819d-b28a-efd475718125"
-        },
-        "status": "notion-complete"
-      }
+        "old_blocks": {},
+        "archived_blocks": {},
+        "status": "pending"
+      },
+      "revision_history": [
+        {
+          "content_hash": "59375850fdda603c5102bf507acfdf83b8028a8a52f44b96bc7109a2ebf9463c",
+          "render_version": 2,
+          "revision": {
+            "plan_hash": "cfcc1b60088151c4b64568ab49e0012182becde9d6a487ff867711a2fd50571d",
+            "from_hash": "0eb1bb28441e2812fd9ed6ff1a1f7ed066c278b0bca10967ab63f8fc15bea681",
+            "previous_body_path": "docs/redesign/originals/os-process-thread.md",
+            "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
+            "old_blocks": {
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=000-7c06dd937cc57030062035ee906a9e85ae437bdce9c329a10989339a03749da2": "40647f4c-2c25-81b6-80df-d0379628560c",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=001-fdd94f30efa2d1cacf7e0b4c640bcf7c80033673ba7c458546ceb8ce835ee2dd": "40647f4c-2c25-8119-8bb6-d9afcc5d516e",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=002-fd108432e32f15c96ad6fbdbf14eb2dac2a873213ee5e15990bf36b63d9b8fca": "40647f4c-2c25-81ab-ac93-d2427e187aed",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=003-db01ae2db5cd5b3b92e182dd2d7d3e2db7db5b27825054c909d41fcc1d8d4332": "40647f4c-2c25-810e-bb2f-e3cf6f6a2c00",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=004-2f9f88d119dcd898595496eb5c4a9e936315c69f18dc00be5c11db55cc509e5f": "40647f4c-2c25-8147-8e87-de30da20097e",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=005-32454e0eec2512380bcd5dbb87e4363cd87f269f3e8397d1c02a787408de766c": "40647f4c-2c25-81a2-b6f9-cc63a28f06d6",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=006-fe5217cda69470b7e1196e4206a7da00bd3bd5e64a5f18c6a12112d7f3927933": "40647f4c-2c25-81ae-89b8-c638df3970b9",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=007-a580d9577752985cf39d1109a0b2726f6ee87e195341220e988d9cf4f43bd70e": "40647f4c-2c25-81c2-ac38-d28a32bf6286",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=008-983c5fcbb5eebe1bee24ae02406ba82b45ca819aa73cc5513cbff2454a1b3428": "40647f4c-2c25-810e-9ac9-cad400a82059",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=009-096d7d8bdc25448d24706f4e4f4e522ec7ad21618bab44fcc3dc61bba7304c1e": "40647f4c-2c25-819d-b28a-efd475718125"
+            },
+            "archived_blocks": {
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=000-7c06dd937cc57030062035ee906a9e85ae437bdce9c329a10989339a03749da2": "40647f4c-2c25-81b6-80df-d0379628560c",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=001-fdd94f30efa2d1cacf7e0b4c640bcf7c80033673ba7c458546ceb8ce835ee2dd": "40647f4c-2c25-8119-8bb6-d9afcc5d516e",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=002-fd108432e32f15c96ad6fbdbf14eb2dac2a873213ee5e15990bf36b63d9b8fca": "40647f4c-2c25-81ab-ac93-d2427e187aed",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=003-db01ae2db5cd5b3b92e182dd2d7d3e2db7db5b27825054c909d41fcc1d8d4332": "40647f4c-2c25-810e-bb2f-e3cf6f6a2c00",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=004-2f9f88d119dcd898595496eb5c4a9e936315c69f18dc00be5c11db55cc509e5f": "40647f4c-2c25-8147-8e87-de30da20097e",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=005-32454e0eec2512380bcd5dbb87e4363cd87f269f3e8397d1c02a787408de766c": "40647f4c-2c25-81a2-b6f9-cc63a28f06d6",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=006-fe5217cda69470b7e1196e4206a7da00bd3bd5e64a5f18c6a12112d7f3927933": "40647f4c-2c25-81ae-89b8-c638df3970b9",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=007-a580d9577752985cf39d1109a0b2726f6ee87e195341220e988d9cf4f43bd70e": "40647f4c-2c25-81c2-ac38-d28a32bf6286",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=008-983c5fcbb5eebe1bee24ae02406ba82b45ca819aa73cc5513cbff2454a1b3428": "40647f4c-2c25-810e-9ac9-cad400a82059",
+              "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-process-thread.md?cs_chunk=009-096d7d8bdc25448d24706f4e4f4e522ec7ad21618bab44fcc3dc61bba7304c1e": "40647f4c-2c25-819d-b28a-efd475718125"
+            },
+            "status": "notion-complete"
+          }
+        }
+      ]
     }
   },
   "notion_hierarchy": {
