@@ -4,7 +4,7 @@
 
 [글 관리 화면](https://js05157.github.io/cs-interview/manage/)에서 제목·날짜·종류·태그·공개 여부와 Markdown을 작성합니다. 미리보기는 브라우저 안에서 동작하며 HTML과 javascript: 링크를 실행하지 않습니다. 저장은 GitHub 편집기로 이동한 후 GitHub 로그인이 확인된 계정이 커밋합니다. 프런트엔드는 PAT나 Actions Secret을 받지 않습니다. 이것은 별도 인증 서버를 둔 CMS가 아닌 GitHub 편집 동선입니다.
 
-1. 원고 작성 → GitHub에서 저장 → master의 blog/_posts 파일명과 내용을 확인 → 커밋합니다. 긴 원고는 복사 안내 또는 Markdown 다운로드를 이용합니다. 저장 버튼만 누른 것으로 게시가 끝나지 않습니다.
+1. 원고 작성 → GitHub에서 저장 → master의 blog/_posts 파일명과 내용을 확인 → 커밋합니다. 긴 원고는 복사 안내 또는 Markdown 다운로드를 이용한 뒤 ‘GitHub 편집기 열기’ 링크로 이동합니다. 팝업이 차단된 짧은 원고에도 같은 링크가 제공됩니다. 원고를 수정하면 이전 저장 링크를 숨기므로 다시 저장 준비를 합니다. 저장 버튼만 누른 것으로 게시가 끝나지 않습니다.
 2. 기존 일반 글은 목록의 수정 링크로 GitHub 편집기·미리보기를 엽니다. `content_type`은 `cs`, `development`, `project`, `ssafy`, `essay` 중 하나입니다. `ssafy` 글은 SSAFY 목록에 자동으로 포함됩니다.
 3. 공개 중단은 front matter의 `published: false`로 설정합니다. 삭제는 GitHub의 삭제 화면에서 커밋합니다. Git 기록을 통해 되돌릴 수 있습니다. 공개 저장소이므로 비노출 원고도 소스와 과거 기록은 공개입니다. 비밀 초안은 저장하지 마세요.
 4. 이미지 업로드는 blog/assets/uploads에 합니다. `![이미지 설명](/cs-interview/assets/uploads/example.png)`처럼 삽입합니다. 파일명에 공백을 피하고 alt를 작성합니다. GitHub의 본문 미리보기와 실제 Jekyll 렌더링은 일부 다를 수 있습니다.

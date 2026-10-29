@@ -2,13 +2,14 @@
   'use strict';
   const form=document.querySelector('#compose-form');if(!form)return;
   const status=document.querySelector('#editor-status'),preview=document.querySelector('#markdown-preview');
+  const githubEditor=document.querySelector('#open-github-editor');
   const md=window.markdownit ? window.markdownit({html:false,linkify:true,typographer:false}) : null;
   const key='personal-blog-draft';
   const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date());
   form.elements.date.value=today;
   try {const draft=JSON.parse(sessionStorage.getItem(key)||'null');if(draft)Object.keys(draft).forEach(k=>{if(form.elements[k])form.elements[k].value=draft[k];});} catch (_) {}
   function values(){return {title:form.elements.title.value.trim(),date:form.elements.date.value,kind:form.elements.kind.value,tags:form.elements.tags.value,published:form.elements.published.value,body:form.elements.body.value};}
-  function update() {const v=values();if(md)preview.innerHTML=md.render(v.body);else preview.textContent=v.body;try{sessionStorage.setItem(key,JSON.stringify(v));}catch(_){}}
+  function update() {const v=values();githubEditor.hidden=true;githubEditor.removeAttribute('href');status.textContent='';if(md)preview.innerHTML=md.render(v.body);else preview.textContent=v.body;try{sessionStorage.setItem(key,JSON.stringify(v));}catch(_){}}
   form.addEventListener('input',update);update();
   function draft() {
     const v=values();if(!v.title||!v.date||!v.body.trim())throw new Error('제목·날짜·본문을 입력해 주세요.');
@@ -27,10 +28,16 @@
     try {
       const d=draft();const url=new URL('https://github.com/js05157/cs-interview/new/master/blog/_posts');
       url.searchParams.set('filename',d.filename);
-      if(encodeURIComponent(d.text).length<6000)url.searchParams.set('value',d.text);
-      else {try {await navigator.clipboard.writeText(d.text);status.textContent='원고를 복사했습니다. GitHub 편집기에 붙여넣고 저장하세요.';}catch(_){status.textContent='긴 원고는 Markdown 다운로드 후 GitHub에 업로드하세요.';}}
-      const opened=window.open(url.href,'_blank','noopener,noreferrer');
-      if(!status.textContent)status.textContent='GitHub 로그인 후 내용을 확인하고 커밋하세요.';
+      const longDraft=encodeURIComponent(d.text).length>=6000;
+      if(!longDraft)url.searchParams.set('value',d.text);
+      githubEditor.href=url.href;githubEditor.hidden=false;
+      if(longDraft) {
+        try {await navigator.clipboard.writeText(d.text);status.textContent='원고를 복사했습니다. GitHub 편집기를 열어 붙여넣고 커밋하세요.';}
+        catch(_){status.textContent='Markdown을 다운로드한 뒤 GitHub 편집기에 내용을 붙여넣거나 업로드하세요.';}
+      } else {
+        window.open(url.href,'_blank','noopener,noreferrer');
+        status.textContent='GitHub에서 내용을 확인하고 커밋하세요. 창이 열리지 않으면 편집기 링크를 누르세요.';
+      }
     } catch(error){status.textContent=error.message;}
   });
   document.querySelector('#download-draft').addEventListener('click',()=>{
