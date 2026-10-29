@@ -1,0 +1,27 @@
+{
+  "published_topics": 1,
+  "first_topic_id": "os-process-thread",
+  "published_date": "2026-10-27",
+  "permalink": "/topics/os-process-thread/",
+  "notion_page_id": "40647f4c-2c25-81b4-b2a3-dd1cdeb62644",
+  "content_hash": "f0787b1fc712dbd586bad874784def093f6f2e9e8452babb88ed88b558066a7a",
+  "platform_status": {
+    "github_status": "complete",
+    "notion_status": "complete",
+    "blog_status": "complete"
+  },
+  "notion_managed_sections": 5,
+  "notion_question_toggles": 3,
+  "answers_missing_or_duplicated": 0,
+  "old_managed_chunks_archived": 7,
+  "previous_revision_history_retained": true,
+  "site_receipt_matches": true,
+  "publish_run": 40866762296,
+  "CI_run": 40866532702,
+  "dry_run": 40866535411,
+  "browser_live": "initially closed; independent click/reclick; Enter and Space; 390px dark; no body horizontal overflow; image loaded; one code block",
+  "new_topics_published": 0,
+  "CS_AUTO_PUBLISH": "UNSET",
+  "qa_code_inline_link": "local converter contract tests; actual first answers are plain text",
+  "passed": true
+}
