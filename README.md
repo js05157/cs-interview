@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 1개
+## CS 학습 기록 · 2개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,10 +10,12 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-10-30 · [컨텍스트 스위칭](Operating-System/Process/os-context-switch.md)
 - 2026-10-27 · [프로세스와 스레드](Operating-System/Process/os-process-thread.md)
 
-### 운영체제 · 1개
+### 운영체제 · 2개
 
+- [컨텍스트 스위칭](Operating-System/Process/os-context-switch.md)
 - [프로세스와 스레드](Operating-System/Process/os-process-thread.md)
 
 ### 네트워크 · 0개

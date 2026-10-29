@@ -81,6 +81,33 @@
           }
         }
       ]
+    },
+    "os-context-switch": {
+      "topic_id": "os-context-switch",
+      "title_ko": "컨텍스트 스위칭",
+      "category": "Operating-System",
+      "subcategory": "Process",
+      "target_path": "Operating-System/Process/os-context-switch.md",
+      "post_path": "blog/_posts/2026-10-30-os-context-switch.md",
+      "permalink": "/topics/os-context-switch/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-context-switch.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-context-switch/",
+      "published_date": "2026-10-30",
+      "content_hash": "f7fb03fc00b8c90943c19d06b3fb26ab55c62b5c81d76ebb8029767afba95259",
+      "assets": [
+        {
+          "source": "assets/diagrams/os-context-switch.svg",
+          "target": "blog/assets/diagrams/os-context-switch.svg",
+          "sha256": "b05f9330693af2899e36cc1055ce29592e437c8afd70d0fe3008f26a2e087514"
+        }
+      ],
+      "source_content_hash": "42440489d7af7f728acf283e172ebcc99c36c6050e8d5f349f4434cf0b9a7206",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
