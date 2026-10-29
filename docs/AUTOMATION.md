@@ -2,7 +2,16 @@
 
 사용자가 기존 CS 학습 자료의 자동화 실행을 승인했습니다. 검증 완료된 기존 100편을 순서대로 GitHub·Notion·GitHub Pages에 하루 신규 1편씩 게시합니다. 최초 공개된 글은 원래 ID·날짜·본문·URL을 보존합니다.
 
-현재 단계: 승인 정책 준비 완료, 첫 추가 게시와 예약 게이트 활성화 검증 예정. 최종 실행 결과는 이 문서에 갱신합니다.
+현재 단계: 실제 첫 추가 게시·검증 완료, Repository Variable `CS_AUTO_PUBLISH=true` 활성화 및 재조회 확인. 2026-10-30 기준 공개 2편, 미게시 98편입니다.
+
+## 활성화 검증 결과
+
+- 승인 정책 커밋 `e921d81`: 로컬 Python 테스트 76개, 기존 100편 원문 검사 통과.
+- [CI 40899609101](https://github.com/js05157/cs-interview/actions/runs/40899609101)와 [dry-run 40899605320](https://github.com/js05157/cs-interview/actions/runs/40899605320) 성공.
+- [실제 게시 40899711673](https://github.com/js05157/cs-interview/actions/runs/40899711673): publish/build/deploy/record 모두 성공. 신규 글은 기존 순서 2번 컨텍스트 스위칭 1편입니다. 첫 글 상태·본문·날짜·URL은 보존했습니다.
+- [GitHub 원문](https://github.com/js05157/cs-interview/blob/master/Operating-System/Process/os-context-switch.md), [Notion](https://www.notion.so/40847f4c2c25817f82c6e33b7442fba3), [블로그](https://js05157.github.io/cs-interview/topics/os-context-switch/) 확인. 원문·README·Jekyll 원본·상태 일치, Notion의 기존 부모/분야/Process 계층과 다섯 절·질문 토글·청크 fingerprint 확인. 실제 블로그·CSS/JS·SVG·검색 인덱스·글 목록 HTTP 200.
+- 같은 2026-10-30 날짜 선택은 `daily-limit`로 신규 게시 차단. 다음 한국 날짜의 선택은 원래 순서 3번이며 실제 추가 게시 없이 조회만 했습니다.
+- 다음 예약 확인은 2026-10-30 10:30 KST지만 오늘 신규 글을 이미 게시해 건너뜁니다. 다음 신규 게시 대상 시점은 2026-10-31 10:30 KST입니다. 미래 예약의 실제 실행은 아직 관측하지 않았습니다.
 
 ## 범위와 일정
 
