@@ -108,11 +108,31 @@
       ],
       "source_content_hash": "42440489d7af7f728acf283e172ebcc99c36c6050e8d5f349f4434cf0b9a7206",
       "render_version": 3
+    },
+    "os-cpu-scheduling": {
+      "topic_id": "os-cpu-scheduling",
+      "title_ko": "CPU 스케줄링",
+      "category": "Operating-System",
+      "subcategory": "Scheduling",
+      "target_path": "Operating-System/Scheduling/os-cpu-scheduling.md",
+      "post_path": "blog/_posts/2026-10-31-os-cpu-scheduling.md",
+      "permalink": "/topics/os-cpu-scheduling/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Scheduling/os-cpu-scheduling.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-cpu-scheduling/",
+      "published_date": "2026-10-31",
+      "content_hash": "e18bf5720e9c5de6af149ecd6e9fe2e0bdfa859090ddd615da6365f8468503fb",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
     "40547f4c-2c25-8012-9548-c463380659f7:운영체제": "40647f4c-2c25-8132-935d-fa622da0777a",
-    "40647f4c-2c25-8132-935d-fa622da0777a:Process": "40647f4c-2c25-81bb-a62f-dafeea335509"
+    "40647f4c-2c25-8132-935d-fa622da0777a:Process": "40647f4c-2c25-81bb-a62f-dafeea335509",
+    "40647f4c-2c25-8132-935d-fa622da0777a:Scheduling": "40a47f4c-2c25-81ac-8617-e539164b1052"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
