@@ -127,12 +127,32 @@
       "published_date": "2026-10-31",
       "content_hash": "e18bf5720e9c5de6af149ecd6e9fe2e0bdfa859090ddd615da6365f8468503fb",
       "render_version": 3
+    },
+    "os-synchronization": {
+      "topic_id": "os-synchronization",
+      "title_ko": "뮤텍스와 세마포어",
+      "category": "Operating-System",
+      "subcategory": "Concurrency",
+      "target_path": "Operating-System/Concurrency/os-synchronization.md",
+      "post_path": "blog/_posts/2026-11-01-os-synchronization.md",
+      "permalink": "/topics/os-synchronization/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Concurrency/os-synchronization.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-synchronization/",
+      "published_date": "2026-11-01",
+      "content_hash": "476ad68f814d837f278e2b0afeae1d420e45a2b040e972e00619e5c0abc396a9",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
     "40547f4c-2c25-8012-9548-c463380659f7:운영체제": "40647f4c-2c25-8132-935d-fa622da0777a",
     "40647f4c-2c25-8132-935d-fa622da0777a:Process": "40647f4c-2c25-81bb-a62f-dafeea335509",
-    "40647f4c-2c25-8132-935d-fa622da0777a:Scheduling": "40a47f4c-2c25-81ac-8617-e539164b1052"
+    "40647f4c-2c25-8132-935d-fa622da0777a:Scheduling": "40a47f4c-2c25-81ac-8617-e539164b1052",
+    "40647f4c-2c25-8132-935d-fa622da0777a:Concurrency": "40b47f4c-2c25-8191-9080-c750df6b0122"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
