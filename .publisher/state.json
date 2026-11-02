@@ -146,6 +146,33 @@
       "published_date": "2026-11-01",
       "content_hash": "476ad68f814d837f278e2b0afeae1d420e45a2b040e972e00619e5c0abc396a9",
       "render_version": 3
+    },
+    "os-deadlock": {
+      "topic_id": "os-deadlock",
+      "title_ko": "교착 상태",
+      "category": "Operating-System",
+      "subcategory": "Concurrency",
+      "target_path": "Operating-System/Concurrency/os-deadlock.md",
+      "post_path": "blog/_posts/2026-11-02-os-deadlock.md",
+      "permalink": "/topics/os-deadlock/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Concurrency/os-deadlock.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-deadlock/",
+      "published_date": "2026-11-02",
+      "content_hash": "ae5f40d4788eec9df3e29c4c7624e55134e3fc3389a837da9fe193e7bfda8a66",
+      "assets": [
+        {
+          "source": "assets/diagrams/os-deadlock.svg",
+          "target": "blog/assets/diagrams/os-deadlock.svg",
+          "sha256": "70ab3799c732cf40b16a7428e1c5c529082d56ed8880dfdfb2b5cb56eaca5b6f"
+        }
+      ],
+      "source_content_hash": "eb94ff89477b85dd386a45518c21b8fe7a88b85ae73a4dbd642e618b749ee104",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
