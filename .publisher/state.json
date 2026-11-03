@@ -173,13 +173,33 @@
       ],
       "source_content_hash": "eb94ff89477b85dd386a45518c21b8fe7a88b85ae73a4dbd642e618b749ee104",
       "render_version": 3
+    },
+    "os-virtual-memory": {
+      "topic_id": "os-virtual-memory",
+      "title_ko": "가상 메모리",
+      "category": "Operating-System",
+      "subcategory": "Memory",
+      "target_path": "Operating-System/Memory/os-virtual-memory.md",
+      "post_path": "blog/_posts/2026-11-03-os-virtual-memory.md",
+      "permalink": "/topics/os-virtual-memory/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Memory/os-virtual-memory.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-virtual-memory/",
+      "published_date": "2026-11-03",
+      "content_hash": "bef89bbc504181a00d6e75841fe2b3db58646b162870fc75a483b22519118134",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
     "40547f4c-2c25-8012-9548-c463380659f7:운영체제": "40647f4c-2c25-8132-935d-fa622da0777a",
     "40647f4c-2c25-8132-935d-fa622da0777a:Process": "40647f4c-2c25-81bb-a62f-dafeea335509",
     "40647f4c-2c25-8132-935d-fa622da0777a:Scheduling": "40a47f4c-2c25-81ac-8617-e539164b1052",
-    "40647f4c-2c25-8132-935d-fa622da0777a:Concurrency": "40b47f4c-2c25-8191-9080-c750df6b0122"
+    "40647f4c-2c25-8132-935d-fa622da0777a:Concurrency": "40b47f4c-2c25-8191-9080-c750df6b0122",
+    "40647f4c-2c25-8132-935d-fa622da0777a:Memory": "40d47f4c-2c25-814d-a177-d781d21d0d65"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
