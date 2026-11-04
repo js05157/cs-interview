@@ -192,6 +192,33 @@
       "published_date": "2026-11-03",
       "content_hash": "bef89bbc504181a00d6e75841fe2b3db58646b162870fc75a483b22519118134",
       "render_version": 3
+    },
+    "os-paging-tlb": {
+      "topic_id": "os-paging-tlb",
+      "title_ko": "페이징과 TLB",
+      "category": "Operating-System",
+      "subcategory": "Memory",
+      "target_path": "Operating-System/Memory/os-paging-tlb.md",
+      "post_path": "blog/_posts/2026-11-04-os-paging-tlb.md",
+      "permalink": "/topics/os-paging-tlb/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Memory/os-paging-tlb.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-paging-tlb/",
+      "published_date": "2026-11-04",
+      "content_hash": "ef6c9c1b73e3a6570a70655a268f3732ca03d41909b5bb450fb17f3a6d65b922",
+      "assets": [
+        {
+          "source": "assets/diagrams/os-paging-tlb.svg",
+          "target": "blog/assets/diagrams/os-paging-tlb.svg",
+          "sha256": "e80baf3f517bf89e022bb4fe9134616e90e0354943a1dea0d91b37d0c6ce0014"
+        }
+      ],
+      "source_content_hash": "97d1da28bf17d1ea25d5e85b39351ba650f6c4bf87d47dcc859adf2ce0fcd2e6",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
