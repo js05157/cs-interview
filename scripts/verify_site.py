@@ -6,7 +6,7 @@ from urllib.parse import unquote,urlsplit
 
 class Links(HTMLParser):
     def __init__(self):
-        super().__init__();self.links=[];self.ids=set();self.images=[];self.rows=[];self.cs_cards=[]
+        super().__init__();self.links=[];self.ids=set();self.images=[];self.rows=[];self.cs_cards=[];self.learning_rows=[]
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
         if a.get("id"):self.ids.add(a["id"])
@@ -14,6 +14,7 @@ class Links(HTMLParser):
             if a.get(key):self.links.append(a[key])
         if tag=="img":self.images.append(a)
         if tag=="a" and "post-row" in a.get("class","").split():self.rows.append((a.get("href"),a.get("data-kind")))
+        if tag=="a" and "learning-chapter" in a.get("class","").split():self.learning_rows.append((a.get("href"),a.get("data-kind")))
         if tag=="a" and "cs-subject-card" in a.get("class","").split():self.cs_cards.append((a.get("data-cs-category"),a.get("href"),int(a["data-count"])))
 
 class Archive(HTMLParser):
@@ -53,7 +54,7 @@ class LearningMarkup(HTMLParser):
 
 def verify(site,baseurl="/cs-interview"):
     site=Path(site)
-    required=("index.html","posts/index.html","cs/index.html","projects/index.html","ssafy/index.html","manage/index.html",
+    required=("index.html","posts/index.html","cs/index.html","projects/index.html","study/index.html","ssafy/index.html","manage/index.html",
               "learning/index.html","about/index.html","assets/style.css","assets/app.js","assets/editor.js",
               "assets/lib/markdown-it.min.js","search.json","feed.xml","sitemap.xml","robots.txt")
     for rel in required:
@@ -85,7 +86,7 @@ def verify(site,baseurl="/cs-interview"):
     posts=json.loads((site/"search.json").read_text(encoding="utf-8"))
     kinds={"cs","development","project","ssafy","essay"}
     for post in posts:
-        if not post["url"].startswith((baseurl+"/topics/",baseurl+"/posts/")):raise ValueError("invalid-search-url")
+        if not post["url"].startswith((baseurl+"/topics/",baseurl+"/posts/",baseurl+"/study/")):raise ValueError("invalid-search-url")
         if post.get("kind") not in kinds:raise ValueError("invalid-post-content-type")
         if not (site/post["url"][len(baseurl)+1:]/"index.html").is_file():raise ValueError("search-post-not-built")
     archive=pages[site/"posts/index.html"]
@@ -100,8 +101,9 @@ def verify(site,baseurl="/cs-interview"):
         category_page=site/"cs"/key.lower()/"index.html"
         if category_page not in pages or sorted(pages[category_page].rows)!=sorted((p["url"],"cs") for p in category_posts):raise ValueError("CS-subject-archive-mismatch")
     if any(p["kind"]=="cs" and p.get("category") not in {key for key,_,_ in subjects} for p in posts):raise ValueError("CS-post-category-unmapped")
-    ssafy=pages[site/"ssafy/index.html"]
-    if sorted(ssafy.rows)!=sorted((p["url"],"ssafy") for p in posts if p["kind"]=="ssafy"):raise ValueError("ssafy-archive-mismatch")
+    study=pages[site/"study/index.html"]
+    if sorted(study.learning_rows)!=sorted((p["url"],"ssafy") for p in posts if p["kind"]=="ssafy"):raise ValueError("learning-archive-mismatch")
+    if 'url='+baseurl+'/study/' not in (site/"ssafy/index.html").read_text(encoding="utf-8"):raise ValueError("legacy-learning-redirect-mismatch")
     for svg in (site/"assets").rglob("*.svg"):
         text=svg.read_text(encoding="utf-8")
         if re.search(r"<(?:script|foreignObject)\b|\bon\w+\s*=",text,re.I):raise ValueError("unsafe-svg:"+svg.name)

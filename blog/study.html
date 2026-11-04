@@ -1,0 +1,9 @@
+---
+title: 학습
+permalink: /study/
+---
+{% assign records = site.posts | where: 'content_type', 'ssafy' | sort: 'series_order' %}
+<header class="page-heading"><p class="eyebrow">LEARNING NOTES</p><h1>학습</h1><p>배운 내용을 원리와 실행 결과로 연결하는 학습 노트입니다.</p></header>
+<section class="learning-series" aria-labelledby="web-learning-title"><div class="section-heading"><h2 id="web-learning-title">Java 웹 기초</h2><span class="subtle-link">{{ records.size }}편</span></div><p class="learning-intro">Servlet에서 요청을 받고, JSP·EL·JSTL로 화면을 만들고, 쿠키·세션으로 상태를 이어갑니다. 아래 순서대로 읽거나 필요한 주제부터 찾아보세요.</p>
+<ol class="learning-chapters">{% for post in records %}<li><a class="learning-chapter" data-kind="ssafy" href="{{ post.url | relative_url }}"><span class="chapter-number">{{ post.series_order | default: forloop.index }}</span><div><h3>{{ post.title | escape }}</h3><p>{{ post.description | escape }}</p></div><span aria-hidden="true">↗</span></a></li>{% endfor %}</ol>
+<div class="learning-resources"><a href="https://www.notion.so/40e47f4c2c25814b8ba6c26db9498bd5">Notion 학습 노트 ↗</a><a href="https://github.com/js05157/cs-interview/tree/master/examples/web-learning">Java 실행 예제 ↗</a></div></section>

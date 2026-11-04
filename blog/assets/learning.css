@@ -1,0 +1,10 @@
+.learning-intro{max-width:690px;font-size:14px;color:var(--muted);line-height:1.95;margin-bottom:25px}
+.learning-chapters{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.learning-chapter{display:grid;grid-template-columns:30px minmax(0,1fr) 16px;gap:19px;padding:25px 0;border-bottom:1px solid var(--line);align-items:start}
+.chapter-number{font:12px var(--mono);color:var(--accent);padding-top:5px}
+.learning-chapter h3{font-size:18px;font-weight:600;margin:0 0 9px}
+.learning-chapter p{color:var(--muted);font-size:12px;line-height:1.9;margin:0}
+.learning-chapter>span:last-child{font-size:13px;color:var(--muted)}
+.learning-resources{display:flex;flex-wrap:wrap;gap:12px 27px;margin-top:30px;color:var(--accent);font-size:12px}
+.article-series{font:11px var(--mono);color:var(--muted);margin:17px 0 0}
+@media(max-width:600px){.learning-intro{font-size:13px}.learning-chapter{grid-template-columns:20px minmax(0,1fr) 12px;gap:10px;padding:21px 0}.learning-chapter h3{font-size:16px}.learning-chapter p{font-size:12px}.learning-resources{font-size:11px}}
