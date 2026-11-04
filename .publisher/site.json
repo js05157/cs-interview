@@ -1,5 +1,5 @@
 {
   "schema_version": 1,
-  "deployed_digest": "52963f1ba58c8425131329c8e4314498ec09c819bbc34fd99d2c2026cf078650",
-  "pending_digest": "e418f531cc5b8853f85fa15111899ad3941de1178f031b3e6a0668a496e995aa"
+  "deployed_digest": "e418f531cc5b8853f85fa15111899ad3941de1178f031b3e6a0668a496e995aa",
+  "pending_digest": null
 }
