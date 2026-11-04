@@ -1,4 +1,8 @@
-# 최신 운영 안내 · 2026-10-30
+# 최신 운영 안내 · 2026-11-04
+
+자동 커밋은 계정에 연결된 사용자 이메일을 사용하고, 신규 글은 10개 분야를 순환합니다. config/publisher.json의 commit_identity와 selection_strategy=category-round-robin을 확인합니다. 분야별 원래 순서와 선행 글 완료를 지키며 미완료 복구·같은 날짜 신규 제한이 우선합니다. 기존 원문·카탈로그·게시 기록을 다시 쓰지 않습니다. CS_AUTO_PUBLISH=true, 매일 10:30 KST를 유지하며 상세 규칙과 검증은 [AUTOMATION.md](AUTOMATION.md)를 따릅니다.
+
+# 이전 운영 안내 · 2026-10-30
 
 사용자가 자동화 실행을 승인했습니다. 기존 검증 완료 100편으로 범위를 고정한 일일 게시 정책과 활성화 결과는 [AUTOMATION.md](AUTOMATION.md)를 우선 확인합니다. 아래 첫 ID 한정·UNSET 안내는 활성화 전의 역사 기록입니다. 이후 추가하는 주제는 승인 범위에 포함되지 않습니다. 비공개 최신 콘텐츠 검사는 CORE16 보고서와 verify_core16.py를 사용합니다.
 

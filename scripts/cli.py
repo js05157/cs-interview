@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -33,6 +34,14 @@ def enforce_approval(state, preview, policy):
 
 def commit(root, message):
     config = read_json(root / "config/publisher.json")
+    identity = config.get("commit_identity", {})
+    if not isinstance(identity, dict):
+        raise PublisherError("valid-commit-identity-required")
+    name, email = identity.get("name"), identity.get("email")
+    if (not isinstance(name, str) or not name.strip() or any(c in name for c in "\r\n\x00")
+            or not isinstance(email, str) or "\x00" in email
+            or not re.fullmatch(r"[^@\s<>]+@[^@\s<>]+\.[^@\s<>]+", email)):
+        raise PublisherError("valid-commit-identity-required")
     if git(root, "branch", "--show-current") != config["branch"]:
         raise PublisherError("master-branch-required")
     origin = git(root, "remote", "get-url", "origin")
@@ -51,7 +60,7 @@ def commit(root, message):
     if set(staged.splitlines()) - set(files):
         raise PublisherError("unrelated-staged-files-protected")
     if staged:
-        git(root, "-c", "user.name=github-actions[bot]", "-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com",
+        git(root, "-c", "user.name=" + name.strip(), "-c", "user.email=" + email,
             "commit", "-m", message)
     # Push even after a previous interrupted commit. No force or automatic rebase.
     git(root, "push", "origin", "HEAD:" + config["branch"])

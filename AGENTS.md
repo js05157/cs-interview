@@ -15,4 +15,6 @@
 
 ## 최신 승인 · 2026-10-30
 
+최신 변경 승인(2026-11-04): 사용자 계정에 연결된 Sumin Yeom <jss05157@naver.com>을 앞으로의 자동 커밋 작성자·커미터로 사용합니다. 분야 순환 게시를 승인했으므로 config/publisher.json의 category-round-robin을 따릅니다. 비공개 원본 큐·ID·publish_order는 보존하되 실제 신규 선택은 분야를 번갈아 하며 각 분야의 원래 순서·선행 학습을 지킵니다. 이미 공개된 글·과거 커밋은 변경하지 않습니다. CS_AUTO_PUBLISH=true와 하루 1편·미완료 우선 복구를 유지합니다.
+
 사용자가 자동화 실행을 승인했습니다. 기존 검증 완료 100편의 순서를 따라 하루 신규 1편을 GitHub·Notion·Pages에 게시하고 CS_AUTO_PUBLISH를 활성화할 수 있습니다. config/publication_policy.json의 고정 승인 범위를 유지하며 이후 추가 주제는 자동 승인하지 않습니다. 기존 첫 글의 ID·날짜·본문·URL은 보존합니다. 미완료 플랫폼 복구를 먼저 하고 실패 시 새 주제를 건너뛰지 않습니다. docs/AUTOMATION.md의 현재 운영 상태를 먼저 확인합니다.

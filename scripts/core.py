@@ -176,17 +176,38 @@ def load_state(root):
     return state
 
 
-def select_topic(by_id, queue, state, today):
+def select_topic(by_id, queue, state, today, *, category_order=None):
     incomplete = [t for t in state["topics"].values()
                   if t.get("publication_status") != "withdrawn" and any(t[x] != "complete" for x in ("github_status", "notion_status", "blog_status"))]
     if incomplete:
         return "recover", sorted(incomplete, key=lambda t: (t["published_date"], t["topic_id"]))[0]["topic_id"]
     if any(t["published_date"] == today for t in state["topics"].values()):
         return "daily-limit", None
-    for key in queue:
-        if key not in state["topics"]:
+    pending = [key for key in queue if key not in state["topics"]]
+    if not pending:
+        return "exhausted", None
+    if category_order is None:
+        return "new", pending[0]
+    if (not category_order or len(set(category_order)) != len(category_order)
+            or set(category_order) != {t["category"] for t in by_id.values()}
+            or set(state["topics"]) - set(by_id)):
+        raise PublisherError("rotation-category-order-invalid")
+    # Keep each subject's original learning order; never jump over its next topic.
+    heads = {}
+    for key in pending:
+        heads.setdefault(by_id[key]["category"], key)
+    start = 0
+    if state["topics"]:
+        last = max(state["topics"], key=lambda key: (state["topics"][key]["published_date"], key))
+        start = (category_order.index(by_id[last]["category"]) + 1) % len(category_order)
+    complete = {key for key, t in state["topics"].items()
+                if t.get("publication_status") != "withdrawn"
+                and all(t[x] == "complete" for x in ("github_status", "notion_status", "blog_status"))}
+    for category in category_order[start:] + category_order[:start]:
+        key = heads.get(category)
+        if key and set(by_id[key]["prerequisites"]) <= complete:
             return "new", key
-    return "exhausted", None
+    raise PublisherError("no-publishable-topic-prerequisites")
 
 
 def make_post(t, body):
@@ -267,7 +288,11 @@ def prepare(root, private, *, dry_run=True, now=None):
     maintenance = maintenance_prepare(root, private, state, by_id, dry_run=dry_run, today=today)
     if maintenance is not None:
         return maintenance
-    mode, key = select_topic(by_id, queue, state, today)
+    strategy = config.get("selection_strategy", "queue")
+    if strategy not in {"queue", "category-round-robin"}:
+        raise PublisherError("invalid-selection-strategy")
+    mode, key = select_topic(by_id, queue, state, today,
+                             category_order=list(config["categories"]) if strategy == "category-round-robin" else None)
     result = {"action": mode, "topic_id": key, "date": today, "dry_run": dry_run}
     if not key:
         return result

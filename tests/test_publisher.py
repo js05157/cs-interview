@@ -79,6 +79,10 @@ class PublisherTests(unittest.TestCase):
             shutil.copyfile(BASE / path, dest)
         # Tests must always start with empty state even after the repository publishes real posts.
         core.write_json(self.root / '.publisher/state.json', dict(schema_version=1,topics={},notion_hierarchy={},notion_uncertain={}))
+        # Legacy fixture scenarios exercise serial queue behavior independently of production rotation.
+        config = core.read_json(self.root / 'config/publisher.json')
+        config['selection_strategy'] = 'queue'
+        core.write_json(self.root / 'config/publisher.json', config)
         (self.root / "blog/_posts").mkdir(parents=True)
         self.topics = []
         for category,count in core.COUNTS.items():

@@ -4,6 +4,11 @@
   "branch": "master",
   "blog_url": "https://js05157.github.io/cs-interview",
   "timezone": "Asia/Seoul",
+  "commit_identity": {
+    "name": "Sumin Yeom",
+    "email": "jss05157@naver.com"
+  },
+  "selection_strategy": "category-round-robin",
   "categories": {
     "Operating-System": "운영체제", "Network": "네트워크", "Database": "데이터베이스",
     "Java": "Java", "Spring": "Spring / JPA", "Data-Structure": "자료구조",

@@ -1,4 +1,8 @@
-# 현재 개편 구조 · 2026-10-29
+# 최신 게시 선택 · 2026-11-04
+
+사용자 승인으로 실제 신규 선택을 config/publisher.json의 category-round-robin으로 변경했습니다. config.categories 순서로 마지막 게시 분야 다음부터 순환하고, 분야별 첫 미게시 글의 선행 조건을 확인합니다. 기존 카탈로그·큐는 학습 기준 순서로 보존합니다. 미완료 복구와 하루 신규 1편 제한을 먼저 처리합니다. 자동 커밋 작성자·커미터는 config.commit_identity를 사용하며 실행 인증은 기존 GITHUB_TOKEN입니다. 상세 운영 규칙은 AUTOMATION.md를 따릅니다. 아래 첫 ID 제한·직렬 큐 안내는 초기 구조의 역사입니다.
+
+# 이전 개편 구조 · 2026-10-29
 
 개인 블로그 UI와 GitHub 글 관리 동선, 기존 CS 글 개정·공개 중단 및 사이트 전용 배포를 추가했습니다. 상세 계약은 [글 관리](CONTENT_MANAGEMENT.md), 실제 검증은 [개편 진행](redesign/PROGRESS.md)을 확인합니다.
 
