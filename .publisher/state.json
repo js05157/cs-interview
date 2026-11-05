@@ -219,6 +219,25 @@
       ],
       "source_content_hash": "97d1da28bf17d1ea25d5e85b39351ba650f6c4bf87d47dcc859adf2ce0fcd2e6",
       "render_version": 3
+    },
+    "net-tcp-ip": {
+      "topic_id": "net-tcp-ip",
+      "title_ko": "TCP/IP 계층과 패킷 전달",
+      "category": "Network",
+      "subcategory": "TCP-IP",
+      "target_path": "Network/TCP-IP/net-tcp-ip.md",
+      "post_path": "blog/_posts/2026-11-05-net-tcp-ip.md",
+      "permalink": "/topics/net-tcp-ip/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Network/TCP-IP/net-tcp-ip.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/net-tcp-ip/",
+      "published_date": "2026-11-05",
+      "content_hash": "eb10d48f75d77ba41ce8224ec0e3b5be0af17c0e57be340735c47ded35d50717",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -226,7 +245,9 @@
     "40647f4c-2c25-8132-935d-fa622da0777a:Process": "40647f4c-2c25-81bb-a62f-dafeea335509",
     "40647f4c-2c25-8132-935d-fa622da0777a:Scheduling": "40a47f4c-2c25-81ac-8617-e539164b1052",
     "40647f4c-2c25-8132-935d-fa622da0777a:Concurrency": "40b47f4c-2c25-8191-9080-c750df6b0122",
-    "40647f4c-2c25-8132-935d-fa622da0777a:Memory": "40d47f4c-2c25-814d-a177-d781d21d0d65"
+    "40647f4c-2c25-8132-935d-fa622da0777a:Memory": "40d47f4c-2c25-814d-a177-d781d21d0d65",
+    "40547f4c-2c25-8012-9548-c463380659f7:네트워크": "40f47f4c-2c25-8112-8379-f985632d3d22",
+    "40f47f4c-2c25-8112-8379-f985632d3d22:TCP-IP": "40f47f4c-2c25-8105-b12c-e8b974c40e81"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
