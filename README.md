@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 8개
+## CS 학습 기록 · 9개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-06 · [트랜잭션과 ACID](Database/Transaction/db-acid.md)
 - 2026-11-05 · [TCP/IP 계층과 패킷 전달](Network/TCP-IP/net-tcp-ip.md)
 - 2026-11-04 · [페이징과 TLB](Operating-System/Memory/os-paging-tlb.md)
 - 2026-11-03 · [가상 메모리](Operating-System/Memory/os-virtual-memory.md)
 - 2026-11-02 · [교착 상태](Operating-System/Concurrency/os-deadlock.md)
-- 2026-11-01 · [뮤텍스와 세마포어](Operating-System/Concurrency/os-synchronization.md)
 
 ### 운영체제 · 7개
 
@@ -30,8 +30,9 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 - [TCP/IP 계층과 패킷 전달](Network/TCP-IP/net-tcp-ip.md)
 
-### 데이터베이스 · 0개
+### 데이터베이스 · 1개
 
+- [트랜잭션과 ACID](Database/Transaction/db-acid.md)
 
 ### Java · 0개
 

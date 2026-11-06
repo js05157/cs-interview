@@ -238,6 +238,25 @@
       "published_date": "2026-11-05",
       "content_hash": "eb10d48f75d77ba41ce8224ec0e3b5be0af17c0e57be340735c47ded35d50717",
       "render_version": 3
+    },
+    "db-acid": {
+      "topic_id": "db-acid",
+      "title_ko": "트랜잭션과 ACID",
+      "category": "Database",
+      "subcategory": "Transaction",
+      "target_path": "Database/Transaction/db-acid.md",
+      "post_path": "blog/_posts/2026-11-06-db-acid.md",
+      "permalink": "/topics/db-acid/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Database/Transaction/db-acid.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/db-acid/",
+      "published_date": "2026-11-06",
+      "content_hash": "1057bb9d9445e36a838d968e775b80d69df2848cc0657f0b652c5930b2f5ad9f",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -247,7 +266,9 @@
     "40647f4c-2c25-8132-935d-fa622da0777a:Concurrency": "40b47f4c-2c25-8191-9080-c750df6b0122",
     "40647f4c-2c25-8132-935d-fa622da0777a:Memory": "40d47f4c-2c25-814d-a177-d781d21d0d65",
     "40547f4c-2c25-8012-9548-c463380659f7:네트워크": "40f47f4c-2c25-8112-8379-f985632d3d22",
-    "40f47f4c-2c25-8112-8379-f985632d3d22:TCP-IP": "40f47f4c-2c25-8105-b12c-e8b974c40e81"
+    "40f47f4c-2c25-8112-8379-f985632d3d22:TCP-IP": "40f47f4c-2c25-8105-b12c-e8b974c40e81",
+    "40547f4c-2c25-8012-9548-c463380659f7:데이터베이스": "41047f4c-2c25-81e7-a907-c8ad86beacf7",
+    "41047f4c-2c25-81e7-a907-c8ad86beacf7:Transaction": "41047f4c-2c25-8151-90ac-e1734cbec137"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
