@@ -257,6 +257,33 @@
       "published_date": "2026-11-06",
       "content_hash": "1057bb9d9445e36a838d968e775b80d69df2848cc0657f0b652c5930b2f5ad9f",
       "render_version": 3
+    },
+    "java-jvm-memory": {
+      "topic_id": "java-jvm-memory",
+      "title_ko": "JVM 메모리 구조",
+      "category": "Java",
+      "subcategory": "JVM",
+      "target_path": "Java/JVM/java-jvm-memory.md",
+      "post_path": "blog/_posts/2026-11-07-java-jvm-memory.md",
+      "permalink": "/topics/java-jvm-memory/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Java/JVM/java-jvm-memory.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/java-jvm-memory/",
+      "published_date": "2026-11-07",
+      "content_hash": "d366d87bd95b85465b290465d97957692ee849e4cb0469c6805530b185bf48d5",
+      "assets": [
+        {
+          "source": "assets/diagrams/java-jvm-memory.svg",
+          "target": "blog/assets/diagrams/java-jvm-memory.svg",
+          "sha256": "7087c0a7fffff4f74b900f01386d930ef2df3b5aa6fc67f0f0110ae8da3f66ae"
+        }
+      ],
+      "source_content_hash": "b84852d6100911d83aaa115952d88a93f219208e65962b256c6299648f82bffe",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -268,7 +295,9 @@
     "40547f4c-2c25-8012-9548-c463380659f7:네트워크": "40f47f4c-2c25-8112-8379-f985632d3d22",
     "40f47f4c-2c25-8112-8379-f985632d3d22:TCP-IP": "40f47f4c-2c25-8105-b12c-e8b974c40e81",
     "40547f4c-2c25-8012-9548-c463380659f7:데이터베이스": "41047f4c-2c25-81e7-a907-c8ad86beacf7",
-    "41047f4c-2c25-81e7-a907-c8ad86beacf7:Transaction": "41047f4c-2c25-8151-90ac-e1734cbec137"
+    "41047f4c-2c25-81e7-a907-c8ad86beacf7:Transaction": "41047f4c-2c25-8151-90ac-e1734cbec137",
+    "40547f4c-2c25-8012-9548-c463380659f7:Java": "41147f4c-2c25-81dc-8f45-f487b5ad1761",
+    "41147f4c-2c25-81dc-8f45-f487b5ad1761:JVM": "41147f4c-2c25-817e-9f97-f054aec80846"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
