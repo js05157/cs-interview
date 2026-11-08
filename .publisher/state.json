@@ -284,6 +284,25 @@
       ],
       "source_content_hash": "b84852d6100911d83aaa115952d88a93f219208e65962b256c6299648f82bffe",
       "render_version": 3
+    },
+    "spring-ioc-di": {
+      "topic_id": "spring-ioc-di",
+      "title_ko": "IoC와 의존성 주입",
+      "category": "Spring",
+      "subcategory": "Spring-Core",
+      "target_path": "Spring/Spring-Core/spring-ioc-di.md",
+      "post_path": "blog/_posts/2026-11-08-spring-ioc-di.md",
+      "permalink": "/topics/spring-ioc-di/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Spring/Spring-Core/spring-ioc-di.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/spring-ioc-di/",
+      "published_date": "2026-11-08",
+      "content_hash": "8af4ab30f317bd4c6319a0cf6d05610605112bf0ecf7fbabca9f165102fbbf38",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -297,7 +316,9 @@
     "40547f4c-2c25-8012-9548-c463380659f7:데이터베이스": "41047f4c-2c25-81e7-a907-c8ad86beacf7",
     "41047f4c-2c25-81e7-a907-c8ad86beacf7:Transaction": "41047f4c-2c25-8151-90ac-e1734cbec137",
     "40547f4c-2c25-8012-9548-c463380659f7:Java": "41147f4c-2c25-81dc-8f45-f487b5ad1761",
-    "41147f4c-2c25-81dc-8f45-f487b5ad1761:JVM": "41147f4c-2c25-817e-9f97-f054aec80846"
+    "41147f4c-2c25-81dc-8f45-f487b5ad1761:JVM": "41147f4c-2c25-817e-9f97-f054aec80846",
+    "40547f4c-2c25-8012-9548-c463380659f7:Spring / JPA": "41247f4c-2c25-81ec-a059-cf1af3d91653",
+    "41247f4c-2c25-81ec-a059-cf1af3d91653:Spring-Core": "41247f4c-2c25-812f-b5ef-e8d81802172f"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
