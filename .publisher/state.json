@@ -303,6 +303,33 @@
       "published_date": "2026-11-08",
       "content_hash": "8af4ab30f317bd4c6319a0cf6d05610605112bf0ecf7fbabca9f165102fbbf38",
       "render_version": 3
+    },
+    "ds-array-list": {
+      "topic_id": "ds-array-list",
+      "title_ko": "배열과 연결 리스트",
+      "category": "Data-Structure",
+      "subcategory": "Linear",
+      "target_path": "Data-Structure/Linear/ds-array-list.md",
+      "post_path": "blog/_posts/2026-11-09-ds-array-list.md",
+      "permalink": "/topics/ds-array-list/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Data-Structure/Linear/ds-array-list.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/ds-array-list/",
+      "published_date": "2026-11-09",
+      "content_hash": "311c92b66dcf5099550460802e212ee2a3eb07fdf3bb7916cd20866c31e0c999",
+      "assets": [
+        {
+          "source": "assets/diagrams/ds-array-list.svg",
+          "target": "blog/assets/diagrams/ds-array-list.svg",
+          "sha256": "98c802d958de3e2d33b81a60b03aca34beb4455c832182f90fc43a62cf26cf0f"
+        }
+      ],
+      "source_content_hash": "7184923b2d607c41cc9a362f6bcf9dd3d09a1dab88ee16855a645ccac97a5c56",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -318,7 +345,9 @@
     "40547f4c-2c25-8012-9548-c463380659f7:Java": "41147f4c-2c25-81dc-8f45-f487b5ad1761",
     "41147f4c-2c25-81dc-8f45-f487b5ad1761:JVM": "41147f4c-2c25-817e-9f97-f054aec80846",
     "40547f4c-2c25-8012-9548-c463380659f7:Spring / JPA": "41247f4c-2c25-81ec-a059-cf1af3d91653",
-    "41247f4c-2c25-81ec-a059-cf1af3d91653:Spring-Core": "41247f4c-2c25-812f-b5ef-e8d81802172f"
+    "41247f4c-2c25-81ec-a059-cf1af3d91653:Spring-Core": "41247f4c-2c25-812f-b5ef-e8d81802172f",
+    "40547f4c-2c25-8012-9548-c463380659f7:자료구조": "41347f4c-2c25-8171-945c-d5e969ce493a",
+    "41347f4c-2c25-8171-945c-d5e969ce493a:Linear": "41347f4c-2c25-81e7-a21a-cc2d03976f54"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
