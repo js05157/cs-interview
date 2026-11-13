@@ -387,6 +387,25 @@
       "published_date": "2026-11-12",
       "content_hash": "42500be53e9abbdcf48b728a9c72303bd5b18d56b04a83152431331120840728",
       "render_version": 3
+    },
+    "os-page-replacement": {
+      "topic_id": "os-page-replacement",
+      "title_ko": "페이지 교체와 스래싱",
+      "category": "Operating-System",
+      "subcategory": "Memory",
+      "target_path": "Operating-System/Memory/os-page-replacement.md",
+      "post_path": "blog/_posts/2026-11-13-os-page-replacement.md",
+      "permalink": "/topics/os-page-replacement/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Memory/os-page-replacement.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-page-replacement/",
+      "published_date": "2026-11-13",
+      "content_hash": "50bada8af3a14c6620ef4e306f2f57cc3fd6ce03233a8b4a3eb891f3aa8651ac",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
