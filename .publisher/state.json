@@ -406,6 +406,25 @@
       "published_date": "2026-11-13",
       "content_hash": "50bada8af3a14c6620ef4e306f2f57cc3fd6ce03233a8b4a3eb891f3aa8651ac",
       "render_version": 3
+    },
+    "net-dns": {
+      "topic_id": "net-dns",
+      "title_ko": "DNS 조회와 캐싱",
+      "category": "Network",
+      "subcategory": "DNS",
+      "target_path": "Network/DNS/net-dns.md",
+      "post_path": "blog/_posts/2026-11-14-net-dns.md",
+      "permalink": "/topics/net-dns/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Network/DNS/net-dns.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/net-dns/",
+      "published_date": "2026-11-14",
+      "content_hash": "49b8fce3213f1e85ef174e55c1cf662e87fbe15ff3da33fb6b69a6c924f2914f",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -429,7 +448,8 @@
     "40547f4c-2c25-8012-9548-c463380659f7:DevOps": "41547f4c-2c25-810f-8a18-cbc08fff2f25",
     "41547f4c-2c25-810f-8a18-cbc08fff2f25:Container": "41547f4c-2c25-816e-860a-c1fab8655d02",
     "40547f4c-2c25-8012-9548-c463380659f7:데이터 엔지니어링": "41647f4c-2c25-8112-9223-cac1c22efd34",
-    "41647f4c-2c25-8112-9223-cac1c22efd34:Pipeline": "41647f4c-2c25-818c-a22e-ea620c20a25e"
+    "41647f4c-2c25-8112-9223-cac1c22efd34:Pipeline": "41647f4c-2c25-818c-a22e-ea620c20a25e",
+    "40f47f4c-2c25-8112-8379-f985632d3d22:DNS": "41847f4c-2c25-812a-b0ab-d7bcff681619"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
