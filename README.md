@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 17개
+## CS 학습 기록 · 18개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-15 · [트랜잭션 격리 수준](Database/Transaction/db-isolation.md)
 - 2026-11-14 · [DNS 조회와 캐싱](Network/DNS/net-dns.md)
 - 2026-11-13 · [페이지 교체와 스래싱](Operating-System/Memory/os-page-replacement.md)
 - 2026-11-12 · [배치와 스트림 처리](Data-Engineering/Pipeline/data-batch-stream.md)
 - 2026-11-11 · [Docker 이미지와 컨테이너](DevOps/Container/devops-docker.md)
-- 2026-11-10 · [시간 및 공간 복잡도](Algorithm/Analysis/algo-complexity.md)
 
 ### 운영체제 · 8개
 
@@ -32,8 +32,9 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 - [DNS 조회와 캐싱](Network/DNS/net-dns.md)
 - [TCP/IP 계층과 패킷 전달](Network/TCP-IP/net-tcp-ip.md)
 
-### 데이터베이스 · 1개
+### 데이터베이스 · 2개
 
+- [트랜잭션 격리 수준](Database/Transaction/db-isolation.md)
 - [트랜잭션과 ACID](Database/Transaction/db-acid.md)
 
 ### Java · 1개

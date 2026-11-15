@@ -425,6 +425,33 @@
       "published_date": "2026-11-14",
       "content_hash": "49b8fce3213f1e85ef174e55c1cf662e87fbe15ff3da33fb6b69a6c924f2914f",
       "render_version": 3
+    },
+    "db-isolation": {
+      "topic_id": "db-isolation",
+      "title_ko": "트랜잭션 격리 수준",
+      "category": "Database",
+      "subcategory": "Transaction",
+      "target_path": "Database/Transaction/db-isolation.md",
+      "post_path": "blog/_posts/2026-11-15-db-isolation.md",
+      "permalink": "/topics/db-isolation/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Database/Transaction/db-isolation.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/db-isolation/",
+      "published_date": "2026-11-15",
+      "content_hash": "2eb8548404a0753cf35f31f24a063936d0e55a424b6d2953cb2497ee09818171",
+      "assets": [
+        {
+          "source": "assets/diagrams/db-isolation.svg",
+          "target": "blog/assets/diagrams/db-isolation.svg",
+          "sha256": "3c9174fd366d75dd902ce2b87aba771beb98cb50ad123496d95f73e76fc7e124"
+        }
+      ],
+      "source_content_hash": "5eda665bf6ef927a7f792bd4b21df80b3295423f1d858ffbbfebc8fc7ccbacf8",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
