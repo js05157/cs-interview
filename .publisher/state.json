@@ -452,6 +452,25 @@
       ],
       "source_content_hash": "5eda665bf6ef927a7f792bd4b21df80b3295423f1d858ffbbfebc8fc7ccbacf8",
       "render_version": 3
+    },
+    "java-class-loading": {
+      "topic_id": "java-class-loading",
+      "title_ko": "클래스 로딩과 초기화",
+      "category": "Java",
+      "subcategory": "JVM",
+      "target_path": "Java/JVM/java-class-loading.md",
+      "post_path": "blog/_posts/2026-11-16-java-class-loading.md",
+      "permalink": "/topics/java-class-loading/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Java/JVM/java-class-loading.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/java-class-loading/",
+      "published_date": "2026-11-16",
+      "content_hash": "715618bb44f679363888e62bf5d7cf43c9c40cfc14183c16c50dd90cf61cf170",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
