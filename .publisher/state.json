@@ -471,6 +471,25 @@
       "published_date": "2026-11-16",
       "content_hash": "715618bb44f679363888e62bf5d7cf43c9c40cfc14183c16c50dd90cf61cf170",
       "render_version": 3
+    },
+    "spring-bean-lifecycle": {
+      "topic_id": "spring-bean-lifecycle",
+      "title_ko": "Bean 스코프와 생명주기",
+      "category": "Spring",
+      "subcategory": "Spring-Core",
+      "target_path": "Spring/Spring-Core/spring-bean-lifecycle.md",
+      "post_path": "blog/_posts/2026-11-17-spring-bean-lifecycle.md",
+      "permalink": "/topics/spring-bean-lifecycle/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Spring/Spring-Core/spring-bean-lifecycle.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/spring-bean-lifecycle/",
+      "published_date": "2026-11-17",
+      "content_hash": "07d10863ec0a92d96eb5007e6cf04aaf118ba5f9ca97fc96b21e91ce8686fe62",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
