@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 20개
+## CS 학습 기록 · 21개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-18 · [스택과 큐](Data-Structure/Linear/ds-stack-queue.md)
 - 2026-11-17 · [Bean 스코프와 생명주기](Spring/Spring-Core/spring-bean-lifecycle.md)
 - 2026-11-16 · [클래스 로딩과 초기화](Java/JVM/java-class-loading.md)
 - 2026-11-15 · [트랜잭션 격리 수준](Database/Transaction/db-isolation.md)
 - 2026-11-14 · [DNS 조회와 캐싱](Network/DNS/net-dns.md)
-- 2026-11-13 · [페이지 교체와 스래싱](Operating-System/Memory/os-page-replacement.md)
 
 ### 운영체제 · 8개
 
@@ -47,8 +47,9 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 - [Bean 스코프와 생명주기](Spring/Spring-Core/spring-bean-lifecycle.md)
 - [IoC와 의존성 주입](Spring/Spring-Core/spring-ioc-di.md)
 
-### 자료구조 · 1개
+### 자료구조 · 2개
 
+- [스택과 큐](Data-Structure/Linear/ds-stack-queue.md)
 - [배열과 연결 리스트](Data-Structure/Linear/ds-array-list.md)
 
 ### 알고리즘 · 1개

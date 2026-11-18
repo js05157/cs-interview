@@ -490,6 +490,25 @@
       "published_date": "2026-11-17",
       "content_hash": "07d10863ec0a92d96eb5007e6cf04aaf118ba5f9ca97fc96b21e91ce8686fe62",
       "render_version": 3
+    },
+    "ds-stack-queue": {
+      "topic_id": "ds-stack-queue",
+      "title_ko": "스택과 큐",
+      "category": "Data-Structure",
+      "subcategory": "Linear",
+      "target_path": "Data-Structure/Linear/ds-stack-queue.md",
+      "post_path": "blog/_posts/2026-11-18-ds-stack-queue.md",
+      "permalink": "/topics/ds-stack-queue/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Data-Structure/Linear/ds-stack-queue.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/ds-stack-queue/",
+      "published_date": "2026-11-18",
+      "content_hash": "9caf2a61165242ebf312c06aae1dd83464ad3718ecbe45e7cc6ab2749091c001",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
