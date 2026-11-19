@@ -509,6 +509,33 @@
       "published_date": "2026-11-18",
       "content_hash": "9caf2a61165242ebf312c06aae1dd83464ad3718ecbe45e7cc6ab2749091c001",
       "render_version": 3
+    },
+    "algo-binary-search": {
+      "topic_id": "algo-binary-search",
+      "title_ko": "이진 탐색과 경계 조건",
+      "category": "Algorithm",
+      "subcategory": "Search",
+      "target_path": "Algorithm/Search/algo-binary-search.md",
+      "post_path": "blog/_posts/2026-11-19-algo-binary-search.md",
+      "permalink": "/topics/algo-binary-search/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Algorithm/Search/algo-binary-search.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/algo-binary-search/",
+      "published_date": "2026-11-19",
+      "content_hash": "cb66d8243f68871a9f717a9a5d54277b07ea573e133bb8d1e7bc0a5de46c8941",
+      "assets": [
+        {
+          "source": "assets/diagrams/algo-binary-search.svg",
+          "target": "blog/assets/diagrams/algo-binary-search.svg",
+          "sha256": "9fc8eb27115356de2135c26ad85213e5c0e986b249a36ff6798d350cb5091663"
+        }
+      ],
+      "source_content_hash": "7cd324f8688c4013026ca9e4988266e7ccdeae6f660226748da49492bb7ed2e2",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -533,7 +560,8 @@
     "41547f4c-2c25-810f-8a18-cbc08fff2f25:Container": "41547f4c-2c25-816e-860a-c1fab8655d02",
     "40547f4c-2c25-8012-9548-c463380659f7:데이터 엔지니어링": "41647f4c-2c25-8112-9223-cac1c22efd34",
     "41647f4c-2c25-8112-9223-cac1c22efd34:Pipeline": "41647f4c-2c25-818c-a22e-ea620c20a25e",
-    "40f47f4c-2c25-8112-8379-f985632d3d22:DNS": "41847f4c-2c25-812a-b0ab-d7bcff681619"
+    "40f47f4c-2c25-8112-8379-f985632d3d22:DNS": "41847f4c-2c25-812a-b0ab-d7bcff681619",
+    "41447f4c-2c25-8116-ad3e-ca5e8b799ec5:Search": "41d47f4c-2c25-81c2-beb9-cb7a97f42c7b"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
