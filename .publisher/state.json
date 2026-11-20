@@ -536,6 +536,25 @@
       ],
       "source_content_hash": "7cd324f8688c4013026ca9e4988266e7ccdeae6f660226748da49492bb7ed2e2",
       "render_version": 3
+    },
+    "devops-container-resources": {
+      "topic_id": "devops-container-resources",
+      "title_ko": "컨테이너 자원과 격리",
+      "category": "DevOps",
+      "subcategory": "Container",
+      "target_path": "DevOps/Container/devops-container-resources.md",
+      "post_path": "blog/_posts/2026-11-20-devops-container-resources.md",
+      "permalink": "/topics/devops-container-resources/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/DevOps/Container/devops-container-resources.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/devops-container-resources/",
+      "published_date": "2026-11-20",
+      "content_hash": "c4a4e8f59cb980b27781ed920450be5fe4de267cef88a207f8b0000d25d921c9",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
