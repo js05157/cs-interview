@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 23개
+## CS 학습 기록 · 24개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-21 · [Kafka 파티션과 로그](Data-Engineering/Kafka/data-kafka-storage.md)
 - 2026-11-20 · [컨테이너 자원과 격리](DevOps/Container/devops-container-resources.md)
 - 2026-11-19 · [이진 탐색과 경계 조건](Algorithm/Search/algo-binary-search.md)
 - 2026-11-18 · [스택과 큐](Data-Structure/Linear/ds-stack-queue.md)
 - 2026-11-17 · [Bean 스코프와 생명주기](Spring/Spring-Core/spring-bean-lifecycle.md)
-- 2026-11-16 · [클래스 로딩과 초기화](Java/JVM/java-class-loading.md)
 
 ### 운영체제 · 8개
 
@@ -65,7 +65,8 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 - [컨테이너 자원과 격리](DevOps/Container/devops-container-resources.md)
 - [Docker 이미지와 컨테이너](DevOps/Container/devops-docker.md)
 
-### 데이터 엔지니어링 · 1개
+### 데이터 엔지니어링 · 2개
 
+- [Kafka 파티션과 로그](Data-Engineering/Kafka/data-kafka-storage.md)
 - [배치와 스트림 처리](Data-Engineering/Pipeline/data-batch-stream.md)
 <!-- CS-PUBLISHER:END -->
