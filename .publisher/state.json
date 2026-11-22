@@ -582,6 +582,25 @@
       ],
       "source_content_hash": "b541753f0b7442506140c73605e7a191694aca1c704738f72847f0b2f8713a30",
       "render_version": 3
+    },
+    "os-system-call": {
+      "topic_id": "os-system-call",
+      "title_ko": "시스템 콜과 사용자 모드",
+      "category": "Operating-System",
+      "subcategory": "Kernel",
+      "target_path": "Operating-System/Kernel/os-system-call.md",
+      "post_path": "blog/_posts/2026-11-22-os-system-call.md",
+      "permalink": "/topics/os-system-call/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Operating-System/Kernel/os-system-call.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/os-system-call/",
+      "published_date": "2026-11-22",
+      "content_hash": "e6d1920c41d4e56f4a8eb8e8d7e5cf09940f90ab65fad618b5b882b2da6f064d",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -608,7 +627,8 @@
     "41647f4c-2c25-8112-9223-cac1c22efd34:Pipeline": "41647f4c-2c25-818c-a22e-ea620c20a25e",
     "40f47f4c-2c25-8112-8379-f985632d3d22:DNS": "41847f4c-2c25-812a-b0ab-d7bcff681619",
     "41447f4c-2c25-8116-ad3e-ca5e8b799ec5:Search": "41d47f4c-2c25-81c2-beb9-cb7a97f42c7b",
-    "41647f4c-2c25-8112-9223-cac1c22efd34:Kafka": "41f47f4c-2c25-81b3-a285-e58ef5773608"
+    "41647f4c-2c25-8112-9223-cac1c22efd34:Kafka": "41f47f4c-2c25-81b3-a285-e58ef5773608",
+    "40647f4c-2c25-8132-935d-fa622da0777a:Kernel": "42047f4c-2c25-813c-a589-de1551e03dd1"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"

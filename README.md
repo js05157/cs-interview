@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 24개
+## CS 학습 기록 · 25개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,14 +10,15 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-22 · [시스템 콜과 사용자 모드](Operating-System/Kernel/os-system-call.md)
 - 2026-11-21 · [Kafka 파티션과 로그](Data-Engineering/Kafka/data-kafka-storage.md)
 - 2026-11-20 · [컨테이너 자원과 격리](DevOps/Container/devops-container-resources.md)
 - 2026-11-19 · [이진 탐색과 경계 조건](Algorithm/Search/algo-binary-search.md)
 - 2026-11-18 · [스택과 큐](Data-Structure/Linear/ds-stack-queue.md)
-- 2026-11-17 · [Bean 스코프와 생명주기](Spring/Spring-Core/spring-bean-lifecycle.md)
 
-### 운영체제 · 8개
+### 운영체제 · 9개
 
+- [시스템 콜과 사용자 모드](Operating-System/Kernel/os-system-call.md)
 - [페이지 교체와 스래싱](Operating-System/Memory/os-page-replacement.md)
 - [페이징과 TLB](Operating-System/Memory/os-paging-tlb.md)
 - [가상 메모리](Operating-System/Memory/os-virtual-memory.md)
