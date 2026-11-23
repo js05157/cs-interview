@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 25개
+## CS 학습 기록 · 26개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-23 · [TCP 연결 수립과 종료](Network/TCP-IP/net-handshake.md)
 - 2026-11-22 · [시스템 콜과 사용자 모드](Operating-System/Kernel/os-system-call.md)
 - 2026-11-21 · [Kafka 파티션과 로그](Data-Engineering/Kafka/data-kafka-storage.md)
 - 2026-11-20 · [컨테이너 자원과 격리](DevOps/Container/devops-container-resources.md)
 - 2026-11-19 · [이진 탐색과 경계 조건](Algorithm/Search/algo-binary-search.md)
-- 2026-11-18 · [스택과 큐](Data-Structure/Linear/ds-stack-queue.md)
 
 ### 운영체제 · 9개
 
@@ -28,8 +28,9 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 - [컨텍스트 스위칭](Operating-System/Process/os-context-switch.md)
 - [프로세스와 스레드](Operating-System/Process/os-process-thread.md)
 
-### 네트워크 · 2개
+### 네트워크 · 3개
 
+- [TCP 연결 수립과 종료](Network/TCP-IP/net-handshake.md)
 - [DNS 조회와 캐싱](Network/DNS/net-dns.md)
 - [TCP/IP 계층과 패킷 전달](Network/TCP-IP/net-tcp-ip.md)
 

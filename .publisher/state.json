@@ -601,6 +601,33 @@
       "published_date": "2026-11-22",
       "content_hash": "e6d1920c41d4e56f4a8eb8e8d7e5cf09940f90ab65fad618b5b882b2da6f064d",
       "render_version": 3
+    },
+    "net-handshake": {
+      "topic_id": "net-handshake",
+      "title_ko": "TCP 연결 수립과 종료",
+      "category": "Network",
+      "subcategory": "TCP-IP",
+      "target_path": "Network/TCP-IP/net-handshake.md",
+      "post_path": "blog/_posts/2026-11-23-net-handshake.md",
+      "permalink": "/topics/net-handshake/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Network/TCP-IP/net-handshake.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/net-handshake/",
+      "published_date": "2026-11-23",
+      "content_hash": "35e9578717f227ff359b361dd988340210044f93c93de04356bf9f87c15221ef",
+      "assets": [
+        {
+          "source": "assets/diagrams/net-handshake.svg",
+          "target": "blog/assets/diagrams/net-handshake.svg",
+          "sha256": "ff04c9e5b735a859972f643ede0d2823fc925ffa643a18f2b98ec6bc5ceff763"
+        }
+      ],
+      "source_content_hash": "e7207fa499a87df20475b05e34d24e368f167a41bc1e40ded789fb621f67c8b1",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
