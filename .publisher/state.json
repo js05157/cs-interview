@@ -639,7 +639,7 @@
       "permalink": "/topics/db-mvcc/",
       "github_status": "complete",
       "notion_status": "complete",
-      "blog_status": "pending",
+      "blog_status": "complete",
       "github_url": "https://github.com/js05157/cs-interview/blob/master/Database/Transaction/db-mvcc.md",
       "notion_page_id": "42247f4c-2c25-8123-8ea1-dbf967cd5cdf",
       "notion_url": "https://www.notion.so/42247f4c2c2581238ea1dbf967cd5cdf",
