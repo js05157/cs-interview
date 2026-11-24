@@ -628,6 +628,25 @@
       ],
       "source_content_hash": "e7207fa499a87df20475b05e34d24e368f167a41bc1e40ded789fb621f67c8b1",
       "render_version": 3
+    },
+    "db-mvcc": {
+      "topic_id": "db-mvcc",
+      "title_ko": "MVCC와 스냅샷",
+      "category": "Database",
+      "subcategory": "Transaction",
+      "target_path": "Database/Transaction/db-mvcc.md",
+      "post_path": "blog/_posts/2026-11-24-db-mvcc.md",
+      "permalink": "/topics/db-mvcc/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Database/Transaction/db-mvcc.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/db-mvcc/",
+      "published_date": "2026-11-24",
+      "content_hash": "1eccf892bf7a5f4bea8be1fd8ce0ae711b80d23180a0c6f3a2d257cf10aaba4f",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
