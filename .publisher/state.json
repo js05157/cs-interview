@@ -647,6 +647,33 @@
       "published_date": "2026-11-24",
       "content_hash": "1eccf892bf7a5f4bea8be1fd8ce0ae711b80d23180a0c6f3a2d257cf10aaba4f",
       "render_version": 3
+    },
+    "java-gc": {
+      "topic_id": "java-gc",
+      "title_ko": "GC와 객체 도달 가능성",
+      "category": "Java",
+      "subcategory": "JVM",
+      "target_path": "Java/JVM/java-gc.md",
+      "post_path": "blog/_posts/2026-11-25-java-gc.md",
+      "permalink": "/topics/java-gc/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Java/JVM/java-gc.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/java-gc/",
+      "published_date": "2026-11-25",
+      "content_hash": "f92fc911c0c02ab27772fa51c079b409d1899ee98730387cedeaefb58a2c2b65",
+      "assets": [
+        {
+          "source": "assets/diagrams/java-gc.svg",
+          "target": "blog/assets/diagrams/java-gc.svg",
+          "sha256": "4ea7679965259226383eba9a959d4ba55823719a1e9e953c10d16df6d27105f2"
+        }
+      ],
+      "source_content_hash": "f79533199b3b5ac6fbb7cb692413365f00883faec3c696a2094f0e69c463b7b4",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
