@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 28개
+## CS 학습 기록 · 29개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-26 · [AOP와 프록시](Spring/Spring-Core/spring-aop.md)
 - 2026-11-25 · [GC와 객체 도달 가능성](Java/JVM/java-gc.md)
 - 2026-11-24 · [MVCC와 스냅샷](Database/Transaction/db-mvcc.md)
 - 2026-11-23 · [TCP 연결 수립과 종료](Network/TCP-IP/net-handshake.md)
 - 2026-11-22 · [시스템 콜과 사용자 모드](Operating-System/Kernel/os-system-call.md)
-- 2026-11-21 · [Kafka 파티션과 로그](Data-Engineering/Kafka/data-kafka-storage.md)
 
 ### 운영체제 · 9개
 
@@ -46,8 +46,9 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 - [클래스 로딩과 초기화](Java/JVM/java-class-loading.md)
 - [JVM 메모리 구조](Java/JVM/java-jvm-memory.md)
 
-### Spring / JPA · 2개
+### Spring / JPA · 3개
 
+- [AOP와 프록시](Spring/Spring-Core/spring-aop.md)
 - [Bean 스코프와 생명주기](Spring/Spring-Core/spring-bean-lifecycle.md)
 - [IoC와 의존성 주입](Spring/Spring-Core/spring-ioc-di.md)
 

@@ -674,6 +674,33 @@
       ],
       "source_content_hash": "f79533199b3b5ac6fbb7cb692413365f00883faec3c696a2094f0e69c463b7b4",
       "render_version": 3
+    },
+    "spring-aop": {
+      "topic_id": "spring-aop",
+      "title_ko": "AOP와 프록시",
+      "category": "Spring",
+      "subcategory": "Spring-Core",
+      "target_path": "Spring/Spring-Core/spring-aop.md",
+      "post_path": "blog/_posts/2026-11-26-spring-aop.md",
+      "permalink": "/topics/spring-aop/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Spring/Spring-Core/spring-aop.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/spring-aop/",
+      "published_date": "2026-11-26",
+      "content_hash": "933bbb2313aa5eaef2bb12dc005ca0a92d004349b6034d5362f45b632c1461a1",
+      "assets": [
+        {
+          "source": "assets/diagrams/spring-aop.svg",
+          "target": "blog/assets/diagrams/spring-aop.svg",
+          "sha256": "6f9cdb2a34d5e604450e046a1a145b33024f5ffe52c46c3a3c667345c726c8dd"
+        }
+      ],
+      "source_content_hash": "90f88adf298e5e0428eae1474ce30d8cbc006a3881e7b7bffa0dcc8fbc833ca1",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
