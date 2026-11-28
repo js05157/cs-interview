@@ -2,7 +2,7 @@
 Computer Science interview notes and a technical blog focused on Java, Spring, backend development, and software engineering.
 
 <!-- CS-PUBLISHER:START -->
-## CS 학습 기록 · 30개
+## CS 학습 기록 · 31개
 
 [기술 블로그](https://js05157.github.io/cs-interview/)
 
@@ -10,11 +10,11 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 
 ### 최근 게시 문서
 
+- 2026-11-28 · [정렬과 안정성](Algorithm/Sort/algo-sorting.md)
 - 2026-11-27 · [해시 테이블과 충돌 처리](Data-Structure/Hash/ds-hash-table.md)
 - 2026-11-26 · [AOP와 프록시](Spring/Spring-Core/spring-aop.md)
 - 2026-11-25 · [GC와 객체 도달 가능성](Java/JVM/java-gc.md)
 - 2026-11-24 · [MVCC와 스냅샷](Database/Transaction/db-mvcc.md)
-- 2026-11-23 · [TCP 연결 수립과 종료](Network/TCP-IP/net-handshake.md)
 
 ### 운영체제 · 9개
 
@@ -58,8 +58,9 @@ Computer Science interview notes and a technical blog focused on Java, Spring, b
 - [스택과 큐](Data-Structure/Linear/ds-stack-queue.md)
 - [배열과 연결 리스트](Data-Structure/Linear/ds-array-list.md)
 
-### 알고리즘 · 2개
+### 알고리즘 · 3개
 
+- [정렬과 안정성](Algorithm/Sort/algo-sorting.md)
 - [이진 탐색과 경계 조건](Algorithm/Search/algo-binary-search.md)
 - [시간 및 공간 복잡도](Algorithm/Analysis/algo-complexity.md)
 

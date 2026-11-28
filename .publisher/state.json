@@ -720,6 +720,25 @@
       "published_date": "2026-11-27",
       "content_hash": "24bb52effe18d30b984fe11729e33ace5929f2591841513aac7390723a049ef8",
       "render_version": 3
+    },
+    "algo-sorting": {
+      "topic_id": "algo-sorting",
+      "title_ko": "정렬과 안정성",
+      "category": "Algorithm",
+      "subcategory": "Sort",
+      "target_path": "Algorithm/Sort/algo-sorting.md",
+      "post_path": "blog/_posts/2026-11-28-algo-sorting.md",
+      "permalink": "/topics/algo-sorting/",
+      "github_status": "complete",
+      "notion_status": "pending",
+      "blog_status": "pending",
+      "github_url": "https://github.com/js05157/cs-interview/blob/master/Algorithm/Sort/algo-sorting.md",
+      "notion_page_id": null,
+      "notion_url": null,
+      "blog_url": "https://js05157.github.io/cs-interview/topics/algo-sorting/",
+      "published_date": "2026-11-28",
+      "content_hash": "1264f02a380db6a30bf73d4c11e4d461f4cf4bd6c75dbc023820a6107968d488",
+      "render_version": 3
     }
   },
   "notion_hierarchy": {
@@ -748,7 +767,8 @@
     "41447f4c-2c25-8116-ad3e-ca5e8b799ec5:Search": "41d47f4c-2c25-81c2-beb9-cb7a97f42c7b",
     "41647f4c-2c25-8112-9223-cac1c22efd34:Kafka": "41f47f4c-2c25-81b3-a285-e58ef5773608",
     "40647f4c-2c25-8132-935d-fa622da0777a:Kernel": "42047f4c-2c25-813c-a589-de1551e03dd1",
-    "41347f4c-2c25-8171-945c-d5e969ce493a:Hash": "42547f4c-2c25-817d-b8ad-d0f0bbf5e6a2"
+    "41347f4c-2c25-8171-945c-d5e969ce493a:Hash": "42547f4c-2c25-817d-b8ad-d0f0bbf5e6a2",
+    "41447f4c-2c25-8116-ad3e-ca5e8b799ec5:Sort": "42647f4c-2c25-8185-bbab-ff9443ce6a6e"
   },
   "notion_uncertain": {},
   "notion_parent_url": "https://www.notion.so/40547f4c2c2580129548c463380659f7"
